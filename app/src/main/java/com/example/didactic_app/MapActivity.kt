@@ -5,8 +5,6 @@ import android.location.GpsStatus
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
-import com.example.didactic_app.databinding.ActivityMainBinding
-import com.example.didactic_app.databinding.ActivityMapBinding
 import org.osmdroid.api.IMapController
 import org.osmdroid.config.Configuration
 import org.osmdroid.events.MapListener
@@ -26,13 +24,15 @@ class MapActivity : AppCompatActivity(), MapListener, GpsStatus.Listener {
     lateinit var mMyLocationOverlay: MyLocationNewOverlay;
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        val binding = ActivityMapBinding.inflate(layoutInflater)
-        setContentView(binding.root)
+//        val binding = ActivityMapBinding.inflate(layoutInflater)
+//        setContentView(binding.root)
+        setContentView(R.layout.activity_map)
         Configuration.getInstance().load(
             applicationContext,
             getSharedPreferences(getString(R.string.app_name), MODE_PRIVATE)
         )
-        mMap = binding.osmmap
+//        mMap = binding.osmmap
+        mMap = findViewById(R.id.osmmap)
         mMap.setTileSource(TileSourceFactory.MAPNIK)
         mMap.mapCenter
         mMap.setMultiTouchControls(true)
