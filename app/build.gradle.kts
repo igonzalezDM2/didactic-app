@@ -40,6 +40,19 @@ android {
 
 dependencies {
 
+    implementation("javax.inject:javax.inject:1")
+    implementation("com.google.dagger:dagger:2.25.2")
+
+    implementation("io.reactivex.rxjava2:rxjava:2.1.6")
+    implementation("io.reactivex.rxjava2:rxandroid:2.0.1")
+
+    annotationProcessor("com.jakewharton:butterknife-compiler:10.2.0")
+    implementation("com.jakewharton:butterknife:10.2.0")
+    implementation("androidx.recyclerview:recyclerview:1.1.0")
+    implementation("androidx.legacy:legacy-support-v4:1.0.0")
+    implementation("androidx.lifecycle:lifecycle-extensions:2.0.0")
+    implementation("androidx.lifecycle:lifecycle-extensions:2.2.0-alpha03")
+
     implementation("org.osmdroid:osmdroid-android:6.1.14")
     implementation("androidx.core:core-ktx:1.9.0")
     implementation("androidx.appcompat:appcompat:1.6.1")
