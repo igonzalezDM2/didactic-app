@@ -15,6 +15,7 @@ class MainActivity : AppCompatActivity() {
 
     private lateinit var btnMapa: Button
     private lateinit var btnSopa: Button
+    private lateinit var btnPuzzle: Button
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
@@ -28,6 +29,12 @@ class MainActivity : AppCompatActivity() {
         btnSopa = findViewById(R.id.btnSopa);
         btnSopa.setOnClickListener { v: View ->
             var intent: Intent = Intent(this@MainActivity, SopaActivity::class.java);
+            activityResultLauncher.launch(intent)
+        }
+
+        btnPuzzle = findViewById(R.id.btnPuzzle);
+        btnPuzzle.setOnClickListener { v: View ->
+            var intent: Intent = Intent(this@MainActivity, PuzzleActivity::class.java);
             activityResultLauncher.launch(intent)
         }
 
