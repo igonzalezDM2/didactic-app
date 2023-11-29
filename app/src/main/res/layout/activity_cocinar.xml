@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:id="@+id/main"
+    tools:context=".CocinarActivity">
+
+    <ImageView
+        android:layout_width="match_parent"
+        android:layout_height="500sp"
+        android:layout_gravity="center"
+        android:id="@+id/parrilla"
+        android:layout_alignParentTop="true"
+        android:src="@drawable/parrilla_vacia"/>
+
+    <View
+        android:layout_width="300sp"
+        android:layout_height="5sp"
+        android:layout_marginTop="160sp"
+        android:layout_centerHorizontal="true"
+        android:id="@+id/tvReferencia"
+        android:background="@color/black"
+        />
+
+    <ImageView
+        android:id="@+id/sardina1"
+        android:layout_width="200sp"
+        android:layout_height="92dp"
+        android:layout_marginTop="500sp"
+        android:src="@drawable/sardina" />
+
+</RelativeLayout>

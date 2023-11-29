@@ -18,6 +18,9 @@
         android:theme="@style/Theme.Didacticapp"
         tools:targetApi="31">
         <activity
+            android:name=".CocinarActivity"
+            android:exported="false" />
+        <activity
             android:name=".SopaActivity"
             android:exported="false" />
         <activity
