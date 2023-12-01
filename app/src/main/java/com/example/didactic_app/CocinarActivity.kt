@@ -5,6 +5,9 @@ import android.os.Bundle
 import android.view.MotionEvent
 import android.view.View
 import android.view.ViewGroup
+import android.view.animation.Animation
+import android.view.animation.LinearInterpolator
+import android.view.animation.RotateAnimation
 import android.widget.ImageView
 import android.widget.RelativeLayout
 import android.widget.TextView
@@ -16,10 +19,14 @@ class CocinarActivity : AppCompatActivity() {
 
     private var xDelta: Int = 0
     private var yDelta: Int = 0
+    private var cocinada: Boolean = false
     private lateinit var mainLayout: ViewGroup
     private lateinit var sardina: ImageView
     private lateinit var parrilla: ImageView
-    private lateinit var tvReferencia: View
+    private lateinit var vReferenciaParrilla: View
+    private lateinit var vReferenciaPlato: View
+    private lateinit var tvTemporizador: TextView
+    private lateinit var tvInstrucciones: TextView
 
 
 
@@ -31,7 +38,23 @@ class CocinarActivity : AppCompatActivity() {
 
         sardina = findViewById(R.id.sardina1)
         parrilla = findViewById(R.id.parrilla)
-        tvReferencia = findViewById(R.id.tvReferencia)
+        vReferenciaParrilla = findViewById(R.id.tvReferencia)
+        vReferenciaPlato = findViewById(R.id.vReferenciaPlato)
+        tvTemporizador = findViewById(R.id.tvTemporizador)
+        tvInstrucciones = findViewById(R.id.tvInstrucciones)
+
+        tvTemporizador.visibility = View.INVISIBLE
+        var temporizador = TemporizadorComponent(tvTemporizador, 10000)
+
+        temporizador.onFinish = {
+            sardina.setImageResource(R.drawable.sardina_cocinada)
+            parrilla.setImageResource(R.drawable.parrilla_vacia)
+            cocinada = true
+            tvTemporizador.visibility = View.INVISIBLE
+            tvInstrucciones.setText("Orain platerrara!")
+            animacionFlama()
+        }
+
 
         sardina.setOnTouchListener { v, event ->
             val x = event.rawX.toInt()
@@ -39,6 +62,8 @@ class CocinarActivity : AppCompatActivity() {
 
             when (event.action) {
                 MotionEvent.ACTION_DOWN -> {
+                    temporizador.stopTimer()
+                    parrilla.setImageResource(R.drawable.parrilla_vacia)
                     val lParams = v.layoutParams as RelativeLayout.LayoutParams
                     xDelta = x - lParams.leftMargin
                     yDelta = y - lParams.topMargin
@@ -47,16 +72,19 @@ class CocinarActivity : AppCompatActivity() {
                 MotionEvent.ACTION_UP -> {
 
 
-                    var sobre = estaSobreLaParrilla()
-                    Toast.makeText(this, if (sobre)  "Intersecta" else "Pendejo", Toast.LENGTH_SHORT).show()
+                    if (!cocinada and estaSobreLaParrilla()) {
+                        parrilla.setImageResource(R.drawable.parrilla)
+                        tvTemporizador.visibility = View.VISIBLE
+                        tvInstrucciones.setText("Itxaron, mesedez...")
+                        temporizador.startTimer()
 
-
-
+                    } else if (cocinada and estaSobreElPlato()) {
+                        tvInstrucciones.setText("Bikain!")
+                    }
 
                 }
 
                 MotionEvent.ACTION_MOVE -> {
-
                     val layoutParams = v.layoutParams as RelativeLayout.LayoutParams
 
                     // Evitar que la ImageView se haga más pequeña al arrastrar hacia los bordes
@@ -83,17 +111,24 @@ class CocinarActivity : AppCompatActivity() {
     }
 
     fun estaSobreLaParrilla(): Boolean {
+        return intersecta(vReferenciaParrilla)
+    }
+
+    fun estaSobreElPlato(): Boolean {
+        return intersecta(vReferenciaPlato)
+    }
+    fun intersecta(referencia: View): Boolean {
         val firstPosition = IntArray(2)
         val secondPosition = IntArray(2)
 
-        tvReferencia.getLocationOnScreen((firstPosition))
+        referencia.getLocationOnScreen((firstPosition))
         sardina.getLocationOnScreen((secondPosition))
 
         val rectFirstView = Rect(
             firstPosition[0],
             firstPosition[1],
-            firstPosition[0] + tvReferencia.getMeasuredWidth(),
-            firstPosition[1] + tvReferencia.getMeasuredHeight()
+            firstPosition[0] + referencia.getMeasuredWidth(),
+            firstPosition[1] + referencia.getMeasuredHeight()
         )
         val rectSecondView = Rect(
             secondPosition[0],
@@ -102,6 +137,26 @@ class CocinarActivity : AppCompatActivity() {
             secondPosition[1] + sardina.getMeasuredHeight()
         )
         return rectFirstView.intersect(rectSecondView)
+    }
+
+    fun animacionFlama(): Unit {
+
+
+        val rotate = RotateAnimation(
+            0f,
+            360f,
+            Animation.RELATIVE_TO_SELF,
+            0.5f,
+            Animation.RELATIVE_TO_SELF,
+            0.5f
+        )
+        rotate.duration = 500
+        rotate.interpolator = LinearInterpolator()
+
+        val image = findViewById<View>(R.id.sardina1) as ImageView
+
+        image.startAnimation(rotate)
+
     }
 
 }

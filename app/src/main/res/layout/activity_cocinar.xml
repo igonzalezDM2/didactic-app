@@ -7,7 +7,11 @@
     android:orientation="vertical"
     android:id="@+id/main"
     tools:context=".CocinarActivity">
-
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/tvTemporizador"
+        android:textSize="30dp"/>
     <ImageView
         android:layout_width="match_parent"
         android:layout_height="500sp"
@@ -16,14 +20,41 @@
         android:layout_alignParentTop="true"
         android:src="@drawable/parrilla_vacia"/>
 
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:textSize="30sp"
+        android:layout_marginTop="40sp"
+        android:textAlignment="center"
+        android:id="@+id/tvInstrucciones"
+        android:text="Sardina parrillan ipini!"/>
+
     <View
         android:layout_width="300sp"
         android:layout_height="5sp"
         android:layout_marginTop="160sp"
         android:layout_centerHorizontal="true"
         android:id="@+id/tvReferencia"
-        android:background="@color/black"
         />
+
+    <ImageView
+        android:id="@+id/plato"
+        android:layout_width="250sp"
+        android:layout_height="180dp"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentRight="true"
+        android:src="@drawable/plato" />
+
+    <View
+        android:layout_width="5sp"
+        android:layout_height="5sp"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentRight="true"
+        android:layout_marginBottom="90sp"
+        android:layout_marginRight="120sp"
+        android:id="@+id/vReferenciaPlato"
+        />
+
 
     <ImageView
         android:id="@+id/sardina1"
