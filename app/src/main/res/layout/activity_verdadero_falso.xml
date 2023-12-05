@@ -28,8 +28,8 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="@string/serantes_mendia"
-                android:textColor="@color/black"
-                android:textSize="25sp" />
+                android:textSize="25sp"
+                tools:ignore="TextContrastCheck" />
 
             <TextView
                 android:id="@+id/tvNivel"
@@ -45,16 +45,18 @@
             android:layout_width="match_parent"
             android:layout_height="100dp"
             android:layout_marginHorizontal="20sp"
-
             android:background="@drawable/textview_enunciado"
             android:padding="10sp"
             android:textSize="15sp" />
+
         <View
+            android:id="@+id/vBubble"
             android:layout_width="48dp"
             android:layout_height="34dp"
             android:layout_marginTop="-1dp"
             android:layout_marginBottom="30sp"
             android:background="@drawable/bubble" />
+
         <ImageView
             android:id="@+id/ivBarco"
             android:layout_width="215dp"
@@ -93,8 +95,61 @@
         <TextView
             android:id="@+id/tvRespuesta"
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content" />
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="30sp"
+            android:textSize="25sp"
+            android:textColor="@color/green"/>
+
+        <TextView
+            android:id="@+id/tvNuevoIntento"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:visibility="gone"
+            android:layout_marginBottom="30sp"
+            android:textStyle="bold"
+            android:textColor="@color/black"
+            android:textSize="15sp"
+            android:text="@string/intentar"/>
 
     </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        android:gravity="center">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:gravity="center"
+            tools:ignore="UselessParent">
+
+            <ImageButton
+                android:id="@+id/btnNuevoIntento"
+                style="@style/CustomButtonStyle"
+                android:layout_width="75dp"
+                android:layout_height="75dp"
+                android:background="@drawable/button_yellow"
+                android:contentDescription="@string/intentar_de_nuevo"
+                android:visibility="gone"
+                android:src="@drawable/baseline_refresh_36"
+                tools:ignore="TouchTargetSizeCheck" />
+
+            <ImageButton
+                android:id="@+id/btnSiguiente"
+                style="@style/CustomButtonStyle"
+                android:layout_width="75dp"
+                android:layout_height="75dp"
+                android:background="@drawable/button_yellow"
+                android:src="@drawable/baseline_arrow_forward_36"
+                android:visibility="gone"
+                android:contentDescription="@string/siguiente" />
+
+        </LinearLayout>
+
+    </LinearLayout>
+
 
 </androidx.constraintlayout.widget.ConstraintLayout>

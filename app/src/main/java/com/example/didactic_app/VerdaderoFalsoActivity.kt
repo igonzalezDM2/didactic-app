@@ -1,9 +1,10 @@
 package com.example.didactic_app
 
-import android.graphics.Color
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.view.View
 import android.widget.Button
+import android.widget.ImageButton
 import android.widget.ImageView
 import android.widget.TextView
 
@@ -16,9 +17,13 @@ class VerdaderoFalsoActivity : AppCompatActivity() {
     private lateinit var tvEnunciado: TextView
     private lateinit var tvNivel: TextView
     private lateinit var tvRespuesta: TextView
+    private lateinit var tvNuevoIntento: TextView
     private lateinit var ivBarco: ImageView
     private lateinit var btnSanturtzi: Button
     private lateinit var btnBilbao: Button
+    private lateinit var btnNuevoIntento: ImageButton
+    private lateinit var btnSiguiente: ImageButton
+    private lateinit var vBubble: View
 
     private var nivel = 0
     private var preguntasAcertadas = 0
@@ -43,8 +48,12 @@ class VerdaderoFalsoActivity : AppCompatActivity() {
         tvNivel = findViewById(R.id.tvNivel)
         tvRespuesta = findViewById(R.id.tvRespuesta)
         ivBarco = findViewById(R.id.ivBarco)
+        vBubble = findViewById(R.id.vBubble)
         btnSanturtzi = findViewById(R.id.btnSanturtzi)
         btnBilbao = findViewById(R.id.btnBilbao)
+        tvNuevoIntento = findViewById(R.id.tvNuevoIntento)
+        btnNuevoIntento = findViewById(R.id.btnNuevoIntento)
+        btnSiguiente = findViewById(R.id.btnSiguiente)
 
         //Inicializa el estado inicial de la ventana
         subirNivel()
@@ -83,15 +92,21 @@ class VerdaderoFalsoActivity : AppCompatActivity() {
      * @param btn Boton que selecciona
      */
     private fun evaluar(btn : Button){
-        if(lstPregunta[nivel].respuestaValida(btn.text.toString())){
-            preguntasAcertadas += 1
-            tvRespuesta.setTextColor(Color.GREEN)
-            tvRespuesta.text = getString(R.string.respuesta_correcta)
-        }else{
-            tvRespuesta.setTextColor(Color.RED)
-            tvRespuesta.text = getString(R.string.respuesta_incorrecta)
+        if(nivel == 6){
+            btnSanturtzi.visibility = View.GONE
+            btnBilbao.visibility = View.GONE
+            ivBarco.visibility = View.GONE
+            tvEnunciado.visibility = View.GONE
+            vBubble.visibility = View.GONE
+            tvRespuesta.text = preguntasAcertadas.toString().plus(" ")
+                .plus(getString(R.string.respuesta))
+            tvNuevoIntento.visibility = View.VISIBLE
+            btnNuevoIntento.visibility = View.VISIBLE
+            btnSiguiente.visibility = View.VISIBLE
+            return
         }
+        if(lstPregunta[nivel].respuestaValida(btn.text.toString()))
+            preguntasAcertadas += 1
         subirNivel()
     }
-
 }

@@ -30,6 +30,8 @@
         egitea automatikoki atera zait. Zein bide hartu behar dut turista guzti hauek portuan
         uzteko?
     </string>
-    <string name="respuesta_correcta">¡Respuesta Correcta!</string>
-    <string name="respuesta_incorrecta">¡Respuesta Incorrecta!</string>
+    <string name="respuesta">ongi erantzun dituzu!</string>
+    <string name="intentar_de_nuevo">berriro egitea</string>
+    <string name="intentar">Hobetu ahal duzu, saitu berriro.</string>
+    <string name="siguiente">hurrengo ariketa</string>
 </resources>
