@@ -11,10 +11,11 @@ import android.widget.ImageView
 import android.widget.TextView
 import androidx.fragment.app.FragmentManager
 import com.example.didactic_app.dialogs.DialogoFinJuegoLanzamiento
+import com.example.didactic_app.dialogs.OnDialogoConfirmacionListener
 import kotlin.math.abs
 import kotlin.math.sin
 
-class LanzamientoActivity : AppCompatActivity() {
+class LanzamientoActivity : AppCompatActivity(), OnDialogoConfirmacionListener {
 
     private var contador = 0
     private var restantes = 6
@@ -136,17 +137,17 @@ class LanzamientoActivity : AppCompatActivity() {
                     sardina.x = xPorDefecto
                     sardina.y = yPorDefecto
 
+                    restantes--
+                    tvRestantes.text = restantes.toString()
+
                     if (intersecta) {
                         contador++
-                        restantes--
-                        tvRestantes.text = restantes.toString()
+                    }
 
-                        if (restantes == 0) {
-                            var fragmentManager: FragmentManager = supportFragmentManager
-                            var dialogo = DialogoFinJuegoLanzamiento(contador)
-                            dialogo.show(fragmentManager, "GAME OVER")
-                        }
-
+                    if (restantes == 0) {
+                        var fragmentManager: FragmentManager = supportFragmentManager
+                        var dialogo = DialogoFinJuegoLanzamiento(contador)
+                        dialogo.show(fragmentManager, "GAME OVER")
                     }
                 }
             }
@@ -212,5 +213,25 @@ class LanzamientoActivity : AppCompatActivity() {
             secondPosition[1] + sardina.measuredHeight
         )
         return rectFirstView.intersect(rectSecondView)
+    }
+
+    override fun onPossitiveButtonClick() {
+        if (contador == 6) {
+            finish()
+        } else {
+            resetearJuego()
+        }
+    }
+
+    override fun onNegativeButtonClick() {
+        finish()
+    }
+
+    private fun resetearJuego() {
+        contador = 0
+        restantes = 6
+        tvRestantes.text = 6.toString()
+        sardina.x = xPorDefecto
+        sardina.y = yPorDefecto
     }
 }
