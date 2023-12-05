@@ -1,6 +1,7 @@
 package com.example.didactic_app
 
 import android.content.res.Resources
+import android.graphics.Rect
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.MotionEvent
@@ -10,8 +11,11 @@ import kotlin.math.abs
 import kotlin.math.sin
 
 class LanzamientoActivity : AppCompatActivity() {
-    private lateinit var bolaImageView: ImageView
+    private lateinit var sardina: ImageView
     private lateinit var diana: View
+
+    private  var xPorDefecto = -1f
+    private  var yPorDefecto = -1f
 
     private var offsetX = 0f
     private var offsetY = 0f
@@ -33,18 +37,24 @@ class LanzamientoActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_lanzamiento)
 
-        bolaImageView = findViewById(R.id.bolaImageView)
+        sardina = findViewById(R.id.bolaImageView)
         diana = findViewById(R.id.diana)
+
+        sardina.post {
+            xPorDefecto = sardina.x
+            yPorDefecto = sardina.y
+        }
 
         amplitud = Resources.getSystem().displayMetrics.widthPixels / 2f
 
         iniciarAnimacionMAS()
 
-        bolaImageView.setOnTouchListener { _, event ->
+        sardina.setOnTouchListener { _, event ->
+
             when (event.action) {
                 MotionEvent.ACTION_DOWN -> {
-                    offsetX = event.x - bolaImageView.x
-                    offsetY = event.y - bolaImageView.y
+                    offsetX = event.x - sardina.x
+                    offsetY = event.y - sardina.y
                     velocidadX = 0f
                     velocidadY = 0f
 
@@ -59,8 +69,8 @@ class LanzamientoActivity : AppCompatActivity() {
                     var altura = Resources.getSystem().displayMetrics.heightPixels
                     var limite = altura * 2 / 3
                     if (y > limite) {
-                        bolaImageView.x = x
-                        bolaImageView.y = y
+                        sardina.x = x
+                        sardina.y = y
                     }
 
                 }
@@ -92,25 +102,43 @@ class LanzamientoActivity : AppCompatActivity() {
         }
     }
 
+
+
     private fun moverBolaConVelocidad() {
-        while (abs(velocidadX) > 1 || abs(velocidadY) > 1) {
+        var parar = false
+        val intervalo = 25
+        val limiteTiempo = 1500
+        var transcurrido = 0
+
+        while (!parar && (abs(velocidadX) > 1 || abs(velocidadY) > 1)) {
             runOnUiThread {
                 velocidadX -= abs(velocidadX) * 0.05f * (velocidadX / abs(velocidadX))
                 velocidadY -= velocidadY * 0.05f
-                bolaImageView.x += velocidadX
-                bolaImageView.y += velocidadY
+                sardina.x += velocidadX
+                sardina.y += velocidadY
+
+
+                if (transcurrido > limiteTiempo || intersecta(diana)) {
+                    parar = true
+                    sardina.x = xPorDefecto
+                    sardina.y = yPorDefecto
+                }
             }
             try {
                 // Simular intervalo de tiempo (puedes ajustar según tus necesidades)
-                Thread.sleep(25)
+                Thread.sleep(intervalo.toLong())
+                transcurrido += intervalo
             } catch (e: InterruptedException) {
                 e.printStackTrace()
             }
         }
+        sardina.x = xPorDefecto
+        sardina.y = yPorDefecto
+
     }
 
     private fun iniciarAnimacionMAS() {
-        val periodo = 2000L // Ajusta el periodo según tus necesidades
+//        val periodo = 2000L // Ajusta el periodo según tus necesidades
         val startTime = System.currentTimeMillis()
 
         val runnable = object : Runnable {
@@ -136,5 +164,27 @@ class LanzamientoActivity : AppCompatActivity() {
 
         // Programar la primera ejecución del runnable
         diana.post(runnable)
+    }
+
+    fun intersecta(referencia: View): Boolean {
+        val firstPosition = IntArray(2)
+        val secondPosition = IntArray(2)
+
+        referencia.getLocationOnScreen((firstPosition))
+        sardina.getLocationOnScreen((secondPosition))
+
+        val rectFirstView = Rect(
+            firstPosition[0],
+            firstPosition[1],
+            firstPosition[0] + referencia.getMeasuredWidth(),
+            firstPosition[1] + referencia.getMeasuredHeight()
+        )
+        val rectSecondView = Rect(
+            secondPosition[0],
+            secondPosition[1],
+            secondPosition[0] + sardina.getMeasuredWidth(),
+            secondPosition[1] + sardina.getMeasuredHeight()
+        )
+        return rectFirstView.intersect(rectSecondView)
     }
 }
