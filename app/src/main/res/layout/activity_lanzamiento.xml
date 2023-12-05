@@ -10,7 +10,18 @@
         android:layout_width="100dp"
         android:layout_height="50dp"
         android:src="@drawable/sardina"
-        android:layout_centerInParent="true"
+        android:layout_alignParentBottom="true"
+        android:layout_centerHorizontal="true"
+        android:layout_marginBottom="100sp"
         android:contentDescription="no se"/>
+
+    <View
+        android:id="@+id/diana"
+        android:layout_width="30sp"
+        android:layout_height="30sp"
+        android:background="@color/black"
+        android:layout_marginTop="100sp"
+        android:layout_centerHorizontal="true"
+        />
 
 </RelativeLayout>
