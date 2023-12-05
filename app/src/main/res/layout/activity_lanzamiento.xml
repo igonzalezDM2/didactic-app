@@ -15,6 +15,37 @@
         android:layout_marginBottom="100sp"
         android:contentDescription="no se"/>
 
+    <LinearLayout
+        android:layout_marginBottom="10sp"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentBottom="true"
+        android:gravity="center"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content">
+
+        <ImageView
+            android:layout_width="80sp"
+            android:layout_height="20sp"
+            android:src="@drawable/dibujo_sardina"/>
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="30sp"
+            android:text="x "
+            android:textSize="20sp"
+            android:textStyle="bold"
+            />
+
+        <TextView
+            android:layout_width="50sp"
+            android:layout_height="30sp"
+            android:text=""
+            android:id="@+id/tvRestantes"
+            android:textSize="20sp"
+            android:textStyle="bold"
+            />
+
+    </LinearLayout>
+
     <View
         android:id="@+id/diana"
         android:layout_width="30sp"

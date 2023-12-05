@@ -20,6 +20,9 @@
         <activity
             android:name=".LanzamientoActivity"
             android:exported="false" />
+	<activity
+            android:name=".VerdaderoFalsoActivity"
+            android:exported="false" />
         <activity
             android:name=".CocinarActivity"
             android:exported="false" />

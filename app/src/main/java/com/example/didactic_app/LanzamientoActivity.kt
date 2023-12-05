@@ -1,5 +1,6 @@
 package com.example.didactic_app
 
+import android.annotation.SuppressLint
 import android.content.res.Resources
 import android.graphics.Rect
 import androidx.appcompat.app.AppCompatActivity
@@ -7,12 +8,20 @@ import android.os.Bundle
 import android.view.MotionEvent
 import android.view.View
 import android.widget.ImageView
+import android.widget.TextView
+import androidx.fragment.app.FragmentManager
+import com.example.didactic_app.dialogs.DialogoFinJuegoLanzamiento
 import kotlin.math.abs
 import kotlin.math.sin
 
 class LanzamientoActivity : AppCompatActivity() {
+
+    private var contador = 0
+    private var restantes = 6
+
     private lateinit var sardina: ImageView
     private lateinit var diana: View
+    private lateinit var tvRestantes: TextView
 
     private  var xPorDefecto = -1f
     private  var yPorDefecto = -1f
@@ -33,12 +42,15 @@ class LanzamientoActivity : AppCompatActivity() {
     private var frecuencia = 2 * Math.PI / 5000 // Ajusta la frecuencia según tus necesidades
 
 
+    @SuppressLint("ClickableViewAccessibility")
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_lanzamiento)
 
         sardina = findViewById(R.id.bolaImageView)
         diana = findViewById(R.id.diana)
+        tvRestantes = findViewById(R.id.tvRestantes)
+        tvRestantes.text = restantes.toString()
 
         sardina.post {
             xPorDefecto = sardina.x
@@ -63,11 +75,11 @@ class LanzamientoActivity : AppCompatActivity() {
                 }
                 MotionEvent.ACTION_MOVE -> {
 
-                    var x = event.x - offsetX
-                    var y = event.y - offsetY
+                    val x = event.x - offsetX
+                    val y = event.y - offsetY
 
-                    var altura = Resources.getSystem().displayMetrics.heightPixels
-                    var limite = altura * 2 / 3
+                    val altura = Resources.getSystem().displayMetrics.heightPixels
+                    val limite = altura * 2 / 3
                     if (y > limite) {
                         sardina.x = x
                         sardina.y = y
@@ -117,11 +129,25 @@ class LanzamientoActivity : AppCompatActivity() {
                 sardina.x += velocidadX
                 sardina.y += velocidadY
 
+                val intersecta = intersecta(diana)
 
-                if (transcurrido > limiteTiempo || intersecta(diana)) {
+                if (transcurrido > limiteTiempo || intersecta) {
                     parar = true
                     sardina.x = xPorDefecto
                     sardina.y = yPorDefecto
+
+                    if (intersecta) {
+                        contador++
+                        restantes--
+                        tvRestantes.text = restantes.toString()
+
+                        if (restantes == 0) {
+                            var fragmentManager: FragmentManager = supportFragmentManager
+                            var dialogo = DialogoFinJuegoLanzamiento(contador)
+                            dialogo.show(fragmentManager, "GAME OVER")
+                        }
+
+                    }
                 }
             }
             try {
@@ -166,7 +192,7 @@ class LanzamientoActivity : AppCompatActivity() {
         diana.post(runnable)
     }
 
-    fun intersecta(referencia: View): Boolean {
+    private fun intersecta(referencia: View): Boolean {
         val firstPosition = IntArray(2)
         val secondPosition = IntArray(2)
 
@@ -176,14 +202,14 @@ class LanzamientoActivity : AppCompatActivity() {
         val rectFirstView = Rect(
             firstPosition[0],
             firstPosition[1],
-            firstPosition[0] + referencia.getMeasuredWidth(),
-            firstPosition[1] + referencia.getMeasuredHeight()
+            firstPosition[0] + referencia.measuredWidth,
+            firstPosition[1] + referencia.measuredHeight
         )
         val rectSecondView = Rect(
             secondPosition[0],
             secondPosition[1],
-            secondPosition[0] + sardina.getMeasuredWidth(),
-            secondPosition[1] + sardina.getMeasuredHeight()
+            secondPosition[0] + sardina.measuredWidth,
+            secondPosition[1] + sardina.measuredHeight
         )
         return rectFirstView.intersect(rectSecondView)
     }
