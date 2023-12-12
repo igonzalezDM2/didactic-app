@@ -14,12 +14,12 @@ class Puzzle3x2Activity : AppCompatActivity() {
     private lateinit var puzzleZone: ViewGroup
     private lateinit var marcoZone: ViewGroup
 
-    private lateinit var imagen1: ImageView
-    private lateinit var imagen2: ImageView
-    private lateinit var imagen3: ImageView
-    private lateinit var imagen4: ImageView
-    private lateinit var imagen5: ImageView
-    private lateinit var imagen6: ImageView
+    private lateinit var puzzle3x2p1: ImageView
+    private lateinit var puzzle3x2p2: ImageView
+    private lateinit var puzzle3x2p3: ImageView
+    private lateinit var puzzle3x2p4: ImageView
+    private lateinit var puzzle3x2p5: ImageView
+    private lateinit var puzzle3x2p6: ImageView
 
     private lateinit var marco1: ImageView
     private lateinit var marco2: ImageView
@@ -46,12 +46,12 @@ class Puzzle3x2Activity : AppCompatActivity() {
         puzzleZone = findViewById(R.id.puzzleZone)
         marcoZone = findViewById(R.id.marcoZone)
 
-        imagen1 = findViewById(R.id.imagen1)
-        imagen2 = findViewById(R.id.imagen2)
-        imagen3 = findViewById(R.id.imagen3)
-        imagen4 = findViewById(R.id.imagen4)
-        imagen5 = findViewById(R.id.imagen5)
-        imagen6 = findViewById(R.id.imagen6)
+        puzzle3x2p1 = findViewById(R.id.puzzle3x2p1)
+        puzzle3x2p2 = findViewById(R.id.puzzle3x2p2)
+        puzzle3x2p3 = findViewById(R.id.puzzle3x2p3)
+        puzzle3x2p4 = findViewById(R.id.puzzle3x2p4)
+        puzzle3x2p5 = findViewById(R.id.puzzle3x2p5)
+        puzzle3x2p6 = findViewById(R.id.puzzle3x2p6)
 
         marco1 = findViewById(R.id.marco1)
         marco2 = findViewById(R.id.marco2)
@@ -63,12 +63,12 @@ class Puzzle3x2Activity : AppCompatActivity() {
         tvRespuesta = findViewById(R.id.tvRespuesta)
 
         // Configurar listeners de arrastrar y soltar para las imágenes del puzzle
-        imagen1.setOnTouchListener(TouchListener())
-        imagen2.setOnTouchListener(TouchListener())
-        imagen3.setOnTouchListener(TouchListener())
-        imagen4.setOnTouchListener(TouchListener())
-        imagen5.setOnTouchListener(TouchListener())
-        imagen6.setOnTouchListener(TouchListener())
+        puzzle3x2p1.setOnTouchListener(TouchListener())
+        puzzle3x2p2.setOnTouchListener(TouchListener())
+        puzzle3x2p3.setOnTouchListener(TouchListener())
+        puzzle3x2p4.setOnTouchListener(TouchListener())
+        puzzle3x2p5.setOnTouchListener(TouchListener())
+        puzzle3x2p6.setOnTouchListener(TouchListener())
 
         marco1.setOnDragListener(DragListener())
         marco2.setOnDragListener(DragListener())
@@ -81,7 +81,7 @@ class Puzzle3x2Activity : AppCompatActivity() {
     private inner class TouchListener : View.OnTouchListener {
         override fun onTouch(view: View, event: MotionEvent): Boolean {
             if (event.action == MotionEvent.ACTION_DOWN) {
-                // Guardar la información de la imagen arrastrada y su posición inicial
+                // Guardar la información de la puzzle3x2p arrastrada y su posición inicial
                 draggedImage = view as ImageView
                 val clipData = ClipData.newPlainText("", "")
                 val shadowBuilder = View.DragShadowBuilder(view)
@@ -96,34 +96,34 @@ class Puzzle3x2Activity : AppCompatActivity() {
         override fun onDrag(view: View, event: DragEvent): Boolean {
             when (event.action) {
                 DragEvent.ACTION_DROP -> {
-                    // Verificar si la imagen se soltó en un marco correcto
+                    // Verificar si la puzzle3x2p se soltó en un marco correcto
                     val droppedImage = event.localState as ImageView
-                    if (view == marco1 && droppedImage == imagen1) {
+                    if (view == marco1 && droppedImage == puzzle3x2p1) {
                         marco1.setImageDrawable(droppedImage.drawable)
-                        imagen1.visibility = View.INVISIBLE
+                        puzzle3x2p1.visibility = View.INVISIBLE
                         bien1 = true
-                    } else if (view == marco2 && droppedImage == imagen2) {
+                    } else if (view == marco2 && droppedImage == puzzle3x2p2) {
                         marco2.setImageDrawable(droppedImage.drawable)
-                        imagen2.visibility = View.INVISIBLE
+                        puzzle3x2p2.visibility = View.INVISIBLE
                         bien2 = true
-                    } else if (view == marco3 && droppedImage == imagen3) {
+                    } else if (view == marco3 && droppedImage == puzzle3x2p3) {
                         marco3.setImageDrawable(droppedImage.drawable)
-                        imagen3.visibility = View.INVISIBLE
+                        puzzle3x2p3.visibility = View.INVISIBLE
                         bien3 = true
-                    } else if (view == marco4 && droppedImage == imagen4) {
+                    } else if (view == marco4 && droppedImage == puzzle3x2p4) {
                         marco4.setImageDrawable(droppedImage.drawable)
-                        imagen4.visibility = View.INVISIBLE
+                        puzzle3x2p4.visibility = View.INVISIBLE
                         bien4 = true
-                    } else if (view == marco5 && droppedImage == imagen5) {
+                    } else if (view == marco5 && droppedImage == puzzle3x2p5) {
                         marco5.setImageDrawable(droppedImage.drawable)
-                        imagen5.visibility = View.INVISIBLE
+                        puzzle3x2p5.visibility = View.INVISIBLE
                         bien5 = true
-                    } else if (view == marco6 && droppedImage == imagen6) {
+                    } else if (view == marco6 && droppedImage == puzzle3x2p6) {
                         marco6.setImageDrawable(droppedImage.drawable)
-                        imagen6.visibility = View.INVISIBLE
+                        puzzle3x2p6.visibility = View.INVISIBLE
                         bien6 = true
                     } else {
-                        // Volver a colocar la imagen en su posición inicial
+                        // Volver a colocar la puzzle3x2p en su posición inicial
                         val layoutParams = droppedImage.layoutParams as ViewGroup.MarginLayoutParams
                         layoutParams.leftMargin = 0
                         layoutParams.topMargin = 0
