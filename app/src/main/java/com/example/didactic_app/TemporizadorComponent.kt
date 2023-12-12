@@ -8,6 +8,8 @@ class TemporizadorComponent (
 ) {
 
     lateinit var onFinish: () -> Unit
+    lateinit var onTick: (Long) -> Unit
+
     private lateinit var countDownTimer: CountDownTimer
     private var timeLeftInMillis: Long = initialTimeInMillis
 
@@ -16,6 +18,9 @@ class TemporizadorComponent (
             override fun onTick(millisUntilFinished: Long) {
                 timeLeftInMillis = millisUntilFinished
                 updateTimer()
+                if (this@TemporizadorComponent.onTick != null) {
+                    this@TemporizadorComponent.onTick(timeLeftInMillis)
+                }
             }
 
             override fun onFinish() {
