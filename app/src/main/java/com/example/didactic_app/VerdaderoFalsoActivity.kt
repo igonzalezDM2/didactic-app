@@ -30,7 +30,6 @@ class VerdaderoFalsoActivity : AppCompatActivity() {
 
     private var lstPregunta: List<Pregunta> = listOf()
 
-
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_verdadero_falso)
@@ -60,6 +59,8 @@ class VerdaderoFalsoActivity : AppCompatActivity() {
         //Y asigna los eventos a los botones
         btnSanturtzi.setOnClickListener { evaluar(btnSanturtzi)  }
         btnBilbao.setOnClickListener { evaluar(btnBilbao) }
+        btnNuevoIntento.setOnClickListener { reiniciarJuego() }
+        btnSiguiente.setOnClickListener { finish() }
     }
 
     /**
@@ -92,21 +93,47 @@ class VerdaderoFalsoActivity : AppCompatActivity() {
      * @param btn Boton que selecciona
      */
     private fun evaluar(btn : Button){
+        if(lstPregunta[nivel-1].respuestaValida(btn.text.toString()))
+            preguntasAcertadas += 1
         if(nivel == 6){
-            btnSanturtzi.visibility = View.GONE
-            btnBilbao.visibility = View.GONE
-            ivBarco.visibility = View.GONE
-            tvEnunciado.visibility = View.GONE
-            vBubble.visibility = View.GONE
-            tvRespuesta.text = preguntasAcertadas.toString().plus(" ")
-                .plus(getString(R.string.respuesta))
-            tvNuevoIntento.visibility = View.VISIBLE
-            btnNuevoIntento.visibility = View.VISIBLE
-            btnSiguiente.visibility = View.VISIBLE
+            seTerminaJuego()
             return
         }
-        if(lstPregunta[nivel].respuestaValida(btn.text.toString()))
-            preguntasAcertadas += 1
         subirNivel()
     }
+
+    private fun seTerminaJuego(){
+        // Se ocultan los elementos
+        btnSanturtzi.visibility = View.GONE
+        btnBilbao.visibility = View.GONE
+        ivBarco.visibility = View.GONE
+        tvEnunciado.visibility = View.GONE
+        vBubble.visibility = View.GONE
+
+
+        if(preguntasAcertadas != 6) {
+            tvRespuesta.text = preguntasAcertadas.toString().plus(" ")
+                    .plus(getString(R.string.respuesta))
+            tvNuevoIntento.visibility = View.VISIBLE
+            btnNuevoIntento.visibility = View.VISIBLE
+        }else
+            tvRespuesta.text = getString(R.string.todas).plus(" ")
+                    .plus(getString(R.string.respuesta))
+        btnSiguiente.visibility = View.VISIBLE
+    }
+
+    private fun reiniciarJuego(){
+        btnSanturtzi.visibility = View.VISIBLE
+        btnBilbao.visibility = View.VISIBLE
+        ivBarco.visibility = View.VISIBLE
+        tvEnunciado.visibility = View.VISIBLE
+        vBubble.visibility = View.VISIBLE
+        tvNuevoIntento.visibility = View.GONE
+        btnNuevoIntento.visibility = View.GONE
+        btnSiguiente.visibility = View.GONE
+        nivel = 0
+        preguntasAcertadas = 0
+        subirNivel()
+    }
+
 }
