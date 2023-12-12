@@ -1,4 +1,38 @@
 <resources>
     <string name="app_name">didactic-app</string>
     <string name="titulo">Sare josleak</string>
+    <!--Actividad de verdadero falso -->
+    <string name="serantes_mendia">Serantes Mendia</string>
+    <string name="image_barco">Santurziko edo Bilboko itsasontzia</string>
+    <string name="button_santurtzi">Santurtziko Portua</string>
+    <string name="button_bilbo">Bilboko Portua</string>
+    <string name="primera_pregunta">
+        Egunon, neska-mutilak gaur goizean harrapatutako arrainak itxura ona dituzte, beraz
+        azkar-azkar eraman beharko ditugu prezio onean saltzeko. Zein bide hartu beharko dugu?
+    </string>
+    <string name="segunda_pregunta">
+        Kaixo, kaixo. Zer moduz? Nik momentu honetan meategietan lortutako materialak industria
+        aldera eraman behar ditut. Zer bide hartu beharko dut?
+    </string>
+    <string name="tercera_pregunta">
+        Arratsaldeon, Madagaskarretik etorritako zenbait kontainer ekarri ditut eta portuan uzteko
+        esan didate. Zein bide hartu behar dut karga uzteko?
+    </string>
+    <string name="cuarta_pregunta">
+        Egun on, gaurko eguna oso ona izan da, itsasoan kalitatezko sardinak lortu ditugu eta.
+        Azkar! Esaiguzu zein bide hartu behar dugun sardina hauek kozinatzeko eta disfrutatzeko?
+    </string>
+    <string name="quinta_pregunta">
+        Aupa, nire lankideak lehenago etorri dira eta sardina goxo-goxoak eramaten dituzte. Zein
+        bide hartu behar dut haiengana heltzeko?
+    </string>
+    <string name="sexto_pregunta">
+        Hi. Upss.. Barkatu hainbat ordu daramagu itsasoan turista desberdinekin eta ingelesez hitz
+        egitea automatikoki atera zait. Zein bide hartu behar dut turista guzti hauek portuan
+        uzteko?
+    </string>
+    <string name="respuesta">ongi erantzun dituzu!</string>
+    <string name="intentar_de_nuevo">berriro egitea</string>
+    <string name="intentar">Hobetu ahal duzu, saitu berriro.</string>
+    <string name="siguiente">hurrengo ariketa</string>
 </resources>
