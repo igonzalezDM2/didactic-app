@@ -25,4 +25,15 @@
         android:id="@+id/btnCocinar"
         android:text="Cocinar sardinas" />
 
+    <Button
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/btnVerdaderoFalso"
+        android:text="Verdadero Falso" />
+
+    <Button
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/btnLanzar"
+        android:text="Lanzar weas" />
 </LinearLayout>
