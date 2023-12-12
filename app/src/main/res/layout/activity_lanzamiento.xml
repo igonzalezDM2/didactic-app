@@ -46,13 +46,24 @@
 
     </LinearLayout>
 
-    <View
-        android:id="@+id/diana"
-        android:layout_width="30sp"
-        android:layout_height="30sp"
-        android:background="@color/black"
-        android:layout_marginTop="100sp"
+    <RelativeLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
         android:layout_centerHorizontal="true"
-        />
+        android:id="@+id/fumanchu_relativo"
+        >
+        <ImageView
+            android:layout_width="300sp"
+            android:layout_height="500sp"
+            android:id="@+id/fumanchu"
+            android:src="@drawable/fumanchu"/>
+        <View
+            android:id="@+id/diana"
+            android:layout_width="40sp"
+            android:layout_height="35sp"
+            android:layout_marginLeft="110sp"
+            android:layout_marginTop="110sp"
+            />
+    </RelativeLayout>
 
 </RelativeLayout>
