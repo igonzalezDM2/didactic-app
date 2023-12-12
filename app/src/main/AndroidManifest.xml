@@ -30,6 +30,9 @@
             android:name=".SopaActivity"
             android:exported="false" />
         <activity
+            android:name=".AtraparSardinasActivity"
+            android:exported="false" />
+        <activity
             android:name=".MapActivity"
             android:exported="false" />
         <activity
