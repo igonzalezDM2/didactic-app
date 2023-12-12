@@ -5,6 +5,26 @@
     android:layout_height="match_parent"
     tools:context=".MainActivity">
 
+    <RelativeLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerHorizontal="true"
+        android:id="@+id/fumanchu_relativo"
+        >
+        <ImageView
+            android:layout_width="300sp"
+            android:layout_height="500sp"
+            android:id="@+id/fumanchu"
+            android:src="@drawable/fumanchu"/>
+        <View
+            android:id="@+id/diana"
+            android:layout_width="40sp"
+            android:layout_height="35sp"
+            android:layout_marginLeft="110sp"
+            android:layout_marginTop="110sp"
+            />
+    </RelativeLayout>
+
     <ImageView
         android:id="@+id/bolaImageView"
         android:layout_width="100dp"
@@ -45,25 +65,5 @@
             />
 
     </LinearLayout>
-
-    <RelativeLayout
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_centerHorizontal="true"
-        android:id="@+id/fumanchu_relativo"
-        >
-        <ImageView
-            android:layout_width="300sp"
-            android:layout_height="500sp"
-            android:id="@+id/fumanchu"
-            android:src="@drawable/fumanchu"/>
-        <View
-            android:id="@+id/diana"
-            android:layout_width="40sp"
-            android:layout_height="35sp"
-            android:layout_marginLeft="110sp"
-            android:layout_marginTop="110sp"
-            />
-    </RelativeLayout>
 
 </RelativeLayout>
