@@ -18,6 +18,7 @@ class MainActivity : AppCompatActivity() {
     private lateinit var btnCocinar: Button
     private lateinit var btnLanzar: Button
     private lateinit var btnVerdaderoFalso: Button
+    private lateinit var btnAtrapar: Button
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
@@ -49,6 +50,12 @@ class MainActivity : AppCompatActivity() {
         btnVerdaderoFalso = findViewById(R.id.btnVerdaderoFalso);
         btnVerdaderoFalso.setOnClickListener { v: View ->
             var intent: Intent = Intent(this@MainActivity, VerdaderoFalsoActivity::class.java);
+            activityResultLauncher.launch(intent)
+        }
+
+        btnAtrapar = findViewById(R.id.btnAtrapar);
+        btnAtrapar.setOnClickListener { v: View ->
+            var intent: Intent = Intent(this@MainActivity, AtraparSardinasActivity::class.java);
             activityResultLauncher.launch(intent)
         }
 

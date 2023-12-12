@@ -36,4 +36,10 @@
         android:layout_height="wrap_content"
         android:id="@+id/btnLanzar"
         android:text="Lanzar weas" />
+
+    <Button
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/btnAtrapar"
+        android:text="Atrapar sardinas" />
 </LinearLayout>
