@@ -8,6 +8,7 @@ import android.os.Bundle
 import android.view.MotionEvent
 import android.view.View
 import android.widget.ImageView
+import android.widget.RelativeLayout
 import android.widget.TextView
 import androidx.fragment.app.FragmentManager
 import com.example.didactic_app.dialogs.DialogoFinJuegoLanzamiento
@@ -23,6 +24,7 @@ class LanzamientoActivity : AppCompatActivity(), OnDialogoConfirmacionListener {
     private lateinit var sardina: ImageView
     private lateinit var diana: View
     private lateinit var tvRestantes: TextView
+    private lateinit var fumanchuRelativo: RelativeLayout
 
     private  var xPorDefecto = -1f
     private  var yPorDefecto = -1f
@@ -51,6 +53,7 @@ class LanzamientoActivity : AppCompatActivity(), OnDialogoConfirmacionListener {
         sardina = findViewById(R.id.bolaImageView)
         diana = findViewById(R.id.diana)
         tvRestantes = findViewById(R.id.tvRestantes)
+        fumanchuRelativo = findViewById(R.id.fumanchu_relativo)
         tvRestantes.text = restantes.toString()
 
         sardina.post {
@@ -177,10 +180,12 @@ class LanzamientoActivity : AppCompatActivity(), OnDialogoConfirmacionListener {
                 val newX = amplitud * sin(frecuencia * deltaTime.toFloat())
 
                 // Establecer la posición en el eje X de la vista "diana"
-                diana.translationX = newX.toFloat()
+//                diana.translationX = newX.toFloat()
+                fumanchuRelativo.translationX = newX.toFloat()
 
                 // Programar la próxima ejecución del runnable
-                diana.postDelayed(this, 16) // Aproximadamente 60 cuadros por segundo
+//                diana.postDelayed(this, 16) // Aproximadamente 60 cuadros por segundo
+                fumanchuRelativo.postDelayed(this, 16) // Aproximadamente 60 cuadros por segundo
 
                 // Detener la animación después de un periodo específico (opcional)
 //                if (deltaTime >= periodo) {
