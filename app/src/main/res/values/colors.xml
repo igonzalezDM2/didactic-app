@@ -15,4 +15,5 @@
     <color name="violet">#EE82EE</color>
     <color name="transparent">#00000000</color>
     <color name="pink">#FA467B</color>
+    <color name="gray">#808080</color>
 </resources>
