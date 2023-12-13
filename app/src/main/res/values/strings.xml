@@ -43,6 +43,28 @@
     <string name="bilbainada3">Mis sardinitas\nQue ricas son\nSon de __________________</string>
     <string name="bilbainada4">La del primero me llama,\nLa del segundo también,\n___________________</string>
     <string name="bilbainada5">¿A cómo las trae usted?\nY yo le digo que, a cuatro,\nElla me dice que, a tres,___________________\n¡Quién compra!\nSardinas frescué</string>
-    <!---->
+
+    <string name="bilbainada_resp1_1">la blusilla</string>
+    <string name="bilbainada_resp1_2">la pantorrilla</string>
+    <string name="bilbainada_resp1_3">la mesilla</string>
+
+    <string name="bilbainada_resp2_1">gritando por las calles</string>
+    <string name="bilbainada_resp2_2">cantando por las calles</string>
+    <string name="bilbainada_resp2_3">bailando por las calles</string>
+
+    <string name="bilbainada_resp3_1">la costa, las traigo yo</string>
+    <string name="bilbainada_resp3_2">la costa, las traigo ya</string>
+    <string name="bilbainada_resp3_3">Santurce, las traigo yo</string>
+
+    <string name="bilbainada_resp4_1">La del tercero está bien</string>
+    <string name="bilbainada_resp4_2">La del tercero me dice</string>
+    <string name="bilbainada_resp4_3">Las dos me preguntan</string>
+
+    <string name="bilbainada_resp5_1">cojo la cesta y me marcho</string>
+    <string name="bilbainada_resp5_2">le digo que la veo después</string>
+    <string name="bilbainada_resp5_3">cojo la cesta y hasta las tres</string>
+
+    <!--Actividad atrapar sardinas-->
     <string name="iniciar_juego">Hasi Jokua!</string>
+
 </resources>
