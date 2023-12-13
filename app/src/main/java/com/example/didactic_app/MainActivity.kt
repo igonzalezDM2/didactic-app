@@ -62,16 +62,16 @@ class MainActivity : AppCompatActivity() {
         }
 
         btnPuzzle = findViewById(R.id.btnPuzzle);
-        btnPuzzle.setOnClickListener { v: View ->
+        btnPuzzle.setOnClickListener {
             var intent: Intent = Intent(this@MainActivity, Puzzle3x2Activity::class.java);
             activityResultLauncher.launch(intent)
         }
 
-//        btnCancion = findViewById(R.id.btnCancion);
-//        btnCancion.setOnClickListener { v: View ->
-//            var intent: Intent = Intent(this@MainActivity, CancionActivity::class.java);
-//            activityResultLauncher.launch(intent)
-//        }
+        btnCancion = findViewById(R.id.btnCancion);
+        btnCancion.setOnClickListener { v: View ->
+            var intent: Intent = Intent(this@MainActivity, CancionActivity::class.java);
+            activityResultLauncher.launch(intent)
+        }
 
     }
 
