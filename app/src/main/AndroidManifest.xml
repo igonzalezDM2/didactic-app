@@ -20,7 +20,7 @@
         <activity
             android:name=".Puzzle3x2Activity"
             android:exported="false" />
-	<activity
+	    <activity
             android:name=".CancionActivity"
             android:exported="false" />
         <activity

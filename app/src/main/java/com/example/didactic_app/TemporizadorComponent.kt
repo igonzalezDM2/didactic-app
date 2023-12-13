@@ -7,8 +7,8 @@ class TemporizadorComponent (
     private val initialTimeInMillis: Long,
 ) {
 
-    lateinit var onFinish: () -> Unit
-    lateinit var onTick: (Long) -> Unit
+     var onFinish: () -> Unit = {}
+     var onTick: (Long) -> Unit = {}
 
     private lateinit var countDownTimer: CountDownTimer
     private var timeLeftInMillis: Long = initialTimeInMillis
