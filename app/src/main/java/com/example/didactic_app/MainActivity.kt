@@ -19,6 +19,8 @@ class MainActivity : AppCompatActivity() {
     private lateinit var btnLanzar: Button
     private lateinit var btnVerdaderoFalso: Button
     private lateinit var btnAtrapar: Button
+    private lateinit var btnPuzzle: Button
+    private lateinit var btnCancion: Button
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
@@ -58,6 +60,18 @@ class MainActivity : AppCompatActivity() {
             var intent: Intent = Intent(this@MainActivity, AtraparSardinasActivity::class.java);
             activityResultLauncher.launch(intent)
         }
+
+        btnPuzzle = findViewById(R.id.btnPuzzle);
+        btnPuzzle.setOnClickListener { v: View ->
+            var intent: Intent = Intent(this@MainActivity, Puzzle3x2Activity::class.java);
+            activityResultLauncher.launch(intent)
+        }
+
+//        btnCancion = findViewById(R.id.btnCancion);
+//        btnCancion.setOnClickListener { v: View ->
+//            var intent: Intent = Intent(this@MainActivity, CancionActivity::class.java);
+//            activityResultLauncher.launch(intent)
+//        }
 
     }
 

@@ -37,4 +37,13 @@
     <string name="intentar">Hobetu ahal duzu, saitu berriro.</string>
     <string name="siguiente">hurrengo ariketa</string>
     <string name="tiempo">00:30</string>
+
+
+    <!-- Actividad canción -->
+    <string name="bilbainada1">Desde Santurce a Bilbao\nVengo por toda la orilla,\nCon mi saya remangada\nLuciendo ____________</string>
+    <string name="bilbainada2">Vengo deprisa y corriendo\nPorque me oprime el corsé,\nVoy __________________\n¡Quién compra!\nSardinas frescué</string>
+    <string name="bilbainada3">Mis sardinitas\nQue ricas son\nSon de __________________</string>
+    <string name="bilbainada4">La del primero me llama,\nLa del segundo también,\n___________________</string>
+    <string name="bilbainada5">¿A cómo las trae usted?\nY yo le digo que, a cuatro,\nElla me dice que, a tres,___________________\n¡Quién compra!\nSardinas frescué</string>
+
 </resources>
