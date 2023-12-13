@@ -42,4 +42,16 @@
         android:layout_height="wrap_content"
         android:id="@+id/btnAtrapar"
         android:text="Atrapar sardinas" />
+
+    <Button
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/btnPuzzle"
+        android:text="Puzzle" />
+
+<!--    <Button-->
+<!--        android:layout_width="match_parent"-->
+<!--        android:layout_height="wrap_content"-->
+<!--        android:id="@+id/btnCancion"-->
+<!--        android:text="Canción" />-->
 </LinearLayout>
