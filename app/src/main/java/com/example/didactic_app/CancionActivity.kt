@@ -146,9 +146,9 @@ class CancionActivity : AppCompatActivity() {
                 preprararRespuestas()
             }
         }
-        if (!finDelJuego) {
-            comprobarRespuesta(btn, resp)
-        } else {
+        comprobarRespuesta(btn, resp)
+
+        if (finDelJuego) {
             seAcabo()
         }
     }
@@ -198,6 +198,8 @@ class CancionActivity : AppCompatActivity() {
 
         tvContador.setText(String.format("%d/7", contador + 1))
         tvBienMal.visibility = View.INVISIBLE
+
+        forzarReproduccionDeAudio(AUDIOS[contador * 2]) {}
     }
 
     private fun getIndiceRespuesta(btn: Button): Int{
