@@ -1,6 +1,19 @@
 <resources>
     <string name="app_name">didactic-app</string>
     <string name="titulo">Sare josleak</string>
+    <!--Actividad menú -->
+    <string name="descripcion_logo">Logotipo de la aplicacion</string>
+    <string name="mapa">Ver mapa</string>
+    <string name="prueba1_barcos">Unir barcos con ciudades</string>
+    <string name="prueba2_pescar">Coger sardinas</string>
+    <string name="prueba3_sopa">Resolver sopa de letras</string>
+    <string name="prueba4_rederas">Resolver puzle rederas (botón provisional)</string>
+    <string name="prueba5_cocinar">Cocinar sardinas</string>
+    <string name="prueba6_cancion">Rellenar huecos de la canción</string>
+    <string name="prueba7_trainera">Hacer avanzar una trainera</string>
+    <string name="prueba8_alimentar">Alimentar a Mentxu</string>
+    <string name="prueba9_puerto">Resolver puzle puerto (botón provisional)</string>
+    <string name="salir">Salir de la app</string>
     <!--Actividad de verdadero falso -->
     <string name="serantes_mendia">Serantes Mendia</string>
     <string name="image_barco">Santurziko edo Bilboko itsasontzia</string>
