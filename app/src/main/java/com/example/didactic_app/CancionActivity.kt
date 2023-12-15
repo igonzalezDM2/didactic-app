@@ -8,9 +8,12 @@ import android.widget.ImageButton
 import android.widget.TextView
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
+import androidx.fragment.app.FragmentManager
+import com.example.didactic_app.dialogs.DialogoFinJuego
+import com.example.didactic_app.dialogs.OnDialogoConfirmacionListener
 import com.example.didactic_app.model.RespuestasCancion
 
-class CancionActivity : AppCompatActivity() {
+class CancionActivity : AppCompatActivity(), OnDialogoConfirmacionListener {
 
     private val RESPUESTAS: Array<RespuestasCancion> = arrayOf(
         RespuestasCancion(R.string.bilbainada1, R.string.bilbainada_resp1_1, R.string.bilbainada_resp1_2, R.string.bilbainada_resp1_3, R.string.bilbainada_resp1_2),
@@ -138,6 +141,9 @@ class CancionActivity : AppCompatActivity() {
     }
 
     private fun alSeleccionar(btn: Button): Unit {
+        btnPlay.isEnabled = false
+        botonesSeleccion.forEach {btn -> btn.isEnabled = false}
+
         val finDelJuego: Boolean = contador == 6
         var resp: RespuestasCancion = RESPUESTAS[contador]
         forzarReproduccionDeAudio(AUDIOS[contador++ * 2 + 1]) {
@@ -159,13 +165,15 @@ class CancionActivity : AppCompatActivity() {
             view.visibility = View.INVISIBLE
         }
 
-        //TODO: CAMBIAR ESTE TOAST POR ALGO COMO DIOS MANDA
-        val toast = Toast.makeText(this, "$aciertos / $contador", Toast.LENGTH_SHORT)
-        toast.show()
+        //TODO
+        var fragmentManager: FragmentManager = supportFragmentManager
+        var dialogo = DialogoFinJuego(aciertos, 7)
+        dialogo.show(fragmentManager, "GAME OVER")
 
     }
 
     private fun comprobarRespuesta(btn: Button, resp: RespuestasCancion) {
+
         var indResp: Int = getIndiceRespuesta(btn)
         var indCorrecto = resp.getIndiceCorrecta()
 
@@ -200,6 +208,8 @@ class CancionActivity : AppCompatActivity() {
         tvBienMal.visibility = View.INVISIBLE
 
         forzarReproduccionDeAudio(AUDIOS[contador * 2]) {}
+        botonesSeleccion.forEach {btn -> btn.isEnabled = true}
+        btnPlay.isEnabled = true
     }
 
     private fun getIndiceRespuesta(btn: Button): Int{
@@ -209,6 +219,33 @@ class CancionActivity : AppCompatActivity() {
             R.id.btnOpcion3 -> return 2
             else -> return -1
         }
+    }
+
+    override fun onPossitiveButtonClick() {
+        pararReproduccion()
+        if (aciertos == 7) {
+            finish()
+        } else {
+            resetearJuego()
+        }
+    }
+
+    override fun onNegativeButtonClick() {
+        pararReproduccion()
+        finish()
+    }
+
+    private fun resetearJuego() {
+        contador = 0
+        aciertos = 0
+
+        botonesSeleccion.forEach { btn ->
+            var view: View = btn.parent as View
+            view.visibility = View.VISIBLE
+        }
+
+        mostrarLetra(LETRAS[contador])
+        preprararRespuestas()
     }
 
 }
