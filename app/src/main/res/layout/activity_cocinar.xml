@@ -55,12 +55,11 @@
         android:id="@+id/vReferenciaPlato"
         />
 
-
     <ImageView
         android:id="@+id/sardina1"
         android:layout_width="200sp"
         android:layout_height="92dp"
-        android:layout_marginTop="500sp"
+        android:layout_alignParentBottom="true"
         android:src="@drawable/sardina" />
 
 </RelativeLayout>

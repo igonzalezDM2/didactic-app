@@ -5,13 +5,13 @@ import android.os.Bundle
 import android.view.MotionEvent
 import android.view.View
 import android.view.ViewGroup
+import android.view.ViewTreeObserver
 import android.view.animation.Animation
 import android.view.animation.LinearInterpolator
 import android.view.animation.RotateAnimation
 import android.widget.ImageView
 import android.widget.RelativeLayout
 import android.widget.TextView
-import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 
 
@@ -52,7 +52,7 @@ class CocinarActivity : AppCompatActivity() {
             cocinada = true
             tvTemporizador.visibility = View.INVISIBLE
             tvInstrucciones.setText("Orain platerrara!")
-            animacionFlama()
+//            animacionFlama()
         }
 
 
@@ -65,8 +65,8 @@ class CocinarActivity : AppCompatActivity() {
                     temporizador.stopTimer()
                     parrilla.setImageResource(R.drawable.parrilla_vacia)
                     val lParams = v.layoutParams as RelativeLayout.LayoutParams
-                    xDelta = x - lParams.leftMargin
-                    yDelta = y - lParams.topMargin
+                    xDelta = x - sardina.x.toInt()
+                    yDelta = y - sardina.y.toInt()
                 }
 
                 MotionEvent.ACTION_UP -> {
@@ -89,15 +89,16 @@ class CocinarActivity : AppCompatActivity() {
 
                     // Evitar que la ImageView se haga más pequeña al arrastrar hacia los bordes
                     if (x - xDelta >= 0 && x - xDelta + layoutParams.width <= mainLayout.width) {
-                        layoutParams.leftMargin = x - xDelta
+                        sardina.x = x - xDelta.toFloat()
                     }
 
                     if (y - yDelta >= 0 && y - yDelta + layoutParams.height <= mainLayout.height) {
-                        layoutParams.topMargin = y - yDelta
+                        sardina.y = y - yDelta.toFloat()
                     }
 
-                    layoutParams.rightMargin = 0
-                    layoutParams.bottomMargin = 0
+
+//                    layoutParams.rightMargin = 0
+//                    layoutParams.bottomMargin = 0
 
                     v.layoutParams = layoutParams
                 }
@@ -108,6 +109,7 @@ class CocinarActivity : AppCompatActivity() {
             parrilla.invalidate()
             true
         }
+
     }
 
     fun estaSobreLaParrilla(): Boolean {
@@ -158,5 +160,6 @@ class CocinarActivity : AppCompatActivity() {
         image.startAnimation(rotate)
 
     }
+
 
 }

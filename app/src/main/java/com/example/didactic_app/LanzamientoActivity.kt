@@ -11,6 +11,7 @@ import android.widget.ImageView
 import android.widget.RelativeLayout
 import android.widget.TextView
 import androidx.fragment.app.FragmentManager
+import com.example.didactic_app.dialogs.DialogoFinJuego
 import com.example.didactic_app.dialogs.DialogoFinJuegoLanzamiento
 import com.example.didactic_app.dialogs.OnDialogoConfirmacionListener
 import kotlin.math.abs
@@ -149,8 +150,13 @@ class LanzamientoActivity : AppCompatActivity(), OnDialogoConfirmacionListener {
 
                     if (restantes == 0) {
                         var fragmentManager: FragmentManager = supportFragmentManager
-                        var dialogo = DialogoFinJuegoLanzamiento(contador)
+                        var dialogo = DialogoFinJuego(contador, 6)
                         dialogo.show(fragmentManager, "GAME OVER")
+
+
+//                        var fragmentManager: FragmentManager = supportFragmentManager
+//                        var dialogo = DialogoFinJuegoLanzamiento(contador)
+//                        dialogo.show(fragmentManager, "GAME OVER")
                     }
                 }
             }
