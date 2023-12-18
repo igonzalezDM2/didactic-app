@@ -7,9 +7,14 @@ import android.view.View
 import android.widget.GridLayout
 import android.widget.LinearLayout
 import android.widget.TextView
+import android.widget.Toast
+import androidx.fragment.app.FragmentManager
+import com.example.didactic_app.dialogs.DialogoFinJuego
+import com.example.didactic_app.dialogs.OnDialogoConfirmacionListener
+import com.example.didactic_app.model.Word
 import java.util.Random
 
-class SopaActivity : AppCompatActivity(), View.OnTouchListener {
+class SopaActivity : AppCompatActivity(), View.OnTouchListener, OnDialogoConfirmacionListener {
 
     private var initX = -1f
     private var initY = -1f
@@ -20,6 +25,8 @@ class SopaActivity : AppCompatActivity(), View.OnTouchListener {
     private var cellWidth = 0
 
     private lateinit var game_board: GridLayout
+
+    private var acertadas: Int = 0
 
     enum class SwipeDirection {
         Undefined,
@@ -140,6 +147,8 @@ class SopaActivity : AppCompatActivity(), View.OnTouchListener {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_sopa)
+
+        acertadas = 0
         cellWidth = resources.displayMetrics.widthPixels / 10
 
         game_board = findViewById(R.id.game_board)
@@ -305,7 +314,11 @@ class SopaActivity : AppCompatActivity(), View.OnTouchListener {
         }
         if (isFound){
             findViewById<TextView>(dictionary.getValue(foundWord)).setTextColor(resources.getColor(R.color.green))
-
+            if (++acertadas == dictionary.size) {
+                var fragmentManager: FragmentManager = supportFragmentManager
+                var dialogo = DialogoFinJuego(6, 6)
+                dialogo.show(fragmentManager, "GAME OVER")
+            }
         } else {
             unselectLetters(start.toInt(), end.toInt(), direction == SwipeDirection.Horizontal)
         }
@@ -339,10 +352,10 @@ class SopaActivity : AppCompatActivity(), View.OnTouchListener {
     }
 
     companion object {
-        val answers = arrayOf(Word("SWIFT"), Word("KOTLIN"), Word("OBJECTIVEC"), Word("VARIABLE"), Word("JAVA"), Word("MOBILE"))
+        val answers = arrayOf(Word("CORNITTES"), Word("PORTUA"), Word("SAREJOSLE"), Word("ITSASOA"), Word("SARDINA"), Word("SERANTES"))
         const val letters = "ABCDEFGHIJKLMNOPQRSTUVWXYZ"
         const val dim = 10
-        val dictionary = mapOf("SWIFT" to R.id.swift, "KOTLIN" to R.id.kotlin, "OBJECTIVEC" to R.id.objectivec, "VARIABLE" to R.id.variable, "JAVA" to R.id.java, "MOBILE" to R.id.mobile)
+        val dictionary = mapOf("CORNITTES" to R.id.cornittes, "PORTUA" to R.id.portua, "SAREJOSLE" to R.id.sarejosle, "ITSASOA" to R.id.itsasoa, "SARDINA" to R.id.sardina, "SERANTES" to R.id.serantes)
 
         // A 10x10 Array of String, all set to V
         var boardValues = Array(dim) {Array(dim) {"V"} }
@@ -352,6 +365,14 @@ class SopaActivity : AppCompatActivity(), View.OnTouchListener {
 
         // A 10x10 Array of Boolean, all set to false, representing if the answer has been found already
         var answerFlag = Array(dim) { Array(dim) { false } }
+    }
+
+    override fun onPossitiveButtonClick() {
+        finish()
+    }
+
+    override fun onNegativeButtonClick() {
+        finish()
     }
 
 }
