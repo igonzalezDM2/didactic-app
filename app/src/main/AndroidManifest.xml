@@ -11,38 +11,55 @@
         android:allowBackup="true"
         android:dataExtractionRules="@xml/data_extraction_rules"
         android:fullBackupContent="@xml/backup_rules"
-        android:icon="@mipmap/ic_launcher"
+        android:icon="@mipmap/logo_didacticapp"
         android:label="@string/app_name"
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.Didacticapp"
         tools:targetApi="31">
         <activity
-            android:name=".Puzzle3x2Activity"
+            android:name=".PuertoActivity"
+            android:screenOrientation="portrait"
             android:exported="false" />
-	<activity
+        <activity
+            android:name=".TraineraActivity"
+            android:screenOrientation="portrait"
+            android:exported="false" />
+        <activity
+            android:name=".Puzzle3x2Activity"
+            android:screenOrientation="portrait"
+            android:exported="false" />
+        <activity
             android:name=".CancionActivity"
+            android:screenOrientation="portrait"
             android:exported="false" />
         <activity
             android:name=".LanzamientoActivity"
+            android:screenOrientation="portrait"
             android:exported="false" />
         <activity
             android:name=".VerdaderoFalsoActivity"
+            android:screenOrientation="portrait"
             android:exported="false" />
         <activity
             android:name=".CocinarActivity"
+            android:screenOrientation="portrait"
             android:exported="false" />
         <activity
             android:name=".SopaActivity"
+            android:screenOrientation="portrait"
             android:exported="false" />
         <activity
             android:name=".AtraparSardinasActivity"
+            android:screenOrientation="portrait"
             android:exported="false" />
         <activity
             android:name=".MapActivity"
+            android:screenOrientation="portrait"
             android:exported="false" />
         <activity
             android:name=".MainActivity"
+            android:screenOrientation="portrait"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />

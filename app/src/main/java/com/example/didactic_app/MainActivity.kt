@@ -1,86 +1,86 @@
 package com.example.didactic_app
 
 import android.content.Intent
-import android.graphics.Rect
-import android.location.GpsStatus
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.view.View
 import android.widget.Button
-import androidx.activity.result.ActivityResultLauncher
-import androidx.activity.result.contract.ActivityResultContracts
 
 class MainActivity : AppCompatActivity() {
 
+    companion object {
+        var arreglo_sardinas = arrayOf("", "", "", "", "", "")
+        var arreglo_piezas = arrayOf("", "", "", "", "", "", "")
+    }
 
-    private lateinit var btnMapa: Button
-    private lateinit var btnSopa: Button
-    private lateinit var btnCocinar: Button
-    private lateinit var btnLanzar: Button
-    private lateinit var btnVerdaderoFalso: Button
-    private lateinit var btnAtrapar: Button
-    private lateinit var btnPuzzle: Button
-    private lateinit var btnCancion: Button
+    private lateinit var btMapa: Button
+    private lateinit var btPrueba1Barcos: Button
+    private lateinit var btPrueba2Pescar: Button
+    private lateinit var btPrueba3Sopa: Button
+    private lateinit var btPrueba4Rederas: Button
+    private lateinit var btPrueba5Cocinar: Button
+    private lateinit var btPrueba6Cancion: Button
+    private lateinit var btPrueba7Trainera: Button
+    private lateinit var btPrueba8Alimentar: Button
+    private lateinit var btPrueba9Puerto: Button
+    private lateinit var btSalir: Button
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
-
-        btnMapa = findViewById(R.id.btnMapa);
-        btnMapa.setOnClickListener { v: View ->
-            var intent: Intent = Intent(this@MainActivity, MapActivity::class.java);
-            activityResultLauncher.launch(intent)
-        }
-
-        btnSopa = findViewById(R.id.btnSopa);
-        btnSopa.setOnClickListener { v: View ->
-            var intent: Intent = Intent(this@MainActivity, SopaActivity::class.java);
-            activityResultLauncher.launch(intent)
-        }
-
-        btnCocinar = findViewById(R.id.btnCocinar);
-        btnCocinar.setOnClickListener { v: View ->
-            var intent: Intent = Intent(this@MainActivity, CocinarActivity::class.java);
-            activityResultLauncher.launch(intent)
-        }
-
-        btnLanzar = findViewById(R.id.btnLanzar);
-        btnLanzar.setOnClickListener { v: View ->
-            var intent: Intent = Intent(this@MainActivity, LanzamientoActivity::class.java);
-            activityResultLauncher.launch(intent)
-        }
-
-        btnVerdaderoFalso = findViewById(R.id.btnVerdaderoFalso);
-        btnVerdaderoFalso.setOnClickListener { v: View ->
-            var intent: Intent = Intent(this@MainActivity, VerdaderoFalsoActivity::class.java);
-            activityResultLauncher.launch(intent)
-        }
-
-        btnAtrapar = findViewById(R.id.btnAtrapar);
-        btnAtrapar.setOnClickListener { v: View ->
-            var intent: Intent = Intent(this@MainActivity, AtraparSardinasActivity::class.java);
-            activityResultLauncher.launch(intent)
-        }
-
-        btnPuzzle = findViewById(R.id.btnPuzzle);
-        btnPuzzle.setOnClickListener { v: View ->
-            var intent: Intent = Intent(this@MainActivity, Puzzle3x2Activity::class.java);
-            activityResultLauncher.launch(intent)
-        }
-
-//        btnCancion = findViewById(R.id.btnCancion);
-//        btnCancion.setOnClickListener { v: View ->
-//            var intent: Intent = Intent(this@MainActivity, CancionActivity::class.java);
-//            activityResultLauncher.launch(intent)
-//        }
-
+        initComponentes()
+        initOyentes()
     }
 
-    private val activityResultLauncher: ActivityResultLauncher<Intent> =
-        registerForActivityResult(ActivityResultContracts.StartActivityForResult()) { result ->
-            // NO SE HACE NADA
-            // if (Activity.RESULT_OK == result.resultCode) {
-            //     val intent = result.data
-            // }
+    private fun initComponentes() {
+        btMapa = findViewById(R.id.bt_mapa)
+        btPrueba1Barcos = findViewById(R.id.bt_prueba1_barcos)
+        btPrueba2Pescar = findViewById(R.id.bt_prueba2_pescar)
+        btPrueba3Sopa = findViewById(R.id.bt_prueba3_sopa)
+        btPrueba4Rederas = findViewById(R.id.bt_prueba4_rederas)
+        btPrueba5Cocinar = findViewById(R.id.bt_prueba5_cocinar)
+        btPrueba6Cancion = findViewById(R.id.bt_prueba6_cancion)
+        btPrueba7Trainera = findViewById(R.id.bt_prueba7_trainera)
+        btPrueba8Alimentar = findViewById(R.id.bt_prueba8_alimentar)
+        btPrueba9Puerto = findViewById(R.id.bt_prueba9_puerto)
+        btSalir = findViewById(R.id.bt_salir)
+    }
+
+    private fun initOyentes() {
+        btMapa.setOnClickListener { goToActividades(0) }
+        btPrueba1Barcos.setOnClickListener { goToActividades(1) }
+        btPrueba2Pescar.setOnClickListener { goToActividades(2) }
+        btPrueba3Sopa.setOnClickListener { goToActividades(3) }
+        btPrueba4Rederas.setOnClickListener { goToActividades(4) }
+        btPrueba5Cocinar.setOnClickListener { goToActividades(5) }
+        btPrueba6Cancion.setOnClickListener { goToActividades(6) }
+        btPrueba7Trainera.setOnClickListener { goToActividades(7) }
+        btPrueba8Alimentar.setOnClickListener { goToActividades(8) }
+        btPrueba9Puerto.setOnClickListener { goToActividades(9) }
+        btSalir.setOnClickListener { goToActividades(10) }
+    }
+
+    private fun goToActividades(opcion: Int) {
+
+        if (opcion == 10) {
+            finish()
+        } else {
+
+            val intento = when (opcion) {
+                1 -> Intent(this, VerdaderoFalsoActivity::class.java)
+                2 -> Intent(this, AtraparSardinasActivity::class.java)
+                3 -> Intent(this, SopaActivity::class.java)
+                4 -> Intent(this, Puzzle3x2Activity::class.java)
+                5 -> Intent(this, CocinarActivity::class.java)
+                6 -> Intent(this, CancionActivity::class.java)
+                7 -> Intent(this, TraineraActivity::class.java)
+                8 -> Intent(this, LanzamientoActivity::class.java)
+                9 -> Intent(this, PuertoActivity::class.java)
+                else -> Intent(this, MapActivity::class.java)
+            }
+
+            startActivity(intento)
         }
+
+    }
 
 }

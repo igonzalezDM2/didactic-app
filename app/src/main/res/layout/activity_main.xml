@@ -1,57 +1,107 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical"
+    android:background="@color/white"
+    android:padding="16dp"
     tools:context=".MainActivity">
 
-    <Button
-        android:layout_width="match_parent"
+    <ImageView
+        android:id="@+id/iv_logo"
+        android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:id="@+id/btnMapa"
-        android:text="Mapa" />
+        android:src="@mipmap/logo_didacticapp"
+        android:contentDescription="@string/descripcion_logo"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <androidx.cardview.widget.CardView
+        android:id="@+id/cv_menu"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginVertical="16dp"
+        app:cardBackgroundColor="@color/gray"
+        app:cardCornerRadius="16dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/iv_logo">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:gravity="center"
+            android:orientation="vertical"
+            android:paddingHorizontal="64dp"
+            android:paddingVertical="8dp">
+
+            <Button
+                android:id="@+id/bt_mapa"
+                style="@style/botones_menu"
+                android:textStyle="bold|italic"
+                android:text="@string/mapa" />
+
+            <Button
+                android:id="@+id/bt_prueba1_barcos"
+                style="@style/botones_menu"
+                android:text="@string/prueba1_barcos" />
+
+            <Button
+                android:id="@+id/bt_prueba2_pescar"
+                style="@style/botones_menu"
+                android:text="@string/prueba2_pescar" />
+
+            <Button
+                android:id="@+id/bt_prueba3_sopa"
+                style="@style/botones_menu"
+                android:text="@string/prueba3_sopa" />
+
+            <Button
+                android:id="@+id/bt_prueba4_rederas"
+                style="@style/botones_menu"
+                android:text="@string/prueba4_rederas" />
+
+            <Button
+                android:id="@+id/bt_prueba5_cocinar"
+                style="@style/botones_menu"
+                android:text="@string/prueba5_cocinar" />
+
+            <Button
+                android:id="@+id/bt_prueba6_cancion"
+                style="@style/botones_menu"
+                android:text="@string/prueba6_cancion" />
+
+            <Button
+                android:id="@+id/bt_prueba7_trainera"
+                style="@style/botones_menu"
+                android:text="@string/prueba7_trainera" />
+
+            <Button
+                android:id="@+id/bt_prueba8_alimentar"
+                style="@style/botones_menu"
+                android:text="@string/prueba8_alimentar" />
+
+            <Button
+                android:id="@+id/bt_prueba9_puerto"
+                style="@style/botones_menu"
+                android:text="@string/prueba9_puerto" />
+
+        </LinearLayout>
+
+    </androidx.cardview.widget.CardView>
 
     <Button
-        android:layout_width="match_parent"
+        android:id="@+id/bt_salir"
+        android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:id="@+id/btnSopa"
-        android:text="Sopa de letras" />
+        android:backgroundTint="@color/gray"
+        android:text="@string/salir"
+        android:textAllCaps="true"
+        android:textColor="@color/red"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
 
-    <Button
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:id="@+id/btnCocinar"
-        android:text="Cocinar sardinas" />
-
-    <Button
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:id="@+id/btnVerdaderoFalso"
-        android:text="Verdadero Falso" />
-
-    <Button
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:id="@+id/btnLanzar"
-        android:text="Lanzar weas" />
-
-    <Button
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:id="@+id/btnAtrapar"
-        android:text="Atrapar sardinas" />
-
-    <Button
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:id="@+id/btnPuzzle"
-        android:text="Puzzle" />
-
-<!--    <Button-->
-<!--        android:layout_width="match_parent"-->
-<!--        android:layout_height="wrap_content"-->
-<!--        android:id="@+id/btnCancion"-->
-<!--        android:text="Canción" />-->
-</LinearLayout>
+</androidx.constraintlayout.widget.ConstraintLayout>

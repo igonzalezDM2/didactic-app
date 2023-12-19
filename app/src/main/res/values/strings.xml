@@ -1,6 +1,19 @@
 <resources>
     <string name="app_name">didactic-app</string>
     <string name="titulo">Sare josleak</string>
+    <!--Actividad menú -->
+    <string name="descripcion_logo">Logotipo de la aplicacion</string>
+    <string name="mapa">Ver mapa</string>
+    <string name="prueba1_barcos">Unir barcos con ciudades</string>
+    <string name="prueba2_pescar">Coger sardinas</string>
+    <string name="prueba3_sopa">Resolver sopa de letras</string>
+    <string name="prueba4_rederas">Resolver puzle rederas (botón provisional)</string>
+    <string name="prueba5_cocinar">Cocinar sardinas</string>
+    <string name="prueba6_cancion">Rellenar huecos de la canción</string>
+    <string name="prueba7_trainera">Hacer avanzar una trainera</string>
+    <string name="prueba8_alimentar">Alimentar a Mentxu</string>
+    <string name="prueba9_puerto">Resolver puzle puerto (botón provisional)</string>
+    <string name="salir">Salir de la app</string>
     <!--Actividad de verdadero falso -->
     <string name="serantes_mendia">Serantes Mendia</string>
     <string name="image_barco">Santurziko edo Bilboko itsasontzia</string>
@@ -37,14 +50,12 @@
     <string name="intentar">Hobetu ahal duzu, saitu berriro.</string>
     <string name="siguiente">hurrengo ariketa</string>
     <string name="tiempo">00:30</string>
-
-
     <!-- Actividad canción -->
-    <string name="bilbainada1">Desde Santurce a Bilbao\nVengo por toda la orilla,\nCon mi saya remangada\nLuciendo ____________</string>
-    <string name="bilbainada2">Vengo deprisa y corriendo\nPorque me oprime el corsé,\nVoy __________________\n¡Quién compra!\nSardinas frescué</string>
-    <string name="bilbainada3">Mis sardinitas\nQue ricas son\nSon de __________________</string>
-    <string name="bilbainada4">La del primero me llama,\nLa del segundo también,\n___________________</string>
-    <string name="bilbainada5">¿A cómo las trae usted?\nY yo le digo que, a cuatro,\nElla me dice que, a tres,___________________\n¡Quién compra!\nSardinas frescué</string>
+    <string name="bilbainada1">Desde Santurce a Bilbao\nVengo por toda la orilla,\nCon mi saya remangada\nLuciendo %s</string>
+    <string name="bilbainada2">Vengo deprisa y corriendo\nPorque me oprime el corsé,\nVoy %s\n¡Quién compra!\nSardinas frescué</string>
+    <string name="bilbainada3">Mis sardinitas\nQue ricas son\nSon de %s</string>
+    <string name="bilbainada4">La del primero me llama,\nLa del segundo también,\n%s</string>
+    <string name="bilbainada5">¿A cómo las trae usted?\nY yo le digo que, a cuatro,\nElla me dice que, a tres,%s\n¡Quién compra!\nSardinas frescué</string>
 
     <string name="bilbainada_resp1_1">la blusilla</string>
     <string name="bilbainada_resp1_2">la pantorrilla</string>
@@ -66,5 +77,7 @@
     <string name="bilbainada_resp5_2">le digo que la veo después</string>
     <string name="bilbainada_resp5_3">cojo la cesta y hasta las tres</string>
 
+    <!--Actividad atrapar sardinas-->
+    <string name="iniciar_juego">Hasi Jokua!</string>
 
 </resources>
