@@ -22,6 +22,7 @@ class MainActivity : AppCompatActivity() {
     private lateinit var btPrueba7Trainera: Button
     private lateinit var btPrueba8Alimentar: Button
     private lateinit var btPrueba9Puerto: Button
+    private lateinit var btPrueba10Tangram: Button
     private lateinit var btSalir: Button
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -42,6 +43,7 @@ class MainActivity : AppCompatActivity() {
         btPrueba7Trainera = findViewById(R.id.bt_prueba7_trainera)
         btPrueba8Alimentar = findViewById(R.id.bt_prueba8_alimentar)
         btPrueba9Puerto = findViewById(R.id.bt_prueba9_puerto)
+        btPrueba10Tangram = findViewById(R.id.bt_prueba10_tangram)
         btSalir = findViewById(R.id.bt_salir)
     }
 
@@ -56,12 +58,13 @@ class MainActivity : AppCompatActivity() {
         btPrueba7Trainera.setOnClickListener { goToActividades(7) }
         btPrueba8Alimentar.setOnClickListener { goToActividades(8) }
         btPrueba9Puerto.setOnClickListener { goToActividades(9) }
-        btSalir.setOnClickListener { goToActividades(10) }
+        btPrueba10Tangram.setOnClickListener { goToActividades(10) }
+        btSalir.setOnClickListener { goToActividades(11) }
     }
 
     private fun goToActividades(opcion: Int) {
 
-        if (opcion == 10) {
+        if (opcion == 11) {
             finish()
         } else {
 
@@ -75,6 +78,7 @@ class MainActivity : AppCompatActivity() {
                 7 -> Intent(this, TraineraActivity::class.java)
                 8 -> Intent(this, LanzamientoActivity::class.java)
                 9 -> Intent(this, PuertoActivity::class.java)
+                10 -> Intent(this, TangramActivity::class.java)
                 else -> Intent(this, MapActivity::class.java)
             }
 

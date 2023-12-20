@@ -30,6 +30,10 @@
             android:screenOrientation="portrait"
             android:exported="false" />
         <activity
+            android:name=".TangramActivity"
+            android:screenOrientation="portrait"
+            android:exported="false" />
+        <activity
             android:name=".CancionActivity"
             android:screenOrientation="portrait"
             android:exported="false" />

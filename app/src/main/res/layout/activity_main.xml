@@ -88,6 +88,11 @@
                 style="@style/botones_menu"
                 android:text="@string/prueba9_puerto" />
 
+            <Button
+                android:id="@+id/bt_prueba10_tangram"
+                style="@style/botones_menu"
+                android:text="Tangram" />
+
         </LinearLayout>
 
     </androidx.cardview.widget.CardView>
