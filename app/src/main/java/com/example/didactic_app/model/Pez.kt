@@ -1,12 +1,14 @@
 package com.example.didactic_app.model
 
 import android.animation.AnimatorSet
+import android.animation.ObjectAnimator
 import android.animation.ValueAnimator
 import android.util.Log
 import android.view.View
 import android.view.animation.AccelerateDecelerateInterpolator
 import android.view.animation.Animation
 import android.view.animation.Animation.AnimationListener
+import android.view.animation.LinearInterpolator
 import android.view.animation.TranslateAnimation
 import android.widget.ImageView
 import android.widget.ImageView.ScaleType
@@ -24,7 +26,7 @@ class Pez {
         private var separacion: Float = 250f
         private var screenHeight: Float = 0f
         private var screenWidth: Float = 0f
-        private var ultimoPezPantalla: Float = 0f
+        private var widthPez:Int = 250
     }
 
     private var ivPez:ImageView
@@ -34,6 +36,7 @@ class Pez {
         }
 
     private var rigthToLeft: Boolean = false
+    private var puntoInicio: Float = 0f
 
     constructor(activity: AppCompatActivity, layout: ConstraintLayout, direccion:Boolean = false) {
         this.rigthToLeft = direccion
@@ -62,29 +65,23 @@ class Pez {
         if (rigthToLeft) {
             layoutParams.endToEnd = layout.id
             layoutParams.topToTop = layout.id
-            ivPez.x = screenWidth + ivPez.width.toFloat()
         }else { // Invertir la imagen horizontalmente
             ivPez.scaleX = -1f
-            ivPez.x = -ivPez.width.toFloat()
         }
-        layoutParams.width = 250
+        layoutParams.width = widthPez
         layoutParams.height = 250
+        ivPez.visibility = View.INVISIBLE
         layout.addView(ivPez, layoutParams)
     }
 
     fun startAnimation(desplazamiento:Int, duracionMovimiento:Long, duracionFinal:Long
                        , event: () -> Unit){
 
-        val animacionMover = ValueAnimator.ofFloat(0f, 1f)
-        animacionMover.addUpdateListener { animation ->
-            val factor = animation.animatedValue as Float
-            val translationX: Float = if (rigthToLeft) {
-                factor * -desplazamiento
-            } else {
-                factor * desplazamiento
-            }
-            ivPez.translationX = translationX
-        }
+        val startX = if (rigthToLeft) widthPez.toFloat() else -widthPez.toFloat()
+        val endX = if (rigthToLeft) -screenWidth else screenWidth
+
+        val animacionMover = ObjectAnimator.ofFloat(ivPez,"translationX", startX, endX)
+
         animacionMover.interpolator = AccelerateDecelerateInterpolator()
         animacionMover.duration = duracionMovimiento
 
@@ -93,23 +90,23 @@ class Pez {
             val factor = animation.animatedValue as Float
             ivPez.alpha = factor
             cantPeces -= 1
+            ivPez.isClickable = false
             ivPez.visibility = View.GONE
         }
         animacionFinal.duration = duracionFinal
+        animacionFinal.startDelay = 150
 
         val animacionConjunta = AnimatorSet()
-        animacionConjunta.playSequentially(animacionMover, animacionFinal)
+        animacionConjunta.playSequentially(animacionMover)
 
-        imagen.setOnClickListener { view ->
+        imagen.setOnClickListener {
             event()
-            view.visibility = View.GONE
-            animacionConjunta.start()
-            view.isClickable = false
-            cantPeces -= 1
+            animacionFinal.start()
         }
 
         imagen.post {
             animacionConjunta.start()
+            ivPez.visibility = View.VISIBLE
         }
     }
 
