@@ -9,6 +9,10 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.ImageView
 import android.widget.TextView
+import androidx.core.view.ViewCompat
+import com.google.android.material.shape.MaterialShapeDrawable
+import com.google.android.material.shape.ShapeAppearanceModel
+import com.google.android.material.shape.TriangleEdgeTreatment
 
 class TangramActivity : AppCompatActivity() {
     private lateinit var puzzleZone: ViewGroup
@@ -83,6 +87,7 @@ class TangramActivity : AppCompatActivity() {
         marco5.setOnDragListener(DragListener())
         marco6.setOnDragListener(DragListener())
         marco7.setOnDragListener(DragListener())
+
     }
 
     private inner class TouchListener : View.OnTouchListener {
