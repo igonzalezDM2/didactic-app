@@ -1,9 +1,12 @@
 package com.example.didactic_app
 
+import android.app.Activity
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.widget.Button
+import androidx.activity.result.ActivityResult
+import androidx.activity.result.contract.ActivityResultContracts
 
 class MainActivity : AppCompatActivity() {
 
@@ -11,6 +14,10 @@ class MainActivity : AppCompatActivity() {
         var arreglo_sardinas = arrayOf("", "", "", "", "", "")
         var arreglo_piezas = arrayOf("", "", "", "", "", "", "")
     }
+
+    private val FONDO_PARAM: String = "fondo";
+    private val AUDIO_PARAM: String = "audio";
+    private val TEXTO_PARAM: String = "texto";
 
     private lateinit var btMapa: Button
     private lateinit var btPrueba1Barcos: Button
@@ -25,6 +32,7 @@ class MainActivity : AppCompatActivity() {
     private lateinit var btPrueba10Tangram: Button
     private lateinit var btSalir: Button
 
+    private var intencion: Intent? = null
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
@@ -68,23 +76,49 @@ class MainActivity : AppCompatActivity() {
             finish()
         } else {
 
-            val intento = when (opcion) {
-                1 -> Intent(this, VerdaderoFalsoActivity::class.java)
-                2 -> Intent(this, AtraparSardinasActivity::class.java)
-                3 -> Intent(this, SopaActivity::class.java)
-                4 -> Intent(this, Puzzle3x2Activity::class.java)
-                5 -> Intent(this, CocinarActivity::class.java)
-                6 -> Intent(this, CancionActivity::class.java)
-                7 -> Intent(this, TraineraActivity::class.java)
-                8 -> Intent(this, LanzamientoActivity::class.java)
-                9 -> Intent(this, PuertoActivity::class.java)
-                10 -> Intent(this, TangramActivity::class.java)
-                else -> Intent(this, MapActivity::class.java)
+            when (opcion) {
+                1 -> lanzarJuego(arrayOf(""), intArrayOf(0), 0, Intent(this, VerdaderoFalsoActivity::class.java))
+                2 -> lanzarJuego(arrayOf(""), intArrayOf(0), 0, Intent(this, AtraparSardinasActivity::class.java))
+                3 -> lanzarJuego(arrayOf(""), intArrayOf(0), 0, Intent(this, SopaActivity::class.java))
+                4 -> lanzarJuego(arrayOf(""), intArrayOf(0), 0, Intent(this, Puzzle3x2Activity::class.java))
+                5 -> lanzarJuego(arrayOf(""), intArrayOf(0), 0, Intent(this, CocinarActivity::class.java))
+                6 -> lanzarJuego(arrayOf("Canción xD", "JEJE"), intArrayOf(R.drawable.fondo_atrapar_sardinas, R.drawable.fumanchu), 0, Intent(this, CancionActivity::class.java))
+                7 -> lanzarJuego(arrayOf(""), intArrayOf(0), 0, Intent(this, TraineraActivity::class.java))
+                8 -> lanzarJuego(arrayOf(""), intArrayOf(0), 0, Intent(this, LanzamientoActivity::class.java))
+                9 -> lanzarJuego(arrayOf(""), intArrayOf(0), 0, Intent(this, PuertoActivity::class.java))
+                10 -> lanzarJuego(arrayOf(""), intArrayOf(0), 0, Intent(this, TangramActivity::class.java))
+                else -> lanzarJuego(Intent(this, MapActivity::class.java))
             }
 
-            startActivity(intento)
         }
 
+    }
+
+    private fun lanzarJuego(intencion: Intent) {
+        lanzarJuego(null, null, null, intencion)
+    }
+    private fun lanzarJuego(explicacion: Array<String>?, fondo: IntArray?, audio: Int?, intencion: Intent) {
+        this.intencion = intencion
+        if (!explicacion.isNullOrEmpty()) {
+            val intentExplicacion: Intent = Intent(this, ExplicacionActivity::class.java)
+            if (audio != null) {
+                intentExplicacion.putExtra(AUDIO_PARAM, audio)
+            }
+            if (fondo != null) {
+                intentExplicacion.putExtra(FONDO_PARAM, fondo)
+            }
+            intentExplicacion.putExtra(TEXTO_PARAM, explicacion)
+            startForResult.launch(intentExplicacion)
+        } else {
+            startActivity(intencion)
+        }
+    }
+
+    private val startForResult = registerForActivityResult(ActivityResultContracts.StartActivityForResult()) {
+        result: ActivityResult ->
+        if (result.resultCode == Activity.RESULT_OK) {
+            startActivity(intencion)
+        }
     }
 
 }
