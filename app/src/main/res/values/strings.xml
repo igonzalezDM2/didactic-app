@@ -80,4 +80,9 @@
     <!--Actividad atrapar sardinas-->
     <string name="iniciar_juego">Hasi Jokua!</string>
 
+    <!-- Explicaciones -->
+    <string name="explicacion_cancion1">Bilbo Handiko historiaren parte handia dira bilbainadak. Hauek herriko plazan sortzen eta abesten ziren kantak dira, Bilbo eta haren inguruko herrietan gertatzen zena kontatzen dute eta familian eta kuadrillan abesten ziren herriko plazan.</string>
+    <string name="explicacion_cancion2">Bilborekin partekatzen dute jatorria, 1300 urtea inguru hasi ziren eta gaur arte mantentzen dira. 1920. urtean hasi ziren talde formalak sortzen, haien artean Los Chimberos, Los Cinco Bilbainos, Los Chimbos, Los Bocheros... Gaur egun, oraindik ere badaude genero musikal honetarako txapelketak, Radio Nervionek antolatuak.</string>
+    <string name="explicacion_cancion3">Bilbainaden artean ezaguenetariko bat “Desde Santurce a Bilbao” du izena. Honek, Santurtziko sardinak saltzen dituen emakume bati buruz hitz egiten du, izenak berak dioen moduan, Santurtzin hartuta Bilbon saltzen ditu sardinak.</string>
+
 </resources>

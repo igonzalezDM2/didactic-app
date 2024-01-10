@@ -82,7 +82,11 @@ class MainActivity : AppCompatActivity() {
                 3 -> lanzarJuego(arrayOf(""), intArrayOf(0), 0, Intent(this, SopaActivity::class.java))
                 4 -> lanzarJuego(arrayOf(""), intArrayOf(0), 0, Intent(this, Puzzle3x2Activity::class.java))
                 5 -> lanzarJuego(arrayOf(""), intArrayOf(0), 0, Intent(this, CocinarActivity::class.java))
-                6 -> lanzarJuego(arrayOf("Canción xD", "JEJE"), intArrayOf(R.drawable.fondo_atrapar_sardinas, R.drawable.fumanchu), 0, Intent(this, CancionActivity::class.java))
+                6 -> lanzarJuego(arrayOf(resources.getText(R.string.explicacion_cancion1).toString(),
+                    resources.getText(R.string.explicacion_cancion2).toString(),
+                    resources.getText(R.string.explicacion_cancion3).toString()),
+                    intArrayOf(R.drawable.foto_cancion1, R.drawable.foto_cancion2, R.drawable.foto_cancion3),
+                    R.raw.audio_cancion, Intent(this, CancionActivity::class.java))
                 7 -> lanzarJuego(arrayOf(""), intArrayOf(0), 0, Intent(this, TraineraActivity::class.java))
                 8 -> lanzarJuego(arrayOf(""), intArrayOf(0), 0, Intent(this, LanzamientoActivity::class.java))
                 9 -> lanzarJuego(arrayOf(""), intArrayOf(0), 0, Intent(this, PuertoActivity::class.java))

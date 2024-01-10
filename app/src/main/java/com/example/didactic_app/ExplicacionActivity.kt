@@ -28,8 +28,6 @@ class ExplicacionActivity : AppCompatActivity() {
     lateinit var btnAudio: ImageButton
     lateinit var btnAvanzar: ImageButton
 
-    private var pararHilos: Boolean = false
-
     private var mp: MediaPlayer? = null
 
     private var audio: Int? = null
@@ -94,7 +92,7 @@ class ExplicacionActivity : AppCompatActivity() {
             if (texto != null && indice < texto!!.size - 1) {
                 tvExplicacion.text = texto!![indice + 1]
             } else {
-                pararHilos = true
+                pararReproduccion()
                 var intencion = Intent()
                 setResult(RESULT_OK, intencion)
                 finish()
