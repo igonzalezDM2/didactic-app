@@ -87,14 +87,22 @@ class MainActivity : AppCompatActivity() {
                 ), intArrayOf(R.drawable.foto_sopa1, R.drawable.foto_sopa2),
                     R.raw.audio_sopa , Intent(this, SopaActivity::class.java))
                 4 -> lanzarJuego(arrayOf(""), intArrayOf(0), 0, Intent(this, Puzzle3x2Activity::class.java))
-                5 -> lanzarJuego(arrayOf(""), intArrayOf(0), 0, Intent(this, CocinarActivity::class.java))
+                5 -> lanzarJuego(arrayOf(
+                    resources.getText(R.string.explicacion_sardinas1).toString(),
+                    resources.getText(R.string.explicacion_sardinas2).toString(),
+                    resources.getText(R.string.explicacion_sardinas3).toString(),
+                    resources.getText(R.string.explicacion_sardinas4).toString(),
+                ), intArrayOf(
+                    R.drawable.foto_cocinar1,
+                    R.drawable.foto_cocinar2
+                ), R.raw.audio_cocinar, Intent(this, CocinarActivity::class.java))
                 6 -> lanzarJuego(arrayOf(resources.getText(R.string.explicacion_cancion1).toString(),
                     resources.getText(R.string.explicacion_cancion2).toString(),
                     resources.getText(R.string.explicacion_cancion3).toString()),
                     intArrayOf(R.drawable.foto_cancion1, R.drawable.foto_cancion2, R.drawable.foto_cancion3),
                     R.raw.audio_cancion, Intent(this, CancionActivity::class.java))
                 7 -> lanzarJuego(arrayOf(""), intArrayOf(0), 0, Intent(this, TraineraActivity::class.java))
-                8 -> lanzarJuego(arrayOf(""), intArrayOf(0), 0, Intent(this, LanzamientoActivity::class.java))
+                8 -> lanzarJuego(arrayOf(resources.getText(R.string.explicacion_lanzar).toString()), intArrayOf(0), R.raw.audio_lanzar, Intent(this, LanzamientoActivity::class.java))
                 9 -> lanzarJuego(arrayOf(""), intArrayOf(0), 0, Intent(this, PuertoActivity::class.java))
                 10 -> lanzarJuego(arrayOf(""), intArrayOf(0), 0, Intent(this, TangramActivity::class.java))
                 else -> lanzarJuego(Intent(this, MapActivity::class.java))
