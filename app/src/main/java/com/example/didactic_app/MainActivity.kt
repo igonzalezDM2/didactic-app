@@ -79,7 +79,13 @@ class MainActivity : AppCompatActivity() {
             when (opcion) {
                 1 -> lanzarJuego(arrayOf(""), intArrayOf(0), 0, Intent(this, VerdaderoFalsoActivity::class.java))
                 2 -> lanzarJuego(arrayOf(""), intArrayOf(0), 0, Intent(this, AtraparSardinasActivity::class.java))
-                3 -> lanzarJuego(arrayOf(""), intArrayOf(0), 0, Intent(this, SopaActivity::class.java))
+                3 -> lanzarJuego(arrayOf(
+                    resources.getText(R.string.explicacion_sopa1).toString(),
+                    resources.getText(R.string.explicacion_sopa2).toString(),
+                    resources.getText(R.string.explicacion_sopa3).toString(),
+                    resources.getText(R.string.explicacion_sopa4).toString(),
+                ), intArrayOf(R.drawable.foto_sopa1, R.drawable.foto_sopa2),
+                    R.raw.audio_sopa , Intent(this, SopaActivity::class.java))
                 4 -> lanzarJuego(arrayOf(""), intArrayOf(0), 0, Intent(this, Puzzle3x2Activity::class.java))
                 5 -> lanzarJuego(arrayOf(""), intArrayOf(0), 0, Intent(this, CocinarActivity::class.java))
                 6 -> lanzarJuego(arrayOf(resources.getText(R.string.explicacion_cancion1).toString(),
