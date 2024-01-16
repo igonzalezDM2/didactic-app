@@ -68,13 +68,29 @@ class MapActivity : AppCompatActivity(), MapListener, GpsStatus.Listener {
             }
         }
 
-        val mapPoint = GeoPoint(COORDENADAS_SERANTES[0], COORDENADAS_SERANTES[1])
-        val overlayItem = OverlayItem("Serantes Mendia", "Serantes Mendia", mapPoint)
 
+
+        val overlayItemSerantes = OverlayItem("Serantes Mendia", "Serantes Mendia", GeoPoint(COORDENADAS_SERANTES[0], COORDENADAS_SERANTES[1]))
+        val overlayItemSardinera = OverlayItem("La Sardinera", "La Sardinera Eskultura", GeoPoint(COORDENADAS_SARDINERA[0], COORDENADAS_SARDINERA[1]))
+        val overlayItemSareJosle = OverlayItem("Sare Josleen Lekua", "Sare josleen lan lekua", GeoPoint(SARE_JOSLEEN_LEKUA[0], SARE_JOSLEEN_LEKUA[1]))
+        val overlayItemMuseo = OverlayItem("Istas Museoa", "Santurtziko Itsas Museoa", GeoPoint(ITSAS_MUSEOA[0], ITSAS_MUSEOA[1]))
+        val overlayItemParque = OverlayItem("Parkea", "Santurtziko Parkea", GeoPoint(SANTURTZIKO_PARKEA[0], SANTURTZIKO_PARKEA[1]))
+        val overlayItemRemo = OverlayItem("Arraun Kluba", "Santurtziko arraun udal pabiloia", GeoPoint(ARRAUN_UDAL_PABILOIA[0], ARRAUN_UDAL_PABILOIA[1]))
+        val overlayItemUdala = OverlayItem("Udaletxea", "Santurtziko Udaletxea", GeoPoint(UDALA[0], UDALA[1]))
+
+        val listaPoi = listOf<OverlayItem>(
+            overlayItemSerantes,
+            overlayItemSardinera,
+            overlayItemSareJosle,
+            overlayItemMuseo,
+            overlayItemParque,
+            overlayItemRemo,
+            overlayItemUdala
+            )
         // Crea una capa de iconos para los puntos de interés
         val itemizedIconOverlay = ItemizedIconOverlay<OverlayItem>(
             applicationContext, // Context
-            listOf(overlayItem), // Lista de puntos de interés
+            listaPoi, // Lista de puntos de interés
             object : ItemizedIconOverlay.OnItemGestureListener<OverlayItem> {
                 override fun onItemSingleTapUp(index: Int, item: OverlayItem?): Boolean {
                     // Muestra la burbuja de información al tocar el marcador
