@@ -4,16 +4,16 @@
     <!--Actividad menú -->
     <string name="descripcion_logo">Logotipo de la aplicacion</string>
     <string name="mapa">Ver mapa</string>
-    <string name="prueba1_barcos">Unir barcos con ciudades</string>
-    <string name="prueba2_pescar">Coger sardinas</string>
-    <string name="prueba3_sopa">Resolver sopa de letras</string>
+    <string name="prueba1_barcos">Itsasontziak portura eraman</string>
+    <string name="prueba2_pescar">Sardinak harrapatu</string>
+    <string name="prueba3_sopa">Hizki salda</string>
     <string name="prueba4_rederas">Resolver puzle rederas (botón provisional)</string>
-    <string name="prueba5_cocinar">Cocinar sardinas</string>
-    <string name="prueba6_cancion">Rellenar huecos de la canción</string>
-    <string name="prueba7_trainera">Hacer avanzar una trainera</string>
-    <string name="prueba8_alimentar">Alimentar a Mentxu</string>
+    <string name="prueba5_cocinar">Sardinak kozinatu</string>
+    <string name="prueba6_cancion">Bilbainadak</string>
+    <string name="prueba7_trainera">Txalupen galdetegia</string>
+    <string name="prueba8_alimentar">Mentxuri sardinak bota</string>
     <string name="prueba9_puerto">Resolver puzle puerto (botón provisional)</string>
-    <string name="salir">Salir de la app</string>
+    <string name="salir">Atera</string>
     <!--Actividad de verdadero falso -->
     <string name="serantes_mendia">Serantes Mendia</string>
     <string name="image_barco">Santurziko edo Bilboko itsasontzia</string>

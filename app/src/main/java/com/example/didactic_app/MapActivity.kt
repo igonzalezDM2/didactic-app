@@ -1,10 +1,12 @@
 package com.example.didactic_app
 
+import android.content.pm.PackageManager
 import android.graphics.Rect
 import android.location.GpsStatus
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
+import androidx.appcompat.app.AppCompatActivity
+import androidx.core.content.ContextCompat
 import org.osmdroid.api.IMapController
 import org.osmdroid.config.Configuration
 import org.osmdroid.events.MapListener
@@ -14,6 +16,7 @@ import org.osmdroid.tileprovider.tilesource.TileSourceFactory
 import org.osmdroid.views.MapView
 import org.osmdroid.views.overlay.mylocation.GpsMyLocationProvider
 import org.osmdroid.views.overlay.mylocation.MyLocationNewOverlay
+
 
 class MapActivity : AppCompatActivity(), MapListener, GpsStatus.Listener {
 
@@ -53,7 +56,7 @@ class MapActivity : AppCompatActivity(), MapListener, GpsStatus.Listener {
         }
         // val mapPoint = GeoPoint(latitude, longitude)
 
-        controller.setZoom(6.0)
+        controller.setZoom(15.0)
 
         Log.e("TAG", "onCreate:in ${controller.zoomIn()}")
         Log.e("TAG", "onCreate: out  ${controller.zoomOut()}")
