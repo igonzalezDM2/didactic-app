@@ -1,13 +1,17 @@
 package com.example.didactic_app
 
+import android.content.Intent
+import android.media.Image
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.MotionEvent
 import android.view.View
 import android.widget.GridLayout
+import android.widget.ImageButton
 import android.widget.LinearLayout
 import android.widget.TextView
 import android.widget.Toast
+import androidx.cardview.widget.CardView
 import androidx.fragment.app.FragmentManager
 import com.example.didactic_app.dialogs.DialogoFinJuego
 import com.example.didactic_app.dialogs.OnDialogoConfirmacionListener
@@ -25,6 +29,7 @@ class SopaActivity : AppCompatActivity(), View.OnTouchListener, OnDialogoConfirm
     private var cellWidth = 0
 
     private lateinit var game_board: GridLayout
+    private lateinit var btnAvanzar: ImageButton
 
     private var acertadas: Int = 0
 
@@ -144,14 +149,21 @@ class SopaActivity : AppCompatActivity(), View.OnTouchListener, OnDialogoConfirm
         return true
     }
 
+    private lateinit var answers: Array<Word>
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_sopa)
 
+        answers = arrayOf(Word("CORNITTES"), Word("PORTUA"), Word("SAREJOSLE"), Word("ITSASOA"), Word("SARDINA"), Word("SERANTES"))
         acertadas = 0
         cellWidth = resources.displayMetrics.widthPixels / 10
 
         game_board = findViewById(R.id.game_board)
+        btnAvanzar = findViewById(R.id.btnAvanzar)
+
+        btnAvanzar.setOnClickListener{l ->
+            startActivity(Intent(this, Puzzle3x2Activity::class.java))
+        }
 
         for (i in 0 until game_board.childCount){
             val row = game_board.getChildAt(i) as LinearLayout
@@ -316,6 +328,7 @@ class SopaActivity : AppCompatActivity(), View.OnTouchListener, OnDialogoConfirm
             findViewById<TextView>(dictionary.getValue(foundWord)).setTextColor(resources.getColor(R.color.green))
             if (++acertadas == dictionary.size) {
                 var fragmentManager: FragmentManager = supportFragmentManager
+                (btnAvanzar.parent as CardView).visibility = CardView.VISIBLE
                 var dialogo = DialogoFinJuego(6, 6)
                 dialogo.show(fragmentManager, "GAME OVER")
             }
@@ -352,7 +365,7 @@ class SopaActivity : AppCompatActivity(), View.OnTouchListener, OnDialogoConfirm
     }
 
     companion object {
-        val answers = arrayOf(Word("CORNITTES"), Word("PORTUA"), Word("SAREJOSLE"), Word("ITSASOA"), Word("SARDINA"), Word("SERANTES"))
+//        val answers = arrayOf(Word("CORNITTES"), Word("PORTUA"), Word("SAREJOSLE"), Word("ITSASOA"), Word("SARDINA"), Word("SERANTES"))
         const val letters = "ABCDEFGHIJKLMNOPQRSTUVWXYZ"
         const val dim = 10
         val dictionary = mapOf("CORNITTES" to R.id.cornittes, "PORTUA" to R.id.portua, "SAREJOSLE" to R.id.sarejosle, "ITSASOA" to R.id.itsasoa, "SARDINA" to R.id.sardina, "SERANTES" to R.id.serantes)
@@ -368,7 +381,7 @@ class SopaActivity : AppCompatActivity(), View.OnTouchListener, OnDialogoConfirm
     }
 
     override fun onPossitiveButtonClick() {
-        finish()
+        startActivity(Intent(this, Puzzle3x2Activity::class.java))
     }
 
     override fun onNegativeButtonClick() {

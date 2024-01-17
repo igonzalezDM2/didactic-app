@@ -19,7 +19,7 @@ class DialogoFinJuego(private val aciertos: Int, private val total: Int) : Dialo
                 aciertos, total
             )
         )
-            .setTitle(if (aciertos == 6) "OSO ONDO" else "Berriz saiatu")
+            .setTitle(if (aciertos == total) "OSO ONDO" else "Berriz saiatu")
             .setPositiveButton("ADOS") { dialog: DialogInterface?, which: Int -> listener!!.onPossitiveButtonClick() }
         if (aciertos < 6) {
             builder.setNegativeButton("EZ") { dialog: DialogInterface?, which: Int -> listener!!.onNegativeButtonClick() }

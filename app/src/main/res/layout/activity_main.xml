@@ -57,6 +57,17 @@
                     android:textSize="20sp"
                     android:textStyle="bold">
                 </TextView>
+                <TextView
+                    android:visibility="gone"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="GAINDITUTA"
+                    android:tag="superado"
+                    android:textColor="@color/green"
+                    android:textAlignment="center"
+                    android:textSize="15sp"
+                    android:textStyle="bold">
+                </TextView>
 
                 <Button
                     android:id="@+id/bt_prueba1_barcos"
@@ -78,6 +89,17 @@
                 android:textColor="@color/white"
                 android:textAlignment="center"
                 android:textSize="20sp"
+                android:textStyle="bold">
+            </TextView>
+            <TextView
+                android:visibility="gone"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="GAINDITUTA"
+                android:tag="superado"
+                android:textColor="@color/green"
+                android:textAlignment="center"
+                android:textSize="15sp"
                 android:textStyle="bold">
             </TextView>
 
@@ -104,16 +126,27 @@
                 android:textSize="20sp"
                 android:textStyle="bold">
             </TextView>
+            <TextView
+                android:visibility="gone"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="GAINDITUTA"
+                android:tag="superado"
+                android:textColor="@color/green"
+                android:textAlignment="center"
+                android:textSize="15sp"
+                android:textStyle="bold">
+            </TextView>
 
             <Button
                 android:id="@+id/bt_prueba3_sopa"
                 style="@style/botones_menu"
                 android:text="@string/prueba3_sopa" />
 
-            <Button
-                android:id="@+id/bt_prueba4_rederas"
-                style="@style/botones_menu"
-                android:text="@string/prueba4_rederas" />
+<!--            <Button-->
+<!--                android:id="@+id/bt_prueba4_rederas"-->
+<!--                style="@style/botones_menu"-->
+<!--                android:text="@string/prueba4_rederas" />-->
 
         </LinearLayout>
 
@@ -130,6 +163,17 @@
                 android:textColor="@color/white"
                 android:textAlignment="center"
                 android:textSize="20sp"
+                android:textStyle="bold">
+            </TextView>
+            <TextView
+                android:visibility="gone"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="GAINDITUTA"
+                android:tag="superado"
+                android:textColor="@color/green"
+                android:textAlignment="center"
+                android:textSize="15sp"
                 android:textStyle="bold">
             </TextView>
 
@@ -155,6 +199,17 @@
                 android:textSize="20sp"
                 android:textStyle="bold">
             </TextView>
+            <TextView
+                android:visibility="gone"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="GAINDITUTA"
+                android:tag="superado"
+                android:textColor="@color/green"
+                android:textAlignment="center"
+                android:textSize="15sp"
+                android:textStyle="bold">
+            </TextView>
 
             <Button
                 android:id="@+id/bt_prueba6_cancion"
@@ -176,6 +231,17 @@
                 android:textColor="@color/white"
                 android:textAlignment="center"
                 android:textSize="20sp"
+                android:textStyle="bold">
+            </TextView>
+            <TextView
+                android:visibility="gone"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="GAINDITUTA"
+                android:tag="superado"
+                android:textColor="@color/green"
+                android:textAlignment="center"
+                android:textSize="15sp"
                 android:textStyle="bold">
             </TextView>
 
@@ -201,6 +267,17 @@
                 android:textColor="@color/white"
                 android:textAlignment="center"
                 android:textSize="20sp"
+                android:textStyle="bold">
+            </TextView>
+            <TextView
+                android:visibility="gone"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="GAINDITUTA"
+                android:tag="superado"
+                android:textColor="@color/green"
+                android:textAlignment="center"
+                android:textSize="15sp"
                 android:textStyle="bold">
             </TextView>
 
