@@ -158,8 +158,7 @@ class MainActivity : Lanzador() {
     private fun goToActividades(opcion: Int) {
 
         if (opcion == 11) {
-            
-            exitProcess(1)
+            finishAffinity();
         } else {
 
             when (opcion) {

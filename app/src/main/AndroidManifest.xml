@@ -20,6 +20,7 @@
         <activity
             android:name=".ExplicacionActivity"
             android:screenOrientation="portrait"
+            android:noHistory="true"
             android:exported="false" />
         <activity
             android:name=".PuertoActivity"
@@ -34,7 +35,7 @@
             android:screenOrientation="portrait"
             android:exported="false" />
         <activity
-            android:name=".TangramActivity"
+            android:name=".Puzzle4x2Activity"
             android:screenOrientation="portrait"
             android:exported="false" />
         <activity
