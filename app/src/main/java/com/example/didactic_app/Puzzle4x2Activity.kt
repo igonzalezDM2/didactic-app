@@ -67,8 +67,8 @@ class Puzzle4x2Activity : AppCompatActivity() {
         marco4 = findViewById(R.id.marco4)
         marco5 = findViewById(R.id.marco5)
         marco6 = findViewById(R.id.marco6)
-        marco5 = findViewById(R.id.marco7)
-        marco6 = findViewById(R.id.marco8)
+        marco7 = findViewById(R.id.marco7)
+        marco8 = findViewById(R.id.marco8)
 
         tvRespuesta = findViewById(R.id.tvRespuesta)
 
