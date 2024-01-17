@@ -47,7 +47,7 @@ class Puzzle4x2Activity : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_puzzle3x2)
+        setContentView(R.layout.activity_puzzle4x2)
 
         puzzleZone = findViewById(R.id.puzzleZone)
         marcoZone = findViewById(R.id.marcoZone)
