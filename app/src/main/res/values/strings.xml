@@ -3,7 +3,7 @@
     <string name="titulo">Sare josleak</string>
     <!--Actividad menú -->
     <string name="descripcion_logo">Logotipo de la aplicacion</string>
-    <string name="mapa">Ver mapa</string>
+    <string name="mapa">Mapa begiratu</string>
     <string name="prueba1_barcos">Itsasontziak portura eraman</string>
     <string name="prueba2_pescar">Sardinak harrapatu</string>
     <string name="prueba3_sopa">Hizki salda</string>
@@ -96,5 +96,6 @@
     <string name="explicacion_sardinas4">Sardina erreak gure ondarearen parte denez hainbat jatetxeetan horiek sukaldatzen dituzte. Hogar del Pescador, Santurtziko portuan kokatuta dagoen jatetxe bat da eta hartan arrain mota hau gure arbasoek nola sukaltzen zuten ezagutzeko aukera izango duzue, batez ere 1959tik errezeta berbera egiten baitute.</string>
 
     <string name="explicacion_lanzar">Goaz ikasleok azken ariketa egitera!! Udaletxean eta plaza zentralean gaudela, jaien guneak, sardinak jaten lagunduko didazue.</string>
+    <string name="sardina_y_puzzle_sarejosle">Oso ondo! Egindako lanaren ondorioz, sardina bat eta argazki baten zatia irabazi dituzue! Orain goaz hurrengo kokapenera!</string>
 
 </resources>
