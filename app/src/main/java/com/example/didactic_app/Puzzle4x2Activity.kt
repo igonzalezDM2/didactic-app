@@ -9,22 +9,19 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.ImageView
 import android.widget.TextView
-import androidx.core.view.ViewCompat
-import com.google.android.material.shape.MaterialShapeDrawable
-import com.google.android.material.shape.ShapeAppearanceModel
-import com.google.android.material.shape.TriangleEdgeTreatment
 
-class TangramActivity : AppCompatActivity() {
+class Puzzle4x2Activity : AppCompatActivity() {
     private lateinit var puzzleZone: ViewGroup
     private lateinit var marcoZone: ViewGroup
 
-    private lateinit var tangram1: ImageView
-    private lateinit var tangram2: ImageView
-    private lateinit var tangram3: ImageView
-    private lateinit var tangram4: ImageView
-    private lateinit var tangram5: ImageView
-    private lateinit var tangram6: ImageView
-    private lateinit var tangram7: ImageView
+    private lateinit var puzzle4x2p1: ImageView
+    private lateinit var puzzle4x2p2: ImageView
+    private lateinit var puzzle4x2p3: ImageView
+    private lateinit var puzzle4x2p4: ImageView
+    private lateinit var puzzle4x2p5: ImageView
+    private lateinit var puzzle4x2p6: ImageView
+    private lateinit var puzzle4x2p7: ImageView
+    private lateinit var puzzle4x2p8: ImageView
 
     private lateinit var marco1: ImageView
     private lateinit var marco2: ImageView
@@ -33,6 +30,7 @@ class TangramActivity : AppCompatActivity() {
     private lateinit var marco5: ImageView
     private lateinit var marco6: ImageView
     private lateinit var marco7: ImageView
+    private lateinit var marco8: ImageView
 
     private var draggedImage: ImageView? = null
 
@@ -43,23 +41,25 @@ class TangramActivity : AppCompatActivity() {
     private var bien5: Boolean = false
     private var bien6: Boolean = false
     private var bien7: Boolean = false
+    private var bien8: Boolean = false
 
     private lateinit var tvRespuesta: TextView
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_tangram)
+        setContentView(R.layout.activity_puzzle3x2)
 
         puzzleZone = findViewById(R.id.puzzleZone)
         marcoZone = findViewById(R.id.marcoZone)
 
-        tangram1 = findViewById(R.id.tangram1)
-        tangram2 = findViewById(R.id.tangram2)
-        tangram3 = findViewById(R.id.tangram3)
-        tangram4 = findViewById(R.id.tangram4)
-        tangram5 = findViewById(R.id.tangram5)
-        tangram6 = findViewById(R.id.tangram6)
-        tangram7 = findViewById(R.id.tangram7)
+        puzzle4x2p1 = findViewById(R.id.puzzle4x2p1)
+        puzzle4x2p2 = findViewById(R.id.puzzle4x2p2)
+        puzzle4x2p3 = findViewById(R.id.puzzle4x2p3)
+        puzzle4x2p4 = findViewById(R.id.puzzle4x2p4)
+        puzzle4x2p5 = findViewById(R.id.puzzle4x2p5)
+        puzzle4x2p6 = findViewById(R.id.puzzle4x2p6)
+        puzzle4x2p7 = findViewById(R.id.puzzle4x2p7)
+        puzzle4x2p8 = findViewById(R.id.puzzle4x2p8)
 
         marco1 = findViewById(R.id.marco1)
         marco2 = findViewById(R.id.marco2)
@@ -67,18 +67,20 @@ class TangramActivity : AppCompatActivity() {
         marco4 = findViewById(R.id.marco4)
         marco5 = findViewById(R.id.marco5)
         marco6 = findViewById(R.id.marco6)
-        marco7 = findViewById(R.id.marco7)
+        marco5 = findViewById(R.id.marco7)
+        marco6 = findViewById(R.id.marco8)
 
         tvRespuesta = findViewById(R.id.tvRespuesta)
 
         // Configurar listeners de arrastrar y soltar para las imágenes del puzzle
-        tangram1.setOnTouchListener(TouchListener())
-        tangram2.setOnTouchListener(TouchListener())
-        tangram3.setOnTouchListener(TouchListener())
-        tangram4.setOnTouchListener(TouchListener())
-        tangram5.setOnTouchListener(TouchListener())
-        tangram6.setOnTouchListener(TouchListener())
-        tangram7.setOnTouchListener(TouchListener())
+        puzzle4x2p1.setOnTouchListener(TouchListener())
+        puzzle4x2p2.setOnTouchListener(TouchListener())
+        puzzle4x2p3.setOnTouchListener(TouchListener())
+        puzzle4x2p4.setOnTouchListener(TouchListener())
+        puzzle4x2p5.setOnTouchListener(TouchListener())
+        puzzle4x2p6.setOnTouchListener(TouchListener())
+        puzzle4x2p7.setOnTouchListener(TouchListener())
+        puzzle4x2p8.setOnTouchListener(TouchListener())
 
         marco1.setOnDragListener(DragListener())
         marco2.setOnDragListener(DragListener())
@@ -87,13 +89,13 @@ class TangramActivity : AppCompatActivity() {
         marco5.setOnDragListener(DragListener())
         marco6.setOnDragListener(DragListener())
         marco7.setOnDragListener(DragListener())
-
+        marco8.setOnDragListener(DragListener())
     }
 
     private inner class TouchListener : View.OnTouchListener {
         override fun onTouch(view: View, event: MotionEvent): Boolean {
             if (event.action == MotionEvent.ACTION_DOWN) {
-                // Guardar la información de la tangram arrastrada y su posición inicial
+                // Guardar la información de la puzzle3x2p arrastrada y su posición inicial
                 draggedImage = view as ImageView
                 val clipData = ClipData.newPlainText("", "")
                 val shadowBuilder = View.DragShadowBuilder(view)
@@ -108,44 +110,48 @@ class TangramActivity : AppCompatActivity() {
         override fun onDrag(view: View, event: DragEvent): Boolean {
             when (event.action) {
                 DragEvent.ACTION_DROP -> {
-                    // Verificar si la tangram se soltó en un marco correcto
+                    // Verificar si la puzzle3x2p se soltó en un marco correcto
                     val droppedImage = event.localState as ImageView
-                    if (view == marco1 && droppedImage == tangram1) {
+                    if (view == marco1 && droppedImage == puzzle4x2p1) {
                         marco1.setImageDrawable(droppedImage.drawable)
-                        tangram1.visibility = View.INVISIBLE
+                        puzzle4x2p1.visibility = View.INVISIBLE
                         bien1 = true
-                    } else if (view == marco2 && droppedImage == tangram2) {
+                    } else if (view == marco2 && droppedImage == puzzle4x2p2) {
                         marco2.setImageDrawable(droppedImage.drawable)
-                        tangram2.visibility = View.INVISIBLE
+                        puzzle4x2p2.visibility = View.INVISIBLE
                         bien2 = true
-                    } else if (view == marco3 && droppedImage == tangram3) {
+                    } else if (view == marco3 && droppedImage == puzzle4x2p3) {
                         marco3.setImageDrawable(droppedImage.drawable)
-                        tangram3.visibility = View.INVISIBLE
+                        puzzle4x2p3.visibility = View.INVISIBLE
                         bien3 = true
-                    } else if (view == marco4 && droppedImage == tangram4) {
+                    } else if (view == marco4 && droppedImage == puzzle4x2p4) {
                         marco4.setImageDrawable(droppedImage.drawable)
-                        tangram4.visibility = View.INVISIBLE
+                        puzzle4x2p4.visibility = View.INVISIBLE
                         bien4 = true
-                    } else if (view == marco5 && droppedImage == tangram5) {
+                    } else if (view == marco5 && droppedImage == puzzle4x2p5) {
                         marco5.setImageDrawable(droppedImage.drawable)
-                        tangram5.visibility = View.INVISIBLE
+                        puzzle4x2p5.visibility = View.INVISIBLE
                         bien5 = true
-                    } else if (view == marco6 && droppedImage == tangram6) {
+                    } else if (view == marco6 && droppedImage == puzzle4x2p6) {
                         marco6.setImageDrawable(droppedImage.drawable)
-                        tangram6.visibility = View.INVISIBLE
+                        puzzle4x2p6.visibility = View.INVISIBLE
                         bien6 = true
-                    } else if (view == marco7 && droppedImage == tangram7) {
+                    } else if (view == marco7 && droppedImage == puzzle4x2p7) {
                         marco7.setImageDrawable(droppedImage.drawable)
-                        tangram7.visibility = View.INVISIBLE
+                        puzzle4x2p7.visibility = View.INVISIBLE
                         bien7 = true
+                    } else if (view == marco8 && droppedImage == puzzle4x2p8) {
+                        marco8.setImageDrawable(droppedImage.drawable)
+                        puzzle4x2p8.visibility = View.INVISIBLE
+                        bien8 = true
                     } else {
-                        // Volver a colocar la imagen en su posición inicial
+                        // Volver a colocar la puzzle3x2p en su posición inicial
                         val layoutParams = droppedImage.layoutParams as ViewGroup.MarginLayoutParams
                         layoutParams.leftMargin = 0
                         layoutParams.topMargin = 0
                         droppedImage.layoutParams = layoutParams
                     }
-                    if (bien1 && bien2 && bien3 && bien4 && bien5 && bien6 && bien7){
+                    if (bien1 && bien2 && bien3 && bien4 && bien5 && bien6 && bien7 && bien8){
                         tvRespuesta.setText("Zorionak puzzlea egin duzu!")
                     }
                 }
