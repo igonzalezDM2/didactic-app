@@ -7,7 +7,6 @@
     android:background="@color/white"
     android:padding="16dp"
     tools:context=".MainActivity">
-
     <ImageView
         android:id="@+id/iv_logo"
         android:layout_width="0dp"
@@ -43,15 +42,68 @@
                 android:textStyle="bold|italic"
                 android:text="@string/mapa" />
 
-            <Button
-                android:id="@+id/bt_prueba1_barcos"
-                style="@style/botones_menu"
-                android:text="@string/prueba1_barcos" />
+            <LinearLayout
+                android:id="@+id/llSerantes"
+                android:layout_width="match_parent"
+                android:orientation="vertical"
+                android:layout_height="wrap_content">
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="SERANTES MENDIA"
+                    android:textColor="@color/white"
+                    android:textAlignment="center"
+                    android:textSize="20sp"
+                    android:textStyle="bold">
+                </TextView>
+
+                <Button
+                    android:id="@+id/bt_prueba1_barcos"
+                    style="@style/botones_menu"
+                    android:text="@string/prueba1_barcos" />
+
+            </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/llSardinera"
+            android:layout_width="match_parent"
+            android:orientation="vertical"
+            android:layout_height="wrap_content">
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="LA SARDINERA"
+                android:textColor="@color/white"
+                android:textAlignment="center"
+                android:textSize="20sp"
+                android:textStyle="bold">
+            </TextView>
 
             <Button
                 android:id="@+id/bt_prueba2_pescar"
                 style="@style/botones_menu"
                 android:text="@string/prueba2_pescar" />
+
+        </LinearLayout>
+
+
+        <LinearLayout
+            android:id="@+id/llSareJosleak"
+            android:layout_width="match_parent"
+            android:orientation="vertical"
+            android:layout_height="wrap_content">
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="SARE JOSLEEN LEKUA"
+                android:textColor="@color/white"
+                android:textAlignment="center"
+                android:textSize="20sp"
+                android:textStyle="bold">
+            </TextView>
 
             <Button
                 android:id="@+id/bt_prueba3_sopa"
@@ -63,20 +115,94 @@
                 style="@style/botones_menu"
                 android:text="@string/prueba4_rederas" />
 
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/llItsasMuseoa"
+            android:layout_width="match_parent"
+            android:orientation="vertical"
+            android:layout_height="wrap_content">
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="ITSAS MUSEOA"
+                android:textColor="@color/white"
+                android:textAlignment="center"
+                android:textSize="20sp"
+                android:textStyle="bold">
+            </TextView>
+
             <Button
                 android:id="@+id/bt_prueba5_cocinar"
                 style="@style/botones_menu"
                 android:text="@string/prueba5_cocinar" />
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/llParque"
+            android:layout_width="match_parent"
+            android:orientation="vertical"
+            android:layout_height="wrap_content">
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="PARKEA"
+                android:textColor="@color/white"
+                android:textAlignment="center"
+                android:textSize="20sp"
+                android:textStyle="bold">
+            </TextView>
 
             <Button
                 android:id="@+id/bt_prueba6_cancion"
                 style="@style/botones_menu"
                 android:text="@string/prueba6_cancion" />
 
+        </LinearLayout>>
+
+        <LinearLayout
+            android:id="@+id/llRemo"
+            android:layout_width="match_parent"
+            android:orientation="vertical"
+            android:layout_height="wrap_content">
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="ARRAUN KLUBA"
+                android:textColor="@color/white"
+                android:textAlignment="center"
+                android:textSize="20sp"
+                android:textStyle="bold">
+            </TextView>
+
             <Button
                 android:id="@+id/bt_prueba7_trainera"
                 style="@style/botones_menu"
                 android:text="@string/prueba7_trainera" />
+
+
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/llUdala"
+            android:layout_width="match_parent"
+            android:orientation="vertical"
+            android:layout_height="wrap_content">
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="ARRAUN KLUBA"
+                android:textColor="@color/white"
+                android:textAlignment="center"
+                android:textSize="20sp"
+                android:textStyle="bold">
+            </TextView>
 
             <Button
                 android:id="@+id/bt_prueba8_alimentar"
@@ -92,6 +218,7 @@
                 android:id="@+id/bt_prueba10_tangram"
                 style="@style/botones_menu"
                 android:text="Tangram" />
+        </LinearLayout>
 
         </LinearLayout>
 
