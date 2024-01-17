@@ -141,7 +141,7 @@ class Puzzle3x2Activity : Lanzador() {
                         tvRespuesta.setText("Zorionak puzzlea egin duzu!")
 
                         lanzarJuego(arrayOf(
-                        resources.getText(R.string.sardina_y_puzzle_sarejosle).toString(),
+                        resources.getText(R.string.sardina_y_puzzle).toString(),
                         ), intArrayOf(
                         R.drawable.sardinaypuzzle
                         ), R.raw.sardina_y_puzzle_sarejosle, Intent(applicationContext, MainActivity::class.java))

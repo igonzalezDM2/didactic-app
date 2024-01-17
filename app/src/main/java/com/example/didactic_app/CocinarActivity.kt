@@ -1,5 +1,6 @@
 package com.example.didactic_app
 
+import android.content.Intent
 import android.graphics.Rect
 import android.os.Bundle
 import android.view.MotionEvent
@@ -13,9 +14,11 @@ import android.widget.ImageView
 import android.widget.RelativeLayout
 import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
+import com.example.didactic_app.enums.Lugar
+import com.example.didactic_app.utilis.Utils
 
 
-class CocinarActivity : AppCompatActivity() {
+class CocinarActivity : Lanzador() {
 
     private var xDelta: Int = 0
     private var yDelta: Int = 0
@@ -79,7 +82,14 @@ class CocinarActivity : AppCompatActivity() {
                         temporizador.startTimer()
 
                     } else if (cocinada and estaSobreElPlato()) {
+                        Utils.anadirSuperado(applicationContext, Lugar.MUSEO)
                         tvInstrucciones.setText("Bikain!")
+                        lanzarJuego(arrayOf(
+                            resources.getText(R.string.sardina_y_puzzle).toString(),
+                        ), intArrayOf(
+                            R.drawable.sardinaypuzzle
+                        ), R.raw.sardina_y_puzzle_sarejosle, Intent(applicationContext, MainActivity::class.java)
+                        )
                     }
 
                 }
