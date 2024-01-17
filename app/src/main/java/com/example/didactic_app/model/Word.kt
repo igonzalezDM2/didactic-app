@@ -1,4 +1,4 @@
-package com.example.didactic_app
+package com.example.didactic_app.model
 
 class Word(word: String) {
     var isFound = false

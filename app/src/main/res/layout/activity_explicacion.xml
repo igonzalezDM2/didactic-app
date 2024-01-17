@@ -1,0 +1,88 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".ExplicacionActivity">
+
+    <ImageView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:id="@+id/ivFondo"
+        android:scaleType="fitStart"
+        />
+
+    <androidx.cardview.widget.CardView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignBottom="@+id/fumanchu"
+        android:layout_marginBottom="220sp"
+        android:layout_marginRight="10sp"
+        android:layout_marginLeft="10sp"
+        android:layout_marginTop="50sp"
+        app:cardCornerRadius="15sp">
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:minHeight="200sp"
+            android:maxHeight="500sp"
+            android:textAlignment="center"
+            android:gravity="center"
+            android:background="@color/white"
+            android:padding="10sp"
+            android:textSize="16sp"
+            android:id="@+id/tvExplicacion"
+            />
+
+    </androidx.cardview.widget.CardView>
+
+
+
+    <ImageView
+        android:id="@+id/fumanchu"
+        android:layout_width="300sp"
+        android:layout_height="220sp"
+        android:src="@drawable/fumanchu_te_lo_explica"
+        android:layout_alignParentBottom="true"
+        android:scaleType="fitEnd"
+        android:scaleX="-1"
+        />
+
+    <androidx.cardview.widget.CardView
+        app:cardCornerRadius="10sp"
+        android:layout_width="40sp"
+        android:layout_marginTop="5sp"
+        android:layout_marginRight="5sp"
+        android:layout_alignParentRight="true"
+        android:layout_height="40sp">
+
+        <ImageButton
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="@color/white"
+            android:id="@+id/btnAudio"
+            android:src="@drawable/audio_vector"/>
+
+    </androidx.cardview.widget.CardView>
+
+    <androidx.cardview.widget.CardView
+        app:cardCornerRadius="40sp"
+        android:layout_marginBottom="5sp"
+        android:layout_marginRight="5sp"
+        android:layout_width="60sp"
+        android:layout_height="60sp"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentRight="true"
+        >
+        <ImageButton
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="@color/violet"
+            android:src="@drawable/flecha_derecha"
+            android:id="@+id/btnAvanzar"
+            />
+    </androidx.cardview.widget.CardView>
+
+</RelativeLayout>

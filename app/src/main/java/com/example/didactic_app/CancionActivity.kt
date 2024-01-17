@@ -165,7 +165,6 @@ class CancionActivity : AppCompatActivity(), OnDialogoConfirmacionListener {
             view.visibility = View.INVISIBLE
         }
 
-        //TODO
         var fragmentManager: FragmentManager = supportFragmentManager
         var dialogo = DialogoFinJuego(aciertos, 7)
         dialogo.show(fragmentManager, "GAME OVER")

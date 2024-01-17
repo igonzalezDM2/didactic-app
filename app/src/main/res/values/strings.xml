@@ -3,17 +3,17 @@
     <string name="titulo">Sare josleak</string>
     <!--Actividad menú -->
     <string name="descripcion_logo">Logotipo de la aplicacion</string>
-    <string name="mapa">Ver mapa</string>
-    <string name="prueba1_barcos">Unir barcos con ciudades</string>
-    <string name="prueba2_pescar">Coger sardinas</string>
-    <string name="prueba3_sopa">Resolver sopa de letras</string>
+    <string name="mapa">Mapa begiratu</string>
+    <string name="prueba1_barcos">Itsasontziak portura eraman</string>
+    <string name="prueba2_pescar">Sardinak harrapatu</string>
+    <string name="prueba3_sopa">Hizki salda</string>
     <string name="prueba4_rederas">Resolver puzle rederas (botón provisional)</string>
-    <string name="prueba5_cocinar">Cocinar sardinas</string>
-    <string name="prueba6_cancion">Rellenar huecos de la canción</string>
-    <string name="prueba7_trainera">Hacer avanzar una trainera</string>
-    <string name="prueba8_alimentar">Alimentar a Mentxu</string>
+    <string name="prueba5_cocinar">Sardinak kozinatu</string>
+    <string name="prueba6_cancion">Bilbainadak</string>
+    <string name="prueba7_trainera">Txalupen galdetegia</string>
+    <string name="prueba8_alimentar">Mentxuri sardinak bota</string>
     <string name="prueba9_puerto">Resolver puzle puerto (botón provisional)</string>
-    <string name="salir">Salir de la app</string>
+    <string name="salir">Atera</string>
     <!--Actividad de verdadero falso -->
     <string name="serantes_mendia">Serantes Mendia</string>
     <string name="image_barco">Santurziko edo Bilboko itsasontzia</string>
@@ -79,5 +79,23 @@
 
     <!--Actividad atrapar sardinas-->
     <string name="iniciar_juego">Hasi Jokua!</string>
+
+    <!-- Explicaciones -->
+    <string name="explicacion_cancion1">Bilbo Handiko historiaren parte handia dira bilbainadak. Hauek herriko plazan sortzen eta abesten ziren kantak dira, Bilbo eta haren inguruko herrietan gertatzen zena kontatzen dute eta familian eta kuadrillan abesten ziren herriko plazan.</string>
+    <string name="explicacion_cancion2">Bilborekin partekatzen dute jatorria, 1300 urtea inguru hasi ziren eta gaur arte mantentzen dira. 1920. urtean hasi ziren talde formalak sortzen, haien artean Los Chimberos, Los Cinco Bilbainos, Los Chimbos, Los Bocheros... Gaur egun, oraindik ere badaude genero musikal honetarako txapelketak, Radio Nervionek antolatuak.</string>
+    <string name="explicacion_cancion3">Bilbainaden artean ezaguenetariko bat “Desde Santurce a Bilbao” du izena. Honek, Santurtziko sardinak saltzen dituen emakume bati buruz hitz egiten du, izenak berak dioen moduan, Santurtzin hartuta Bilbon saltzen ditu sardinak.</string>
+
+    <string name="explicacion_sopa1">Gure herriko emakumeek oso rol garrantsitsua izan zuten arrantzan. Haiek arrantzarako beharrezkoak ziren sareak josten zituzten, haiek barik Santurtziko ekonomia porrota bat izango zatekeen.</string>
+    <string name="explicacion_sopa2">Haien egunerokotasunean honakoa egin behar zuten: sareak sortu, behar izatekotan sarea josi eta erreparatu eta harrapatutakoa merkatuan saltzen zuten gauean. Oso lan garrantsitsua zen eta normalean elizako portikoan edo portuan egiten zuten, behin eta berriro arrainek apurtutako sareak josiz.</string>
+    <string name="explicacion_sopa3">Garai horretako emakumeen rolarekin alderatuta, Sartutzitarrak oso garrantsitsuak ziren arrantza ezin baitzen haiek gabe egin eta beraz, ezin izango luketen dirurik irabazi.</string>
+    <string name="explicacion_sopa4">Azalpenaren ondoren zuen momentua ailegatu da, hurrengo hizki salda osatu behar duzue aurretik ikasitako guztia kontuan hartuta. Asmatzen duzuen hitz bakoitzarekiko puzzle baten piezak lortuko dituzue. Amaieran, puzzleko pieza guztiak elkartuz gero, sorpresa bat izango duzue!</string>
+
+    <string name="explicacion_sardinas1">Sardinak gure Kantauri itsasoan topa dezakegun gorputzerako eta bihotzerako oso ona den arrain bat da. Medikuek elikagai hori asko gomendatzen dute, dieta orekatu eta gozoa nahi izatekotan.</string>
+    <string name="explicacion_sardinas2">Arrain gozo horiek Karmengo jaien bueltan, hau da uztailean guztiok dakigun bezala, arrantzatzen dira. Hori dela eta, antzinatik uztailaren erdian sardinak dastatzeko jaia ospatzen zen, gaur egungo Karmengo jaiak.</string>
+    <string name="explicacion_sardinas3">Sardina erreak, gure gastronomia eta kulturaren parte dira, aintzinatik gure arbasoek horrela maitatzen zuten arrain hori jatea. Horiek egiteko txingar ez oso gorien gainean prestatzen dira, ondoren gatz lodia jarriz. Seguruenik beti jaten dituzue halakoak jaietan!</string>
+    <string name="explicacion_sardinas4">Sardina erreak gure ondarearen parte denez hainbat jatetxeetan horiek sukaldatzen dituzte. Hogar del Pescador, Santurtziko portuan kokatuta dagoen jatetxe bat da eta hartan arrain mota hau gure arbasoek nola sukaltzen zuten ezagutzeko aukera izango duzue, batez ere 1959tik errezeta berbera egiten baitute.</string>
+
+    <string name="explicacion_lanzar">Goaz ikasleok azken ariketa egitera!! Udaletxean eta plaza zentralean gaudela, jaien guneak, sardinak jaten lagunduko didazue.</string>
+    <string name="sardina_y_puzzle">Oso ondo! Egindako lanaren ondorioz, sardina bat eta argazki baten zatia irabazi dituzue! Orain goaz hurrengo kokapenera!</string>
 
 </resources>

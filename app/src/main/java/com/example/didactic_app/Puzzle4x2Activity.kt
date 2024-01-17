@@ -1,32 +1,27 @@
 package com.example.didactic_app
 
-import android.app.Activity
 import android.content.ClipData
-import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.os.SystemClock
 import android.view.DragEvent
 import android.view.MotionEvent
 import android.view.View
 import android.view.ViewGroup
 import android.widget.ImageView
 import android.widget.TextView
-import androidx.activity.result.ActivityResult
-import androidx.activity.result.contract.ActivityResultContracts
-import com.example.didactic_app.enums.Lugar
-import com.example.didactic_app.utilis.Utils
 
-class Puzzle3x2Activity : Lanzador() {
+class Puzzle4x2Activity : AppCompatActivity() {
     private lateinit var puzzleZone: ViewGroup
     private lateinit var marcoZone: ViewGroup
 
-    private lateinit var puzzle3x2p1: ImageView
-    private lateinit var puzzle3x2p2: ImageView
-    private lateinit var puzzle3x2p3: ImageView
-    private lateinit var puzzle3x2p4: ImageView
-    private lateinit var puzzle3x2p5: ImageView
-    private lateinit var puzzle3x2p6: ImageView
+    private lateinit var puzzle4x2p1: ImageView
+    private lateinit var puzzle4x2p2: ImageView
+    private lateinit var puzzle4x2p3: ImageView
+    private lateinit var puzzle4x2p4: ImageView
+    private lateinit var puzzle4x2p5: ImageView
+    private lateinit var puzzle4x2p6: ImageView
+    private lateinit var puzzle4x2p7: ImageView
+    private lateinit var puzzle4x2p8: ImageView
 
     private lateinit var marco1: ImageView
     private lateinit var marco2: ImageView
@@ -34,6 +29,8 @@ class Puzzle3x2Activity : Lanzador() {
     private lateinit var marco4: ImageView
     private lateinit var marco5: ImageView
     private lateinit var marco6: ImageView
+    private lateinit var marco7: ImageView
+    private lateinit var marco8: ImageView
 
     private var draggedImage: ImageView? = null
 
@@ -43,6 +40,8 @@ class Puzzle3x2Activity : Lanzador() {
     private var bien4: Boolean = false
     private var bien5: Boolean = false
     private var bien6: Boolean = false
+    private var bien7: Boolean = false
+    private var bien8: Boolean = false
 
     private lateinit var tvRespuesta: TextView
 
@@ -53,12 +52,14 @@ class Puzzle3x2Activity : Lanzador() {
         puzzleZone = findViewById(R.id.puzzleZone)
         marcoZone = findViewById(R.id.marcoZone)
 
-        puzzle3x2p1 = findViewById(R.id.puzzle3x2p1)
-        puzzle3x2p2 = findViewById(R.id.puzzle3x2p2)
-        puzzle3x2p3 = findViewById(R.id.puzzle3x2p3)
-        puzzle3x2p4 = findViewById(R.id.puzzle3x2p4)
-        puzzle3x2p5 = findViewById(R.id.puzzle3x2p5)
-        puzzle3x2p6 = findViewById(R.id.puzzle3x2p6)
+        puzzle4x2p1 = findViewById(R.id.puzzle4x2p1)
+        puzzle4x2p2 = findViewById(R.id.puzzle4x2p2)
+        puzzle4x2p3 = findViewById(R.id.puzzle4x2p3)
+        puzzle4x2p4 = findViewById(R.id.puzzle4x2p4)
+        puzzle4x2p5 = findViewById(R.id.puzzle4x2p5)
+        puzzle4x2p6 = findViewById(R.id.puzzle4x2p6)
+        puzzle4x2p7 = findViewById(R.id.puzzle4x2p7)
+        puzzle4x2p8 = findViewById(R.id.puzzle4x2p8)
 
         marco1 = findViewById(R.id.marco1)
         marco2 = findViewById(R.id.marco2)
@@ -66,16 +67,20 @@ class Puzzle3x2Activity : Lanzador() {
         marco4 = findViewById(R.id.marco4)
         marco5 = findViewById(R.id.marco5)
         marco6 = findViewById(R.id.marco6)
+        marco5 = findViewById(R.id.marco7)
+        marco6 = findViewById(R.id.marco8)
 
         tvRespuesta = findViewById(R.id.tvRespuesta)
 
         // Configurar listeners de arrastrar y soltar para las imágenes del puzzle
-        puzzle3x2p1.setOnTouchListener(TouchListener())
-        puzzle3x2p2.setOnTouchListener(TouchListener())
-        puzzle3x2p3.setOnTouchListener(TouchListener())
-        puzzle3x2p4.setOnTouchListener(TouchListener())
-        puzzle3x2p5.setOnTouchListener(TouchListener())
-        puzzle3x2p6.setOnTouchListener(TouchListener())
+        puzzle4x2p1.setOnTouchListener(TouchListener())
+        puzzle4x2p2.setOnTouchListener(TouchListener())
+        puzzle4x2p3.setOnTouchListener(TouchListener())
+        puzzle4x2p4.setOnTouchListener(TouchListener())
+        puzzle4x2p5.setOnTouchListener(TouchListener())
+        puzzle4x2p6.setOnTouchListener(TouchListener())
+        puzzle4x2p7.setOnTouchListener(TouchListener())
+        puzzle4x2p8.setOnTouchListener(TouchListener())
 
         marco1.setOnDragListener(DragListener())
         marco2.setOnDragListener(DragListener())
@@ -83,6 +88,8 @@ class Puzzle3x2Activity : Lanzador() {
         marco4.setOnDragListener(DragListener())
         marco5.setOnDragListener(DragListener())
         marco6.setOnDragListener(DragListener())
+        marco7.setOnDragListener(DragListener())
+        marco8.setOnDragListener(DragListener())
     }
 
     private inner class TouchListener : View.OnTouchListener {
@@ -105,30 +112,38 @@ class Puzzle3x2Activity : Lanzador() {
                 DragEvent.ACTION_DROP -> {
                     // Verificar si la puzzle3x2p se soltó en un marco correcto
                     val droppedImage = event.localState as ImageView
-                    if (view == marco1 && droppedImage == puzzle3x2p1) {
+                    if (view == marco1 && droppedImage == puzzle4x2p1) {
                         marco1.setImageDrawable(droppedImage.drawable)
-                        puzzle3x2p1.visibility = View.INVISIBLE
+                        puzzle4x2p1.visibility = View.INVISIBLE
                         bien1 = true
-                    } else if (view == marco2 && droppedImage == puzzle3x2p2) {
+                    } else if (view == marco2 && droppedImage == puzzle4x2p2) {
                         marco2.setImageDrawable(droppedImage.drawable)
-                        puzzle3x2p2.visibility = View.INVISIBLE
+                        puzzle4x2p2.visibility = View.INVISIBLE
                         bien2 = true
-                    } else if (view == marco3 && droppedImage == puzzle3x2p3) {
+                    } else if (view == marco3 && droppedImage == puzzle4x2p3) {
                         marco3.setImageDrawable(droppedImage.drawable)
-                        puzzle3x2p3.visibility = View.INVISIBLE
+                        puzzle4x2p3.visibility = View.INVISIBLE
                         bien3 = true
-                    } else if (view == marco4 && droppedImage == puzzle3x2p4) {
+                    } else if (view == marco4 && droppedImage == puzzle4x2p4) {
                         marco4.setImageDrawable(droppedImage.drawable)
-                        puzzle3x2p4.visibility = View.INVISIBLE
+                        puzzle4x2p4.visibility = View.INVISIBLE
                         bien4 = true
-                    } else if (view == marco5 && droppedImage == puzzle3x2p5) {
+                    } else if (view == marco5 && droppedImage == puzzle4x2p5) {
                         marco5.setImageDrawable(droppedImage.drawable)
-                        puzzle3x2p5.visibility = View.INVISIBLE
+                        puzzle4x2p5.visibility = View.INVISIBLE
                         bien5 = true
-                    } else if (view == marco6 && droppedImage == puzzle3x2p6) {
+                    } else if (view == marco6 && droppedImage == puzzle4x2p6) {
                         marco6.setImageDrawable(droppedImage.drawable)
-                        puzzle3x2p6.visibility = View.INVISIBLE
+                        puzzle4x2p6.visibility = View.INVISIBLE
                         bien6 = true
+                    } else if (view == marco7 && droppedImage == puzzle4x2p7) {
+                        marco7.setImageDrawable(droppedImage.drawable)
+                        puzzle4x2p7.visibility = View.INVISIBLE
+                        bien7 = true
+                    } else if (view == marco8 && droppedImage == puzzle4x2p8) {
+                        marco8.setImageDrawable(droppedImage.drawable)
+                        puzzle4x2p8.visibility = View.INVISIBLE
+                        bien8 = true
                     } else {
                         // Volver a colocar la puzzle3x2p en su posición inicial
                         val layoutParams = droppedImage.layoutParams as ViewGroup.MarginLayoutParams
@@ -136,21 +151,12 @@ class Puzzle3x2Activity : Lanzador() {
                         layoutParams.topMargin = 0
                         droppedImage.layoutParams = layoutParams
                     }
-                    if (bien1 && bien2 && bien3 && bien4 && bien5 && bien6){
-                        Utils.anadirSuperado(applicationContext, Lugar.SARE_JOSLE)
+                    if (bien1 && bien2 && bien3 && bien4 && bien5 && bien6 && bien7 && bien8){
                         tvRespuesta.setText("Zorionak puzzlea egin duzu!")
-
-                        lanzarJuego(arrayOf(
-                        resources.getText(R.string.sardina_y_puzzle).toString(),
-                        ), intArrayOf(
-                        R.drawable.sardinaypuzzle
-                        ), R.raw.sardina_y_puzzle_sarejosle, Intent(applicationContext, MainActivity::class.java))
-
                     }
                 }
             }
             return true
         }
     }
-
 }

@@ -18,6 +18,11 @@
         android:theme="@style/Theme.Didacticapp"
         tools:targetApi="31">
         <activity
+            android:name=".ExplicacionActivity"
+            android:screenOrientation="portrait"
+            android:noHistory="true"
+            android:exported="false" />
+        <activity
             android:name=".PuertoActivity"
             android:screenOrientation="portrait"
             android:exported="false" />
@@ -27,6 +32,10 @@
             android:exported="false" />
         <activity
             android:name=".Puzzle3x2Activity"
+            android:screenOrientation="portrait"
+            android:exported="false" />
+        <activity
+            android:name=".Puzzle4x2Activity"
             android:screenOrientation="portrait"
             android:exported="false" />
         <activity
