@@ -1,0 +1,193 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".Puzzle4x2Activity">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+
+        <LinearLayout
+            android:id="@+id/marcoZone"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="1"
+            android:gravity="center"
+            android:orientation="vertical">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/titulo"
+                android:textSize="36sp"
+                android:layout_marginBottom="25dp"
+                android:textColor="@android:color/black" />
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="220dp"
+                android:gravity="center_horizontal">
+
+                <ImageView
+                    android:id="@+id/marco1"
+                    android:layout_width="95dp"
+                    android:layout_height="117dp"
+                    android:background="@drawable/marco4x2p1" />
+
+                <ImageView
+                    android:id="@+id/marco2"
+                    android:layout_width="125dp"
+                    android:layout_height="93dp"
+                    android:layout_marginLeft="-40dp"
+                    android:layout_toRightOf="@id/marco1"
+                    android:background="@drawable/marco4x2p2" />
+
+                <ImageView
+                    android:id="@+id/marco3"
+                    android:layout_width="130dp"
+                    android:layout_height="116dp"
+                    android:layout_marginLeft="-35dp"
+                    android:layout_toRightOf="@id/marco2"
+                    android:background="@drawable/marco4x2p3" />
+
+                <ImageView
+                    android:id="@+id/marco4"
+                    android:layout_width="93dp"
+                    android:layout_height="116dp"
+                    android:layout_marginLeft="-35dp"
+                    android:layout_toRightOf="@id/marco3"
+                    android:background="@drawable/marco4x2p4" />
+
+                <ImageView
+                    android:id="@+id/marco5"
+                    android:layout_width="115dp"
+                    android:layout_height="93dp"
+                    android:layout_marginTop="-33dp"
+                    android:layout_below="@id/marco1"
+                    android:background="@drawable/marco4x2p5" />
+
+                <ImageView
+                    android:id="@+id/marco6"
+                    android:layout_width="100dp"
+                    android:layout_height="117dp"
+                    android:layout_marginTop="-33dp"
+                    android:layout_marginLeft="-35dp"
+                    android:layout_toRightOf="@id/marco5"
+                    android:layout_below="@id/marco2"
+                    android:background="@drawable/marco4x2p6" />
+
+                <ImageView
+                    android:id="@+id/marco7"
+                    android:layout_width="130dp"
+                    android:layout_height="94dp"
+                    android:layout_marginTop="-34dp"
+                    android:layout_marginLeft="-35dp"
+                    android:layout_toRightOf="@id/marco6"
+                    android:layout_below="@id/marco3"
+                    android:background="@drawable/marco4x2p7" />
+
+                <ImageView
+                    android:id="@+id/marco8"
+                    android:layout_width="95dp"
+                    android:layout_height="95dp"
+                    android:layout_marginTop="-35dp"
+                    android:layout_marginLeft="-36dp"
+                    android:layout_toRightOf="@id/marco7"
+                    android:layout_below="@id/marco4"
+                    android:background="@drawable/marco4x2p8" />
+            </RelativeLayout>
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/puzzleZone"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="1"
+            android:gravity="center"
+            android:orientation="vertical">
+
+            <TextView
+                android:id="@+id/tvRespuesta"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text=""
+                android:textSize="23sp"
+                android:textColor="@android:color/black" />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="10dp"
+                android:gravity="center"
+                android:orientation="horizontal">
+
+                <ImageView
+                    android:id="@+id/puzzle4x2p4"
+                    android:layout_width="90dp"
+                    android:layout_height="89dp"
+                    android:src="@drawable/puzzle4x2p4" />
+
+                <ImageView
+                    android:id="@+id/puzzle4x2p1"
+                    android:layout_width="100dp"
+                    android:layout_height="117dp"
+                    android:src="@drawable/puzzle4x2p1" />
+
+                <ImageView
+                    android:id="@+id/puzzle4x2p7"
+                    android:layout_width="100dp"
+                    android:layout_height="116dp"
+                    android:src="@drawable/puzzle4x2p7" />
+
+                <ImageView
+                    android:id="@+id/puzzle4x2p3"
+                    android:layout_width="100dp"
+                    android:layout_height="116dp"
+                    android:src="@drawable/puzzle4x2p3" />
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:orientation="horizontal">
+
+                <ImageView
+                    android:id="@+id/puzzle4x2p8"
+                    android:layout_width="100dp"
+                    android:layout_height="93dp"
+
+                    android:src="@drawable/puzzle4x2p8" />
+
+                <ImageView
+                    android:id="@+id/puzzle4x2p2"
+                    android:layout_width="100dp"
+                    android:layout_height="93dp"
+
+                    android:src="@drawable/puzzle4x2p2" />
+
+                <ImageView
+                    android:id="@+id/puzzle4x2p6"
+                    android:layout_width="123dp"
+                    android:layout_height="89dp"
+
+                    android:src="@drawable/puzzle4x2p6" />
+
+                <ImageView
+                    android:id="@+id/puzzle4x2p5"
+                    android:layout_width="80dp"
+                    android:layout_height="112dp"
+                    android:src="@drawable/puzzle4x2p5" />
+
+            </LinearLayout>
+
+        </LinearLayout>
+
+    </LinearLayout>
+
+</androidx.constraintlayout.widget.ConstraintLayout>
