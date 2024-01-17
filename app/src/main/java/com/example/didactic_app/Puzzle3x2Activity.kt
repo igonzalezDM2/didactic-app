@@ -1,16 +1,23 @@
 package com.example.didactic_app
 
+import android.app.Activity
 import android.content.ClipData
+import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.os.SystemClock
 import android.view.DragEvent
 import android.view.MotionEvent
 import android.view.View
 import android.view.ViewGroup
 import android.widget.ImageView
 import android.widget.TextView
+import androidx.activity.result.ActivityResult
+import androidx.activity.result.contract.ActivityResultContracts
+import com.example.didactic_app.enums.Lugar
+import com.example.didactic_app.utilis.Utils
 
-class Puzzle3x2Activity : AppCompatActivity() {
+class Puzzle3x2Activity : Lanzador() {
     private lateinit var puzzleZone: ViewGroup
     private lateinit var marcoZone: ViewGroup
 
@@ -130,11 +137,20 @@ class Puzzle3x2Activity : AppCompatActivity() {
                         droppedImage.layoutParams = layoutParams
                     }
                     if (bien1 && bien2 && bien3 && bien4 && bien5 && bien6){
+                        Utils.anadirSuperado(applicationContext, Lugar.SARE_JOSLE)
                         tvRespuesta.setText("Zorionak puzzlea egin duzu!")
+
+                        lanzarJuego(arrayOf(
+                        resources.getText(R.string.sardina_y_puzzle).toString(),
+                        ), intArrayOf(
+                        R.drawable.sardinaypuzzle
+                        ), R.raw.sardina_y_puzzle_sarejosle, Intent(applicationContext, MainActivity::class.java))
+
                     }
                 }
             }
             return true
         }
     }
+
 }

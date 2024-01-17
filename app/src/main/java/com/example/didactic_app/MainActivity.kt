@@ -7,6 +7,7 @@ import android.app.AlertDialog
 import android.content.DialogInterface
 import android.content.Intent
 import android.content.pm.PackageManager
+import android.database.sqlite.SQLiteDatabase
 import android.location.Location
 import android.location.LocationListener
 import android.location.LocationManager
@@ -20,10 +21,14 @@ import androidx.activity.result.contract.ActivityResultContracts
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.app.ActivityCompat
 import androidx.core.content.ContextCompat
+import com.example.didactic_app.enums.Lugar
+import com.example.didactic_app.utilis.Utils
+import java.util.function.Consumer
 import kotlin.math.cos
+import kotlin.system.exitProcess
 
 
-class MainActivity : AppCompatActivity() {
+class MainActivity : Lanzador() {
 
     companion object {
         var arreglo_sardinas = arrayOf("", "", "", "", "", "")
@@ -45,15 +50,11 @@ class MainActivity : AppCompatActivity() {
     private var latitud: Double = 0.0
     private var longitud: Double = 0.0
 
-    private val FONDO_PARAM: String = "fondo";
-    private val AUDIO_PARAM: String = "audio";
-    private val TEXTO_PARAM: String = "texto";
-
     private lateinit var btMapa: Button
     private lateinit var btPrueba1Barcos: Button
     private lateinit var btPrueba2Pescar: Button
     private lateinit var btPrueba3Sopa: Button
-    private lateinit var btPrueba4Rederas: Button
+//    private lateinit var btPrueba4Rederas: Button
     private lateinit var btPrueba5Cocinar: Button
     private lateinit var btPrueba6Cancion: Button
     private lateinit var btPrueba7Trainera: Button
@@ -70,12 +71,14 @@ class MainActivity : AppCompatActivity() {
     private lateinit var llRemo: LinearLayout
     private lateinit var llUdala: LinearLayout
 
-    private var intencion: Intent? = null
+    private lateinit var mapPartida: Map<Lugar, Boolean>
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
         initComponentes()
         initOyentes()
+        cargarMapa()
+        checkSuperados()
 
 //        if (!comprobarPermisos()) {
 //            solicitarPermiso(android.Manifest.permission.ACCESS_FINE_LOCATION, "Localización", 0, this)
@@ -92,6 +95,20 @@ class MainActivity : AppCompatActivity() {
 
     }
 
+    private fun cargarMapa() {
+        mapPartida = HashMap<Lugar, Boolean>(Lugar.values().size)
+
+        Utils.operarBD(this) {db ->
+            val campos = arrayOf("lugar", "superado")
+            val cur = db!!.query("partida", campos, null, null, null, null, null)
+            while (cur.moveToNext()) {
+                val lugar = Lugar.valueOf(cur.getString(0))
+                val superado = cur.getInt(1) > 0
+                (mapPartida as HashMap<Lugar, Boolean>)?.put(lugar, superado)
+            }
+        }
+    }
+
     private fun comprobarPermisos(): Boolean {
         return ContextCompat.checkSelfPermission(this, android.Manifest.permission.ACCESS_FINE_LOCATION) == PackageManager.PERMISSION_GRANTED &&
             ContextCompat.checkSelfPermission(this, android.Manifest.permission.ACCESS_COARSE_LOCATION) == PackageManager.PERMISSION_GRANTED &&
@@ -104,7 +121,7 @@ class MainActivity : AppCompatActivity() {
         btPrueba1Barcos = findViewById(R.id.bt_prueba1_barcos)
         btPrueba2Pescar = findViewById(R.id.bt_prueba2_pescar)
         btPrueba3Sopa = findViewById(R.id.bt_prueba3_sopa)
-        btPrueba4Rederas = findViewById(R.id.bt_prueba4_rederas)
+//        btPrueba4Rederas = findViewById(R.id.bt_prueba4_rederas)
         btPrueba5Cocinar = findViewById(R.id.bt_prueba5_cocinar)
         btPrueba6Cancion = findViewById(R.id.bt_prueba6_cancion)
         btPrueba7Trainera = findViewById(R.id.bt_prueba7_trainera)
@@ -120,7 +137,6 @@ class MainActivity : AppCompatActivity() {
         llParque = findViewById(R.id.llParque)
         llRemo = findViewById(R.id.llRemo)
         llUdala = findViewById(R.id.llUdala)
-
         ocultarLinears()
     }
 
@@ -129,7 +145,7 @@ class MainActivity : AppCompatActivity() {
         btPrueba1Barcos.setOnClickListener { goToActividades(1) }
         btPrueba2Pescar.setOnClickListener { goToActividades(2) }
         btPrueba3Sopa.setOnClickListener { goToActividades(3) }
-        btPrueba4Rederas.setOnClickListener { goToActividades(4) }
+//        btPrueba4Rederas.setOnClickListener { goToActividades(4) }
         btPrueba5Cocinar.setOnClickListener { goToActividades(5) }
         btPrueba6Cancion.setOnClickListener { goToActividades(6) }
         btPrueba7Trainera.setOnClickListener { goToActividades(7) }
@@ -142,7 +158,7 @@ class MainActivity : AppCompatActivity() {
     private fun goToActividades(opcion: Int) {
 
         if (opcion == 11) {
-            finish()
+            finishAffinity();
         } else {
 
             when (opcion) {
@@ -173,7 +189,7 @@ class MainActivity : AppCompatActivity() {
                 7 -> lanzarJuego(arrayOf(""), intArrayOf(0), 0, Intent(this, TraineraActivity::class.java))
                 8 -> lanzarJuego(arrayOf(resources.getText(R.string.explicacion_lanzar).toString()), intArrayOf(0), R.raw.audio_lanzar, Intent(this, LanzamientoActivity::class.java))
                 9 -> lanzarJuego(arrayOf(""), intArrayOf(0), 0, Intent(this, PuertoActivity::class.java))
-                10 -> lanzarJuego(arrayOf(""), intArrayOf(0), 0, Intent(this, TangramActivity::class.java))
+                10 -> lanzarJuego(arrayOf(""), intArrayOf(0), 0, Intent(this, Puzzle4x2Activity::class.java))
                 else -> lanzarJuego(Intent(this, MapActivity::class.java))
             }
 
@@ -181,32 +197,6 @@ class MainActivity : AppCompatActivity() {
 
     }
 
-    private fun lanzarJuego(intencion: Intent) {
-        lanzarJuego(null, null, null, intencion)
-    }
-    private fun lanzarJuego(explicacion: Array<String>?, fondo: IntArray?, audio: Int?, intencion: Intent) {
-        this.intencion = intencion
-        if (!explicacion.isNullOrEmpty()) {
-            val intentExplicacion: Intent = Intent(this, ExplicacionActivity::class.java)
-            if (audio != null) {
-                intentExplicacion.putExtra(AUDIO_PARAM, audio)
-            }
-            if (fondo != null) {
-                intentExplicacion.putExtra(FONDO_PARAM, fondo)
-            }
-            intentExplicacion.putExtra(TEXTO_PARAM, explicacion)
-            startForResult.launch(intentExplicacion)
-        } else {
-            startActivity(intencion)
-        }
-    }
-
-    private val startForResult = registerForActivityResult(ActivityResultContracts.StartActivityForResult()) {
-        result: ActivityResult ->
-        if (result.resultCode == Activity.RESULT_OK) {
-            startActivity(intencion)
-        }
-    }
 
     private fun solicitarPermiso(
         permiso: String,
@@ -264,21 +254,22 @@ class MainActivity : AppCompatActivity() {
             latitud = location.latitude
             longitud = location.longitude
             ocultarLinears()
-            if (comprobarLocalizacion(COORDENADAS_SERANTES, 200)) {
+            if (comprobarLocalizacion(COORDENADAS_SERANTES, 500)) {
                 llSerantes.visibility = LinearLayout.VISIBLE
             } else if (comprobarLocalizacion(COORDENADAS_SARDINERA, 75)) {
                 llSardinera.visibility = LinearLayout.VISIBLE
-            } else if (comprobarLocalizacion(SARE_JOSLEEN_LEKUA, 75)) {
+            } else if (comprobarLocalizacion(SARE_JOSLEEN_LEKUA, 15)) {
                 llSareJosle.visibility = LinearLayout.VISIBLE
-            } else if (comprobarLocalizacion(ITSAS_MUSEOA, 75)) {
+            } else if (comprobarLocalizacion(ITSAS_MUSEOA, 15)) {
                 llMuseo.visibility = LinearLayout.VISIBLE
-            } else if (comprobarLocalizacion(SANTURTZIKO_PARKEA, 75)) {
+            } else if (comprobarLocalizacion(SANTURTZIKO_PARKEA, 50)) {
                 llParque.visibility = LinearLayout.VISIBLE
-            } else if (comprobarLocalizacion(ARRAUN_UDAL_PABILOIA, 75)) {
+            } else if (comprobarLocalizacion(ARRAUN_UDAL_PABILOIA, 55)) {
                 llRemo.visibility = LinearLayout.VISIBLE
-            } else if (comprobarLocalizacion(UDALA, 75)) {
+            } else if (comprobarLocalizacion(UDALA, 40)) {
                 llUdala.visibility = LinearLayout.VISIBLE
             }
+            checkSuperados()
 
         }
 
@@ -335,6 +326,25 @@ class MainActivity : AppCompatActivity() {
             }
         }
     }
+
+    fun checkSuperados() {
+        mapPartida.entries.forEach {e ->
+            if (e.value) {
+                when(e.key) {
+                    Lugar.SERANTES -> {llSerantes.findViewWithTag<TextView>("superado").visibility = TextView.VISIBLE}
+                    Lugar.SARDINERA -> {llSardinera.findViewWithTag<TextView>("superado").visibility = TextView.VISIBLE }
+                    Lugar.SARE_JOSLE -> {llSareJosle.findViewWithTag<TextView>("superado").visibility = TextView.VISIBLE}
+                    Lugar.MUSEO -> {llMuseo.findViewWithTag<TextView>("superado").visibility = TextView.VISIBLE}
+                    Lugar.PARQUE -> {llParque.findViewWithTag<TextView>("superado").visibility = TextView.VISIBLE}
+                    Lugar.REMO -> {llRemo.findViewWithTag<TextView>("superado").visibility = TextView.VISIBLE}
+                    Lugar.AYUNTAMIENTO -> {llUdala.findViewWithTag<TextView>("superado").visibility = TextView.VISIBLE}
+                    else -> {/*NADA*/}
+                }
+
+            }
+        }
+    }
+
 
 
 }
