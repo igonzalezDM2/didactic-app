@@ -6,7 +6,7 @@ enum class Lugar {
     SARE_JOSLE("Sare josleen lan lekua"),
     MUSEO("Santurtziko itsas museoa"),
     PARQUE("Santurtziko parkea"),
-    REMO("Santurtziko arraun udal pabiloia"),
+//    REMO("Santurtziko arraun udal pabiloia"),
     AYUNTAMIENTO("Santurtziko udaletxea");
 
     private lateinit var nombre: String
