@@ -21,7 +21,7 @@ class DialogoFinJuego(private val aciertos: Int, private val total: Int) : Dialo
         )
             .setTitle(if (aciertos == total) "OSO ONDO" else "Berriz saiatu")
             .setPositiveButton("ADOS") { dialog: DialogInterface?, which: Int -> listener!!.onPossitiveButtonClick() }
-        if (aciertos < 6) {
+        if (aciertos < total) {
             builder.setNegativeButton("EZ") { dialog: DialogInterface?, which: Int -> listener!!.onNegativeButtonClick() }
         }
         val dialogo = builder.create()
