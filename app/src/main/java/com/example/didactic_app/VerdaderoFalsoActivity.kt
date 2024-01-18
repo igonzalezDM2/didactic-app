@@ -1,5 +1,6 @@
 package com.example.didactic_app
 
+import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 
 import android.os.Bundle
@@ -10,13 +11,15 @@ import android.widget.Button
 import android.widget.ImageButton
 import android.widget.ImageView
 import android.widget.TextView
+import com.example.didactic_app.enums.Lugar
+import com.example.didactic_app.utilis.Utils
 
 /**
  * Ventana que representa el juego de verdadero a falso, pero en vez de esos nombres serian entre
  * 2 puertos.
  * @author Sergio Daniel Groppa
  */
-class VerdaderoFalsoActivity : AppCompatActivity() {
+class VerdaderoFalsoActivity : Lanzador() {
     private lateinit var tvEnunciado: TextView
     private lateinit var tvNivel: TextView
     private lateinit var tvRespuesta: TextView
@@ -123,9 +126,20 @@ class VerdaderoFalsoActivity : AppCompatActivity() {
                     .plus(getString(R.string.respuesta))
             tvNuevoIntento.visibility = View.VISIBLE
             btnNuevoIntento.visibility = View.VISIBLE
-        }else //Se muestra que se han conseguido acertar todos las respuestas
+        }else {
+        //Se muestra que se han conseguido acertar todos las respuestas
             tvRespuesta.text = getString(R.string.todas).plus(" ")
-                    .plus(getString(R.string.respuesta))
+                .plus(getString(R.string.respuesta))
+            Utils.anadirSuperado(this, Lugar.SERANTES)
+            lanzarJuego(arrayOf(
+                resources.getText(R.string.sardina_y_puzzle).toString(),
+            ), intArrayOf(
+                R.drawable.sardinaypuzzle
+            ), R.raw.sardina_y_puzzle_sarejosle, Intent(applicationContext, MainActivity::class.java)
+            )
+
+
+        }
         btnSiguiente.visibility = View.VISIBLE
     }
 
