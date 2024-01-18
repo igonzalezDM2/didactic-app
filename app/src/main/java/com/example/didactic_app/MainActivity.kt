@@ -279,8 +279,8 @@ class MainActivity : Lanzador() {
     }
 
     private fun ocultarLinears() {
-        llSerantes.visibility = LinearLayout.INVISIBLE
-        llSardinera.visibility = LinearLayout.INVISIBLE
+       // llSerantes.visibility = LinearLayout.INVISIBLE
+        //llSardinera.visibility = LinearLayout.INVISIBLE
         llSareJosle.visibility = LinearLayout.INVISIBLE
         llMuseo.visibility = LinearLayout.INVISIBLE
         llParque.visibility = LinearLayout.INVISIBLE

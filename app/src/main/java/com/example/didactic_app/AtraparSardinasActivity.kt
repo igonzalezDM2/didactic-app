@@ -20,7 +20,7 @@ import com.example.didactic_app.model.Pez
 import kotlin.math.log
 import kotlin.random.Random
 
-class AtraparSardinasActivity : AppCompatActivity(), OnDialogoConfirmacionListener {
+class AtraparSardinasActivity : AppCompatActivity() {
     private lateinit var tvCantidadSardinas: TextView
     private lateinit var tvTiempo: TextView
     private lateinit var tvTemporizadorInicio: TextView
@@ -28,7 +28,6 @@ class AtraparSardinasActivity : AppCompatActivity(), OnDialogoConfirmacionListen
     private lateinit var temporizadorInicio: TemporizadorComponent
     private lateinit var temporizadorJuego: TemporizadorComponent
     private var cuentaAtrasInicio = 3
-
 
     @SuppressLint("ClickableViewAccessibility")
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -59,16 +58,15 @@ class AtraparSardinasActivity : AppCompatActivity(), OnDialogoConfirmacionListen
                 pez.startAnimation(
                     direction,
                     duracionMovimiento,
-                    duracionFinal
+                    duracionFinal,
+                    lyPrincipal
                 ) { clickSardina() }
                 lyPrincipal.addView(pez.imagen)
             } catch (_: Exception) { }
         }
 
         temporizadorJuego.onFinish = {
-            val fragmentManager: FragmentManager = supportFragmentManager
-            val dialogo = DialogoFinJuego(tvCantidadSardinas.text.toString().toInt(), 30)
-            dialogo.show(fragmentManager, "GAME OVER")
+            finish()
         }
 
         temporizadorInicio.onTick = { cuentaAtrasDelInicio()}
@@ -91,17 +89,6 @@ class AtraparSardinasActivity : AppCompatActivity(), OnDialogoConfirmacionListen
         // Aquí puedes manejar el evento de toque en una parte no transparente de la imagen
         val cant = tvCantidadSardinas.text.toString().toInt()
         tvCantidadSardinas.text = cant.plus(1).toString()
-    }
-
-    override fun onPossitiveButtonClick() {
-        tvCantidadSardinas.text = 0.toString()
-        cuentaAtrasInicio = 3
-        tvTiempo.text = getString(R.string.tiempo)
-        temporizadorInicio.startTimer()
-    }
-
-    override fun onNegativeButtonClick() {
-        finish()
     }
 
 }

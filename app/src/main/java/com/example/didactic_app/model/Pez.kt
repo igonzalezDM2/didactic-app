@@ -74,7 +74,7 @@ class Pez {
         layout.addView(ivPez, layoutParams)
     }
 
-    fun startAnimation(desplazamiento:Int, duracionMovimiento:Long, duracionFinal:Long
+    fun startAnimation(desplazamiento:Int, duracionMovimiento:Long, duracionFinal:Long, layout: ConstraintLayout
                        , event: () -> Unit){
 
         val startX = if (rigthToLeft) widthPez.toFloat() else -widthPez.toFloat()
@@ -92,6 +92,7 @@ class Pez {
             cantPeces -= 1
             ivPez.isClickable = false
             ivPez.visibility = View.GONE
+            layout.removeView(ivPez)
         }
         animacionFinal.duration = duracionFinal
         animacionFinal.startDelay = 150
