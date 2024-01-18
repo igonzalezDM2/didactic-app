@@ -3,6 +3,7 @@ package com.example.didactic_app
 import android.animation.AnimatorSet
 import android.animation.ValueAnimator
 import android.annotation.SuppressLint
+import android.content.Intent
 import android.os.Bundle
 import android.util.Log
 import android.view.View
@@ -20,7 +21,7 @@ import com.example.didactic_app.model.Pez
 import kotlin.math.log
 import kotlin.random.Random
 
-class AtraparSardinasActivity : AppCompatActivity() {
+class AtraparSardinasActivity : Lanzador() {
     private lateinit var tvCantidadSardinas: TextView
     private lateinit var tvTiempo: TextView
     private lateinit var tvTemporizadorInicio: TextView
@@ -66,7 +67,12 @@ class AtraparSardinasActivity : AppCompatActivity() {
         }
 
         temporizadorJuego.onFinish = {
-            finish()
+            lanzarJuego(arrayOf(
+                resources.getText(R.string.sardina_y_puzzle).toString(),
+            ), intArrayOf(
+                R.drawable.sardinaypuzzle
+            ), R.raw.sardina_y_puzzle_sarejosle, Intent(applicationContext, MainActivity::class.java)
+            )
         }
 
         temporizadorInicio.onTick = { cuentaAtrasDelInicio()}

@@ -57,7 +57,7 @@ class MainActivity : Lanzador() {
 //    private lateinit var btPrueba4Rederas: Button
     private lateinit var btPrueba5Cocinar: Button
     private lateinit var btPrueba6Cancion: Button
-    private lateinit var btPrueba7Trainera: Button
+//    private lateinit var btPrueba7Trainera: Button
     private lateinit var btPrueba8Alimentar: Button
     private lateinit var btPrueba9Puerto: Button
     private lateinit var btPrueba10Tangram: Button
@@ -68,7 +68,7 @@ class MainActivity : Lanzador() {
     private lateinit var llSareJosle: LinearLayout
     private lateinit var llMuseo: LinearLayout
     private lateinit var llParque: LinearLayout
-    private lateinit var llRemo: LinearLayout
+//    private lateinit var llRemo: LinearLayout
     private lateinit var llUdala: LinearLayout
 
     private lateinit var mapPartida: Map<Lugar, Boolean>
@@ -124,7 +124,7 @@ class MainActivity : Lanzador() {
 //        btPrueba4Rederas = findViewById(R.id.bt_prueba4_rederas)
         btPrueba5Cocinar = findViewById(R.id.bt_prueba5_cocinar)
         btPrueba6Cancion = findViewById(R.id.bt_prueba6_cancion)
-        btPrueba7Trainera = findViewById(R.id.bt_prueba7_trainera)
+//        btPrueba7Trainera = findViewById(R.id.bt_prueba7_trainera)
         btPrueba8Alimentar = findViewById(R.id.bt_prueba8_alimentar)
         btPrueba9Puerto = findViewById(R.id.bt_prueba9_puerto)
         btPrueba10Tangram = findViewById(R.id.bt_prueba10_tangram)
@@ -135,7 +135,7 @@ class MainActivity : Lanzador() {
         llSareJosle = findViewById(R.id.llSareJosleak)
         llMuseo = findViewById(R.id.llItsasMuseoa)
         llParque = findViewById(R.id.llParque)
-        llRemo = findViewById(R.id.llRemo)
+//        llRemo = findViewById(R.id.llRemo)
         llUdala = findViewById(R.id.llUdala)
         ocultarLinears()
     }
@@ -148,7 +148,7 @@ class MainActivity : Lanzador() {
 //        btPrueba4Rederas.setOnClickListener { goToActividades(4) }
         btPrueba5Cocinar.setOnClickListener { goToActividades(5) }
         btPrueba6Cancion.setOnClickListener { goToActividades(6) }
-        btPrueba7Trainera.setOnClickListener { goToActividades(7) }
+//        btPrueba7Trainera.setOnClickListener { goToActividades(7) }
         btPrueba8Alimentar.setOnClickListener { goToActividades(8) }
         btPrueba9Puerto.setOnClickListener { goToActividades(9) }
         btPrueba10Tangram.setOnClickListener { goToActividades(10) }
@@ -162,8 +162,24 @@ class MainActivity : Lanzador() {
         } else {
 
             when (opcion) {
-                1 -> lanzarJuego(arrayOf(""), intArrayOf(0), 0, Intent(this, VerdaderoFalsoActivity::class.java))
-                2 -> lanzarJuego(arrayOf(""), intArrayOf(0), 0, Intent(this, AtraparSardinasActivity::class.java))
+                1 -> lanzarJuego(arrayOf(resources.getText(R.string.explicacion_serantes1).toString(),
+                    resources.getText(R.string.explicacion_serantes2).toString(),
+                    resources.getText(R.string.explicacion_serantes3).toString(),
+                    resources.getText(R.string.explicacion_serantes4).toString()
+                ), intArrayOf(R.drawable.foto_serantes),
+                    R.raw.explicacion_serantes,
+                    Intent(this, VerdaderoFalsoActivity::class.java))
+                2 -> lanzarJuego(arrayOf(
+                    resources.getText(R.string.explicacion_sardinera1).toString(),
+                    resources.getText(R.string.explicacion_sardinera2).toString(),
+                    resources.getText(R.string.explicacion_sardinera3).toString(),
+                    resources.getText(R.string.explicacion_sardinera4).toString()
+                    ),
+                    intArrayOf(R.drawable.foto_sardinera1,
+                        R.drawable.foto_sardinera2
+                    ),
+                    R.raw.explicacion_sardinera,
+                    Intent(this, AtraparSardinasActivity::class.java))
                 3 -> lanzarJuego(arrayOf(
                     resources.getText(R.string.explicacion_sopa1).toString(),
                     resources.getText(R.string.explicacion_sopa2).toString(),
@@ -254,7 +270,7 @@ class MainActivity : Lanzador() {
             latitud = location.latitude
             longitud = location.longitude
             ocultarLinears()
-            if (comprobarLocalizacion(COORDENADAS_SERANTES, 500)) {
+            if (comprobarLocalizacion(COORDENADAS_SERANTES, 750)) {
                 llSerantes.visibility = LinearLayout.VISIBLE
             } else if (comprobarLocalizacion(COORDENADAS_SARDINERA, 75)) {
                 llSardinera.visibility = LinearLayout.VISIBLE
@@ -264,9 +280,9 @@ class MainActivity : Lanzador() {
                 llMuseo.visibility = LinearLayout.VISIBLE
             } else if (comprobarLocalizacion(SANTURTZIKO_PARKEA, 50)) {
                 llParque.visibility = LinearLayout.VISIBLE
-            } else if (comprobarLocalizacion(ARRAUN_UDAL_PABILOIA, 55)) {
+            } /*else if (comprobarLocalizacion(ARRAUN_UDAL_PABILOIA, 55)) {
                 llRemo.visibility = LinearLayout.VISIBLE
-            } else if (comprobarLocalizacion(UDALA, 40)) {
+            }*/ else if (comprobarLocalizacion(UDALA, 40)) {
                 llUdala.visibility = LinearLayout.VISIBLE
             }
             checkSuperados()
@@ -279,13 +295,13 @@ class MainActivity : Lanzador() {
     }
 
     private fun ocultarLinears() {
-       // llSerantes.visibility = LinearLayout.INVISIBLE
-        //llSardinera.visibility = LinearLayout.INVISIBLE
-        llSareJosle.visibility = LinearLayout.INVISIBLE
-        llMuseo.visibility = LinearLayout.INVISIBLE
-        llParque.visibility = LinearLayout.INVISIBLE
-        llRemo.visibility = LinearLayout.INVISIBLE
-        llUdala.visibility = LinearLayout.INVISIBLE
+        llSerantes.visibility = LinearLayout.GONE
+        llSardinera.visibility = LinearLayout.GONE
+        llSareJosle.visibility = LinearLayout.GONE
+        llMuseo.visibility = LinearLayout.GONE
+        llParque.visibility = LinearLayout.GONE
+//        llRemo.visibility = LinearLayout.GONE
+        llUdala.visibility = LinearLayout.GONE
     }
 
 
@@ -336,7 +352,7 @@ class MainActivity : Lanzador() {
                     Lugar.SARE_JOSLE -> {llSareJosle.findViewWithTag<TextView>("superado").visibility = TextView.VISIBLE}
                     Lugar.MUSEO -> {llMuseo.findViewWithTag<TextView>("superado").visibility = TextView.VISIBLE}
                     Lugar.PARQUE -> {llParque.findViewWithTag<TextView>("superado").visibility = TextView.VISIBLE}
-                    Lugar.REMO -> {llRemo.findViewWithTag<TextView>("superado").visibility = TextView.VISIBLE}
+//                    Lugar.REMO -> {llRemo.findViewWithTag<TextView>("superado").visibility = TextView.VISIBLE}
                     Lugar.AYUNTAMIENTO -> {llUdala.findViewWithTag<TextView>("superado").visibility = TextView.VISIBLE}
                     else -> {/*NADA*/}
                 }

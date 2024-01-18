@@ -31,7 +31,7 @@ class MapActivity : AppCompatActivity(), MapListener, GpsStatus.Listener {
     private val SARE_JOSLEEN_LEKUA: DoubleArray = doubleArrayOf(43.33005582802109, -3.0309998673703076)
     private val ITSAS_MUSEOA: DoubleArray = doubleArrayOf(43.33077682113878, -3.030527877109482)
     private val SANTURTZIKO_PARKEA: DoubleArray = doubleArrayOf(43.32879964909476, -3.031697605351168)
-    private val ARRAUN_UDAL_PABILOIA: DoubleArray = doubleArrayOf(43.33072217111924, -3.03158330305195)
+//    private val ARRAUN_UDAL_PABILOIA: DoubleArray = doubleArrayOf(43.33072217111924, -3.03158330305195)
     private val UDALA: DoubleArray = doubleArrayOf(43.32883180778487, -3.033054932499828)
 
 
@@ -75,16 +75,16 @@ class MapActivity : AppCompatActivity(), MapListener, GpsStatus.Listener {
         val overlayItemSareJosle = OverlayItem("Sare Josleen Lekua", "Sare josleen lan lekua", GeoPoint(SARE_JOSLEEN_LEKUA[0], SARE_JOSLEEN_LEKUA[1]))
         val overlayItemMuseo = OverlayItem("Istas Museoa", "Santurtziko Itsas Museoa", GeoPoint(ITSAS_MUSEOA[0], ITSAS_MUSEOA[1]))
         val overlayItemParque = OverlayItem("Parkea", "Santurtziko Parkea", GeoPoint(SANTURTZIKO_PARKEA[0], SANTURTZIKO_PARKEA[1]))
-        val overlayItemRemo = OverlayItem("Arraun Kluba", "Santurtziko arraun udal pabiloia", GeoPoint(ARRAUN_UDAL_PABILOIA[0], ARRAUN_UDAL_PABILOIA[1]))
+//        val overlayItemRemo = OverlayItem("Arraun Kluba", "Santurtziko arraun udal pabiloia", GeoPoint(ARRAUN_UDAL_PABILOIA[0], ARRAUN_UDAL_PABILOIA[1]))
         val overlayItemUdala = OverlayItem("Udaletxea", "Santurtziko Udaletxea", GeoPoint(UDALA[0], UDALA[1]))
 
-        val listaPoi = listOf<OverlayItem>(
+        val listaPoi = mutableListOf<OverlayItem>(
             overlayItemSerantes,
             overlayItemSardinera,
             overlayItemSareJosle,
             overlayItemMuseo,
             overlayItemParque,
-            overlayItemRemo,
+//            overlayItemRemo,
             overlayItemUdala
             )
         // Crea una capa de iconos para los puntos de interés
