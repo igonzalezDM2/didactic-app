@@ -1,25 +1,24 @@
 package com.example.didactic_app
 
-import android.animation.AnimatorSet
-import android.animation.ValueAnimator
 import android.annotation.SuppressLint
+
 import android.os.Bundle
-import android.util.Log
+
 import android.view.View
-import android.view.animation.AccelerateDecelerateInterpolator
-import android.view.animation.AnimationUtils
-import android.widget.ImageView
-import android.widget.LinearLayout
+
 import android.widget.TextView
+
 import androidx.appcompat.app.AppCompatActivity
+
 import androidx.constraintlayout.widget.ConstraintLayout
-import androidx.fragment.app.FragmentManager
-import com.example.didactic_app.dialogs.DialogoFinJuego
-import com.example.didactic_app.dialogs.OnDialogoConfirmacionListener
+
 import com.example.didactic_app.model.Pez
-import kotlin.math.log
+
 import kotlin.random.Random
 
+/**
+ * Actividad que representa el juego para Atrapar Sardinas
+ */
 class AtraparSardinasActivity : AppCompatActivity() {
     private lateinit var tvCantidadSardinas: TextView
     private lateinit var tvTiempo: TextView
@@ -34,29 +33,27 @@ class AtraparSardinasActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_atrapar_sardinas)
 
+        //Conseguiendo a los elementos de la actividad
         tvTiempo = findViewById(R.id.tvTiempo)
         tvCantidadSardinas = findViewById(R.id.tvCantidadSardinas)
         tvTemporizadorInicio = findViewById(R.id.tvTemporizadorInicio)
-
-        tvTiempo.text = getString(R.string.tiempo)
-        tvCantidadSardinas.text = 0.toString()
-
         lyPrincipal = findViewById(R.id.lyPrincipal)
 
-        temporizadorInicio = TemporizadorComponent(tvTemporizadorInicio,
-            5000)
+        //Inicializar cantidad de peces a 0
+        tvCantidadSardinas.text = 0.toString()
 
+        //Crear los temporizadores
+        temporizadorInicio = TemporizadorComponent(tvTemporizadorInicio, 5000)
         temporizadorJuego = TemporizadorComponent(tvTiempo,30999)
 
+        // Funcionalidad del juego en cada segundo
         temporizadorJuego.onTick =  {
             try {
                 val derecha = Random.nextBoolean()
                 val pez = Pez(this, lyPrincipal, derecha)
-                val direction = 1750
                 val duracionMovimiento = (2500L..5000L).random()
                 val duracionFinal = (250L..500L).random()
                 pez.startAnimation(
-                    direction,
                     duracionMovimiento,
                     duracionFinal,
                     lyPrincipal
@@ -64,15 +61,17 @@ class AtraparSardinasActivity : AppCompatActivity() {
                 lyPrincipal.addView(pez.imagen)
             } catch (_: Exception) { }
         }
-
-        temporizadorJuego.onFinish = {
-            finish()
-        }
-
-        temporizadorInicio.onTick = { cuentaAtrasDelInicio()}
+        // Funcionalidad de cada segundo del primer temporizador
+        temporizadorInicio.onTick = { cuentaAtrasDelInicio() }
+        // Al terminar el temporizador del juego
+        temporizadorJuego.onFinish = { finish() }
+        //Poner en marcha el temporizador
         temporizadorInicio.startTimer()
     }
 
+    /**
+     * Cuenta atras para iniciar el juego
+     */
     private fun cuentaAtrasDelInicio(){
         if(cuentaAtrasInicio > 0) {
             tvTemporizadorInicio.text = cuentaAtrasInicio.toString()
@@ -85,8 +84,10 @@ class AtraparSardinasActivity : AppCompatActivity() {
         cuentaAtrasInicio -= 1
     }
 
+    /**
+     * Evento de darle click a la sardina
+     */
     private fun clickSardina(){
-        // Aquí puedes manejar el evento de toque en una parte no transparente de la imagen
         val cant = tvCantidadSardinas.text.toString().toInt()
         tvCantidadSardinas.text = cant.plus(1).toString()
     }

@@ -3,10 +3,11 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:background="@drawable/fondo_atrapar_sardinas"
     android:id="@+id/lyPrincipal"
     tools:context=".MainActivity">
+
+    <!-- Barra Informacion Juego - INICIO -->
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -22,6 +23,7 @@
             android:background="@color/tranparent_black"
             tools:ignore="UselessParent">
 
+            <!-- Imagen Sardina -->
             <ImageView
                 android:layout_width="100dp"
                 android:layout_height="70dp"
@@ -30,6 +32,7 @@
                 android:layout_gravity="start"
                 android:importantForAccessibility="no" />
 
+            <!-- Cantidad Sardinas -->
             <TextView
                 android:id="@+id/tvCantidadSardinas"
                 android:layout_width="wrap_content"
@@ -40,6 +43,7 @@
                 android:layout_marginHorizontal="10sp"
                 android:textStyle="bold" />
 
+            <!-- Tiempo del juego -->
             <TextView
                 android:id="@+id/tvTiempo"
                 android:layout_width="0dp"
@@ -49,17 +53,23 @@
                 android:gravity="right|center"
                 android:layout_weight="2"
                 android:layout_marginHorizontal="10sp"
+                android:text="@string/tiempo"
                 tools:ignore="RtlHardcoded" />
 
         </LinearLayout>
+
     </LinearLayout>
 
+    <!-- Barra Informacion Juego - FINAL -->
+
+    <!-- Temporizador Inicial - INICIO -->
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         tools:ignore="MissingConstraints"
         android:gravity="center"
         android:orientation="vertical">
+
         <TextView
             android:id="@+id/tvTemporizadorInicio"
             android:layout_width="wrap_content"
@@ -67,6 +77,9 @@
             android:layout_gravity="center"
             android:textColor="@color/pink"
             android:textSize="45sp" />
+
     </LinearLayout>
+
+    <!-- Temporizador Inicial - FINAL -->
 
 </androidx.constraintlayout.widget.ConstraintLayout>

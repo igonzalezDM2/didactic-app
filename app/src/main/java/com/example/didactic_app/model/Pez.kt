@@ -3,23 +3,29 @@ package com.example.didactic_app.model
 import android.animation.AnimatorSet
 import android.animation.ObjectAnimator
 import android.animation.ValueAnimator
+
 import android.util.Log
+
 import android.view.View
 import android.view.animation.AccelerateDecelerateInterpolator
-import android.view.animation.Animation
-import android.view.animation.Animation.AnimationListener
-import android.view.animation.LinearInterpolator
-import android.view.animation.TranslateAnimation
+
 import android.widget.ImageView
-import android.widget.ImageView.ScaleType
-import android.widget.LinearLayout
+
 import androidx.appcompat.app.AppCompatActivity
+
 import androidx.constraintlayout.widget.ConstraintLayout
+
 import com.example.didactic_app.R
-import com.google.android.material.internal.BaselineLayout
 
-class Pez {
+/**
+ * Animacion para la sardina en Atrapar Sardina
+ */
+class Pez
+    (activity: AppCompatActivity, layout: ConstraintLayout, direccion: Boolean = false) {
 
+    /**
+     * Constantes de la sardina
+     */
     companion object {
         private var cantPeces: Int = 0
         private const val maxPeces = 15
@@ -35,56 +41,63 @@ class Pez {
             return ivPez
         }
 
-    private var rigthToLeft: Boolean = false
-    private var puntoInicio: Float = 0f
+    private var rigthToLeft: Boolean = direccion
 
-    constructor(activity: AppCompatActivity, layout: ConstraintLayout, direccion:Boolean = false) {
-        this.rigthToLeft = direccion
+    init {
+        //Si la cantidad de peces esta bien deja generar un pez en caso contrario no
         if(maxPeces > cantPeces)
             cantPeces += 1
         else
             throw Exception()
+
+        //Creamos la imagen y añadimos sus caracteristicas
         ivPez = ImageView(activity)
         ivPez.isClickable = true
         ivPez.setImageResource(R.drawable.sardina_atrapar_sardinas)
         ivPez.translationY = (250..450).random() + separacion
-        if((screenHeight - 350) <= ivPez.translationY) {
-            Log.d("HEIGHT", screenHeight.toString())
-            separacion = 250f
-        }else
-            separacion += 250
 
         screenHeight = activity.resources.displayMetrics.heightPixels.toFloat()
         screenWidth = activity.resources.displayMetrics.widthPixels.toFloat()
+        if((screenHeight - 350) <= ivPez.translationY)
+            separacion = 250f
+        else
+            separacion += 250f
 
+        // El layout para la sardina
         val layoutParams = ConstraintLayout.LayoutParams(
             ConstraintLayout.LayoutParams.WRAP_CONTENT,
             ConstraintLayout.LayoutParams.WRAP_CONTENT
         )
+        layoutParams.width = widthPez
+        layoutParams.height = 250
 
+        //Mira si esta a la derecha
         if (rigthToLeft) {
             layoutParams.endToEnd = layout.id
             layoutParams.topToTop = layout.id
-        }else { // Invertir la imagen horizontalmente
+        }else  // Invertir la imagen horizontalmente
             ivPez.scaleX = -1f
-        }
-        layoutParams.width = widthPez
-        layoutParams.height = 250
         ivPez.visibility = View.INVISIBLE
+
+        //Añadimos al layout principal
         layout.addView(ivPez, layoutParams)
     }
 
-    fun startAnimation(desplazamiento:Int, duracionMovimiento:Long, duracionFinal:Long, layout: ConstraintLayout
+    /**
+     * Animacion de la sardina
+     */
+    fun startAnimation(duracionMovimiento:Long, duracionFinal:Long, layout: ConstraintLayout
                        , event: () -> Unit){
-
+        //Donde empieza y termina la sardina
         val startX = if (rigthToLeft) widthPez.toFloat() else -widthPez.toFloat()
         val endX = if (rigthToLeft) -screenWidth else screenWidth
 
+        //Animacion del movimiento
         val animacionMover = ObjectAnimator.ofFloat(ivPez,"translationX", startX, endX)
-
         animacionMover.interpolator = AccelerateDecelerateInterpolator()
         animacionMover.duration = duracionMovimiento
 
+        //Animacion al final
         val animacionFinal = ValueAnimator.ofFloat(1f, 0f)
         animacionFinal.addUpdateListener { animation ->
             val factor = animation.animatedValue as Float
@@ -98,13 +111,15 @@ class Pez {
         animacionFinal.startDelay = 150
 
         val animacionConjunta = AnimatorSet()
-        animacionConjunta.playSequentially(animacionMover)
+        animacionConjunta.playSequentially(animacionMover, animacionFinal)
 
+        //Al darle click a la sardina
         imagen.setOnClickListener {
             event()
             animacionFinal.start()
         }
 
+        //Inicia la animacion y visibiliza la sardina
         imagen.post {
             animacionConjunta.start()
             ivPez.visibility = View.VISIBLE
