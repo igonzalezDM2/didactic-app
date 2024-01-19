@@ -59,8 +59,8 @@ class MainActivity : Lanzador() {
     private lateinit var btPrueba6Cancion: Button
 //    private lateinit var btPrueba7Trainera: Button
     private lateinit var btPrueba8Alimentar: Button
-    private lateinit var btPrueba9Puerto: Button
-    private lateinit var btPrueba10Tangram: Button
+//    private lateinit var btPrueba9Puerto: Button
+//    private lateinit var btPrueba10Tangram: Button
     private lateinit var btSalir: Button
 
     private lateinit var llSerantes: LinearLayout
@@ -126,8 +126,8 @@ class MainActivity : Lanzador() {
         btPrueba6Cancion = findViewById(R.id.bt_prueba6_cancion)
 //        btPrueba7Trainera = findViewById(R.id.bt_prueba7_trainera)
         btPrueba8Alimentar = findViewById(R.id.bt_prueba8_alimentar)
-        btPrueba9Puerto = findViewById(R.id.bt_prueba9_puerto)
-        btPrueba10Tangram = findViewById(R.id.bt_prueba10_tangram)
+//        btPrueba9Puerto = findViewById(R.id.bt_prueba9_puerto)
+//        btPrueba10Tangram = findViewById(R.id.bt_prueba10_tangram)
         btSalir = findViewById(R.id.bt_salir)
 
         llSerantes = findViewById(R.id.llSerantes)
@@ -150,8 +150,8 @@ class MainActivity : Lanzador() {
         btPrueba6Cancion.setOnClickListener { goToActividades(6) }
 //        btPrueba7Trainera.setOnClickListener { goToActividades(7) }
         btPrueba8Alimentar.setOnClickListener { goToActividades(8) }
-        btPrueba9Puerto.setOnClickListener { goToActividades(9) }
-        btPrueba10Tangram.setOnClickListener { goToActividades(10) }
+//        btPrueba9Puerto.setOnClickListener { goToActividades(9) }
+//        btPrueba10Tangram.setOnClickListener { goToActividades(10) }
         btSalir.setOnClickListener { goToActividades(11) }
     }
 
@@ -203,7 +203,17 @@ class MainActivity : Lanzador() {
                     intArrayOf(R.drawable.foto_cancion1, R.drawable.foto_cancion2, R.drawable.foto_cancion3),
                     R.raw.audio_cancion, Intent(this, CancionActivity::class.java))
                 7 -> lanzarJuego(arrayOf(""), intArrayOf(0), 0, Intent(this, TraineraActivity::class.java))
-                8 -> lanzarJuego(arrayOf(resources.getText(R.string.explicacion_lanzar).toString()), intArrayOf(0), R.raw.audio_lanzar, Intent(this, LanzamientoActivity::class.java))
+                8 -> lanzarJuegoYT(
+                    arrayOf(
+                        resources.getText(R.string.explicacion_udala1).toString(),
+                        resources.getText(R.string.explicacion_udala2).toString(),
+                        resources.getText(R.string.explicacion_udala3).toString(),
+                        resources.getText(R.string.explicacion_udala4).toString(),
+                        resources.getText(R.string.explicacion_udala5).toString()
+                    ),
+                    "https://www.youtube.com/embed/9PLuQIg2n_Q?si=ftmUa28IQeh08DyA",
+                    R.raw.audio_lanzar,
+                    Intent(this, LanzamientoActivity::class.java))
                 9 -> lanzarJuego(arrayOf(""), intArrayOf(0), 0, Intent(this, PuertoActivity::class.java))
                 10 -> lanzarJuego(arrayOf(""), intArrayOf(0), 0, Intent(this, Puzzle4x2Activity::class.java))
                 else -> lanzarJuego(Intent(this, MapActivity::class.java))
@@ -360,7 +370,5 @@ class MainActivity : Lanzador() {
             }
         }
     }
-
-
 
 }

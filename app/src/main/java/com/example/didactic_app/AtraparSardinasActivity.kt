@@ -17,7 +17,9 @@ import androidx.constraintlayout.widget.ConstraintLayout
 import androidx.fragment.app.FragmentManager
 import com.example.didactic_app.dialogs.DialogoFinJuego
 import com.example.didactic_app.dialogs.OnDialogoConfirmacionListener
+import com.example.didactic_app.enums.Lugar
 import com.example.didactic_app.model.Pez
+import com.example.didactic_app.utilis.Utils
 import kotlin.math.log
 import kotlin.random.Random
 
@@ -67,6 +69,7 @@ class AtraparSardinasActivity : Lanzador() {
         }
 
         temporizadorJuego.onFinish = {
+            Utils.anadirSuperado(this, Lugar.SARDINERA)
             lanzarJuego(arrayOf(
                 resources.getText(R.string.sardina_y_puzzle).toString(),
             ), intArrayOf(
