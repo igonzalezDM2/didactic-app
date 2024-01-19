@@ -3,27 +3,22 @@ package com.example.didactic_app
 import android.content.Intent
 import android.media.MediaPlayer
 import android.os.Bundle
-import android.os.Handler
-import android.os.Handler.Callback
-import android.os.Looper
-import android.os.Message
 import android.view.View
-import android.widget.ArrayAdapter
+import android.webkit.WebChromeClient
+import android.webkit.WebView
 import android.widget.ImageButton
-import android.widget.ImageView
 import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.isVisible
-import java.lang.Thread.sleep
 import java.util.Timer
-import java.util.TimerTask
 import kotlin.concurrent.timerTask
 
-class ExplicacionActivity : AppCompatActivity() {
+
+class ExplicacionActivityYT : AppCompatActivity() {
 
 
 
-    lateinit var ivFondo: ImageView
+    lateinit var ivFondo: WebView
     lateinit var tvExplicacion: TextView
     lateinit var btnAudio: ImageButton
     lateinit var btnAvanzar: ImageButton
@@ -32,7 +27,7 @@ class ExplicacionActivity : AppCompatActivity() {
 
     private var audio: Int? = null
     private var texto: Array<String>? = null
-    private var fondo: IntArray? = null
+    private var fondo: String? = null
 
     private var index = 0
     private val DELAY = 50
@@ -40,34 +35,31 @@ class ExplicacionActivity : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_explicacion)
+        setContentView(R.layout.activity_explicacion_yt)
 
         ivFondo = findViewById(R.id.ivFondo)
         tvExplicacion = findViewById(R.id.tvExplicacion)
         btnAudio = findViewById(R.id.btnAudio)
         btnAvanzar = findViewById(R.id.btnAvanzar)
 
+        val webSettings = ivFondo.settings
+        webSettings.javaScriptEnabled = true
+
+        ivFondo.webChromeClient = WebChromeClient() // Necesario para la reproducción de videos
+
+
+        // URL del video de YouTube (reemplázalo con el enlace del video que desees mostrar)
+
+
+
         var variables = intent.extras
         if (variables != null) {
-            fondo = variables.getIntArray("fondo")
+            fondo = variables.getString("fondo")
             if (fondo != null) {
-
-                if (fondo!!.size > 0) {
-
-                    var ind:Int = 0
-                    Timer().scheduleAtFixedRate(timerTask {
-                        runOnUiThread() {
-                            setRecursoImagen(fondo!![ind])
-                            ind++
-                            if (ind == fondo!!.size) {
-                                ind = 0
-                            }
-                        }
-                    }, 0, 5000)
-
-                } else if (fondo != null && fondo!!.isNotEmpty()){
-                    setRecursoImagen(fondo!![0])
-                }
+                // Configura el WebView para cargar el video
+                val html =
+                    "<iframe width=\"100%\" height=\"100%\" src=\"$fondo\" frameborder=\"0\" allowfullscreen></iframe>"
+                ivFondo.loadData(html, "text/html", "utf-8")
             }
             val recursoAudio: Int = variables.getInt("audio")
             if (recursoAudio > 0) {
@@ -140,10 +132,6 @@ class ExplicacionActivity : AppCompatActivity() {
             mp!!.release()
             mp = null
         }
-    }
-
-    fun setRecursoImagen(imagen: Int) {
-        ivFondo.setImageResource(imagen)
     }
 
     fun setRecursoAudio(audio: Int) {

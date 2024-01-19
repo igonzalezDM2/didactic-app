@@ -286,15 +286,15 @@
                 style="@style/botones_menu"
                 android:text="@string/prueba8_alimentar" />
 
-            <Button
-                android:id="@+id/bt_prueba9_puerto"
-                style="@style/botones_menu"
-                android:text="@string/prueba9_puerto" />
+<!--            <Button-->
+<!--                android:id="@+id/bt_prueba9_puerto"-->
+<!--                style="@style/botones_menu"-->
+<!--                android:text="@string/prueba9_puerto" />-->
 
-            <Button
-                android:id="@+id/bt_prueba10_tangram"
-                style="@style/botones_menu"
-                android:text="Tangram" />
+<!--            <Button-->
+<!--                android:id="@+id/bt_prueba10_tangram"-->
+<!--                style="@style/botones_menu"-->
+<!--                android:text="Tangram" />-->
         </LinearLayout>
 
         </LinearLayout>
