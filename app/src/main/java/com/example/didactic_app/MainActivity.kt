@@ -19,6 +19,7 @@ import android.widget.Toast
 import androidx.activity.result.ActivityResult
 import androidx.activity.result.contract.ActivityResultContracts
 import androidx.appcompat.app.AppCompatActivity
+import androidx.cardview.widget.CardView
 import androidx.core.app.ActivityCompat
 import androidx.core.content.ContextCompat
 import com.example.didactic_app.enums.Lugar
@@ -71,13 +72,20 @@ class MainActivity : Lanzador() {
 //    private lateinit var llRemo: LinearLayout
     private lateinit var llUdala: LinearLayout
 
+    private lateinit var tvNoraSerantes: TextView
+    private lateinit var tvNoraSardinera: TextView
+    private lateinit var tvNoraSarejosle: TextView
+    private lateinit var tvNoraMuseo: TextView
+    private lateinit var tvNoraParque: TextView
+    private lateinit var tvNoraUdala: TextView
+
     private lateinit var mapPartida: Map<Lugar, Boolean>
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
+        cargarMapa()
         initComponentes()
         initOyentes()
-        cargarMapa()
         checkSuperados()
 
 //        if (!comprobarPermisos()) {
@@ -137,7 +145,16 @@ class MainActivity : Lanzador() {
         llParque = findViewById(R.id.llParque)
 //        llRemo = findViewById(R.id.llRemo)
         llUdala = findViewById(R.id.llUdala)
+
+        tvNoraSerantes = findViewById(R.id.tvNoraSerantes)
+        tvNoraSardinera = findViewById(R.id.tvNoraSardinera)
+        tvNoraSarejosle = findViewById(R.id.tvNoraSarejosle)
+        tvNoraMuseo = findViewById(R.id.tvNoraMuseo)
+        tvNoraParque = findViewById(R.id.tvNoraParque)
+        tvNoraUdala = findViewById(R.id.tvNoraUdala)
+
         ocultarLinears()
+        ocultarNora()
     }
 
     private fun initOyentes() {
@@ -280,6 +297,7 @@ class MainActivity : Lanzador() {
             latitud = location.latitude
             longitud = location.longitude
             ocultarLinears()
+            ocultarNora()
             if (comprobarLocalizacion(COORDENADAS_SERANTES, 750)) {
                 llSerantes.visibility = LinearLayout.VISIBLE
             } else if (comprobarLocalizacion(COORDENADAS_SARDINERA, 75)) {
@@ -311,7 +329,58 @@ class MainActivity : Lanzador() {
         llMuseo.visibility = LinearLayout.GONE
         llParque.visibility = LinearLayout.GONE
 //        llRemo.visibility = LinearLayout.GONE
-        llUdala.visibility = LinearLayout.GONE
+        if (!ayuntamientoVisible()) {
+            llUdala.visibility = LinearLayout.GONE
+        }
+    }
+    private fun ocultarNora() {
+        if (mapPartida[Lugar.SERANTES] == true) {
+            tvNoraSerantes.visibility = LinearLayout.GONE
+        } else {
+            tvNoraSerantes.visibility = LinearLayout.VISIBLE
+        }
+        if (mapPartida[Lugar.SARDINERA] == true) {
+            tvNoraSardinera.visibility = LinearLayout.GONE
+        } else {
+            tvNoraSardinera.visibility = LinearLayout.VISIBLE
+        }
+        if (mapPartida[Lugar.SARE_JOSLE] == true) {
+            tvNoraSarejosle.visibility = LinearLayout.GONE
+        } else {
+            tvNoraSarejosle.visibility = LinearLayout.VISIBLE
+        }
+        if (mapPartida[Lugar.MUSEO] == true) {
+            tvNoraMuseo.visibility = LinearLayout.GONE
+        } else {
+            tvNoraMuseo.visibility = LinearLayout.VISIBLE
+        }
+        if (mapPartida[Lugar.PARQUE] == true) {
+            tvNoraParque.visibility = LinearLayout.GONE
+        } else {
+            tvNoraParque.visibility = LinearLayout.VISIBLE
+        }
+        if (mapPartida[Lugar.AYUNTAMIENTO] == true || !ayuntamientoVisible()) {
+            tvNoraUdala.visibility = LinearLayout.GONE
+        } else {
+            tvNoraUdala.visibility = LinearLayout.VISIBLE
+        }
+    }
+
+    fun juegoCompletado(): Boolean {
+        return mapPartida[Lugar.SERANTES] == true &&
+                mapPartida[Lugar.SARDINERA] == true &&
+                mapPartida[Lugar.SARE_JOSLE] == true &&
+                mapPartida[Lugar.MUSEO] == true &&
+                mapPartida[Lugar.PARQUE] == true &&
+                mapPartida[Lugar.AYUNTAMIENTO] == true
+    }
+
+    fun ayuntamientoVisible(): Boolean {
+        return mapPartida[Lugar.SERANTES] == true &&
+                mapPartida[Lugar.SARDINERA] == true &&
+                mapPartida[Lugar.SARE_JOSLE] == true &&
+                mapPartida[Lugar.MUSEO] == true &&
+                mapPartida[Lugar.PARQUE] == true
     }
 
 
@@ -368,6 +437,9 @@ class MainActivity : Lanzador() {
                 }
 
             }
+        }
+        if (juegoCompletado()) {
+            findViewById<CardView>(R.id.cvNora).visibility = CardView.GONE
         }
     }
 
