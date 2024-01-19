@@ -7,7 +7,6 @@ import android.app.AlertDialog
 import android.content.DialogInterface
 import android.content.Intent
 import android.content.pm.PackageManager
-import android.database.sqlite.SQLiteDatabase
 import android.location.Location
 import android.location.LocationListener
 import android.location.LocationManager
@@ -16,17 +15,12 @@ import android.widget.Button
 import android.widget.LinearLayout
 import android.widget.TextView
 import android.widget.Toast
-import androidx.activity.result.ActivityResult
-import androidx.activity.result.contract.ActivityResultContracts
-import androidx.appcompat.app.AppCompatActivity
 import androidx.cardview.widget.CardView
 import androidx.core.app.ActivityCompat
 import androidx.core.content.ContextCompat
 import com.example.didactic_app.enums.Lugar
 import com.example.didactic_app.utilis.Utils
-import java.util.function.Consumer
 import kotlin.math.cos
-import kotlin.system.exitProcess
 
 
 class MainActivity : Lanzador() {
@@ -78,6 +72,8 @@ class MainActivity : Lanzador() {
     private lateinit var tvNoraMuseo: TextView
     private lateinit var tvNoraParque: TextView
     private lateinit var tvNoraUdala: TextView
+
+    private lateinit var cvFinJuego: CardView
 
     private lateinit var mapPartida: Map<Lugar, Boolean>
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -152,6 +148,7 @@ class MainActivity : Lanzador() {
         tvNoraMuseo = findViewById(R.id.tvNoraMuseo)
         tvNoraParque = findViewById(R.id.tvNoraParque)
         tvNoraUdala = findViewById(R.id.tvNoraUdala)
+        cvFinJuego = findViewById(R.id.cvFinJuego)
 
         ocultarLinears()
         ocultarNora()
@@ -440,6 +437,7 @@ class MainActivity : Lanzador() {
         }
         if (juegoCompletado()) {
             findViewById<CardView>(R.id.cvNora).visibility = CardView.GONE
+            cvFinJuego.visibility = CardView.VISIBLE
         }
     }
 
