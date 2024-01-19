@@ -313,6 +313,8 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="50sp"
         app:cardCornerRadius="16sp"
+        android:id="@+id/cvFinJuego"
+        android:visibility="gone"
         app:layout_constraintTop_toBottomOf="@id/cv_menu">
         <TextView
             android:layout_width="match_parent"
