@@ -16,8 +16,15 @@ import com.example.didactic_app.enums.Lugar
 import com.example.didactic_app.model.RespuestasCancion
 import com.example.didactic_app.utilis.Utils
 
+/**
+ * Clase CancionActivity
+ * Esta clase representa la actividad que gestiona el juego de adivinar canciones.
+ */
 class CancionActivity : Lanzador(), OnDialogoConfirmacionListener {
 
+    /**
+     * Array de respuestas de canciones.
+     */
     private val RESPUESTAS: Array<RespuestasCancion> = arrayOf(
         RespuestasCancion(R.string.bilbainada1, R.string.bilbainada_resp1_1, R.string.bilbainada_resp1_2, R.string.bilbainada_resp1_3, R.string.bilbainada_resp1_2),
         RespuestasCancion(R.string.bilbainada2, R.string.bilbainada_resp2_1, R.string.bilbainada_resp2_2, R.string.bilbainada_resp2_3, R.string.bilbainada_resp2_1),
@@ -28,6 +35,9 @@ class CancionActivity : Lanzador(), OnDialogoConfirmacionListener {
         RespuestasCancion(R.string.bilbainada5, R.string.bilbainada_resp5_1, R.string.bilbainada_resp5_2, R.string.bilbainada_resp5_3, R.string.bilbainada_resp5_1),
     )
 
+    /**
+     * Array de IDs de audios.
+     */
     private val AUDIOS: IntArray = intArrayOf(
         R.raw.bilbainada1, R.raw.bilbainada1_1,
         R.raw.bilbainada2, R.raw.bilbainada2_1,
@@ -37,6 +47,9 @@ class CancionActivity : Lanzador(), OnDialogoConfirmacionListener {
         R.raw.bilbainada3, R.raw.bilbainada3_1,
         R.raw.bilbainada5, R.raw.bilbainada5_1)
 
+    /**
+     * Array de IDs de letras.
+     */
     private val LETRAS: IntArray = intArrayOf(
         R.string.bilbainada1,
         R.string.bilbainada2,
@@ -47,26 +60,62 @@ class CancionActivity : Lanzador(), OnDialogoConfirmacionListener {
         R.string.bilbainada5,
     )
 
+    /**
+     * Reproductor de audio.
+     */
     private var mp: MediaPlayer? = null
 
+    /**
+     * Contador de la canción actual.
+     */
     private  var contador: Int = 0
+    /**
+     * Número de aciertos.
+     */
     private var aciertos: Int = 0
 
+    /**
+     * Botón de la opción 1.
+     */
     private lateinit var btnOpcion1: Button
+    /**
+     * Botón de la opción 2.
+     */
     private lateinit var btnOpcion2: Button
+    /**
+     * Botón de la opción 3.
+     */
     private lateinit var btnOpcion3: Button
 
+    /**
+     * Array de botones de selección.
+     */
     private lateinit var botonesSeleccion: Array<Button>
 
+    /**
+     * Botón de reproducción.
+     */
     private lateinit var btnPlay: ImageButton
 
+    /**
+     * TextView de la canción.
+     */
     private lateinit var tvCancion: TextView
 
+    /**
+     * TextView del contador.
+     */
     private lateinit var tvContador: TextView
+    /**
+     * TextView de aciertos y fallos.
+     */
     private lateinit var tvBienMal: TextView
 
 
 
+    /**
+     * Método llamado cuando la actividad es creada.
+     */
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_cancion)
@@ -98,9 +147,18 @@ class CancionActivity : Lanzador(), OnDialogoConfirmacionListener {
 
     }
 
+    /**
+     * Reproduce el audio correspondiente al recurso proporcionado.
+     * @param recurso El recurso de audio a reproducir.
+     */
     fun reproducirAudio(recurso: Int) {
         reproducirAudio(recurso) {}
     }
+    /**
+     * Reproduce el audio correspondiente al recurso proporcionado y ejecuta una acción al terminar la reproducción.
+     * @param recurso El recurso de audio a reproducir.
+     * @param alTerminar La acción a ejecutar al terminar la reproducción.
+     */
     fun reproducirAudio(recurso: Int, alTerminar: () -> Unit): Unit {
         try {
             if (mp != null) { //Si estaba en reproducción, se para; y si estaba parado, se reproduce desde el principio.
@@ -116,6 +174,11 @@ class CancionActivity : Lanzador(), OnDialogoConfirmacionListener {
         }
     }
 
+    /**
+     * Reproduce forzadamente el audio correspondiente al recurso proporcionado y ejecuta una acción al terminar la reproducción.
+     * @param recurso El recurso de audio a reproducir.
+     * @param alTerminar La acción a ejecutar al terminar la reproducción.
+     */
     fun forzarReproduccionDeAudio(recurso: Int, alTerminar: () -> Unit): Unit {
         try {
             if (mp != null) {
@@ -162,6 +225,10 @@ class CancionActivity : Lanzador(), OnDialogoConfirmacionListener {
         }
     }
 
+    /**
+     * Método llamado cuando el juego ha terminado.
+     * Oculta los botones de selección y muestra un diálogo con el resultado del juego.
+     */
     private fun seAcabo() {
         botonesSeleccion.forEach { btn ->
             var view: View = btn.parent as View
@@ -177,6 +244,12 @@ class CancionActivity : Lanzador(), OnDialogoConfirmacionListener {
 
     }
 
+    /**
+     * Comprueba si la respuesta seleccionada es correcta y actualiza la interfaz en consecuencia.
+     *
+     * @param btn El botón de la respuesta seleccionada.
+     * @param resp El objeto que contiene la información de la respuesta correcta.
+     */
     private fun comprobarRespuesta(btn: Button, resp: RespuestasCancion) {
 
         var indResp: Int = getIndiceRespuesta(btn)
@@ -201,6 +274,9 @@ class CancionActivity : Lanzador(), OnDialogoConfirmacionListener {
 
     }
 
+    /**
+     * Prepara las respuestas para ser mostradas en la interfaz.
+     */
     private fun preprararRespuestas() {
         btnOpcion1.setText(RESPUESTAS[contador].opcion1)
         btnOpcion1.setBackgroundResource(R.color.green)
@@ -217,6 +293,12 @@ class CancionActivity : Lanzador(), OnDialogoConfirmacionListener {
         btnPlay.isEnabled = true
     }
 
+    /**
+     * Obtiene el índice de la respuesta seleccionada.
+     *
+     * @param btn El botón de la respuesta seleccionada.
+     * @return El índice de la respuesta seleccionada.
+     */
     private fun getIndiceRespuesta(btn: Button): Int{
         when (btn.id) {
             R.id.btnOpcion1 -> return 0
@@ -245,6 +327,9 @@ class CancionActivity : Lanzador(), OnDialogoConfirmacionListener {
         finish()
     }
 
+    /**
+     * Reinicia el juego.
+     */
     private fun resetearJuego() {
         contador = 0
         aciertos = 0

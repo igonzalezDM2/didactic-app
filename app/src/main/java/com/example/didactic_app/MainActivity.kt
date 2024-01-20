@@ -23,59 +23,164 @@ import com.example.didactic_app.utilis.Utils
 import kotlin.math.cos
 
 
+/**
+ * Clase MainActivity que representa la actividad principal de la aplicación.
+ */
 class MainActivity : Lanzador() {
 
+    /**
+     * Objeto compañero que contiene arreglos de sardinas y piezas.
+     */
     companion object {
+        /**
+         * Arreglo de sardinas.
+         */
         var arreglo_sardinas = arrayOf("", "", "", "", "", "")
+        
+        /**
+         * Arreglo de piezas.
+         */
         var arreglo_piezas = arrayOf("", "", "", "", "", "", "")
     }
 
 
+    /**
+     * Coordenadas del lugar Serantes.
+     */
     private val COORDENADAS_SERANTES: DoubleArray = doubleArrayOf(43.3359377879001, -3.0619840315480364)
+    /**
+     * Coordenadas del lugar Sardinera.
+     */
     private val COORDENADAS_SARDINERA: DoubleArray = doubleArrayOf(43.33437796738136, -3.039328003051773)
+    /**
+     * Coordenadas del lugar Sare Josle.
+     */
     private val SARE_JOSLEEN_LEKUA: DoubleArray = doubleArrayOf(43.33005582802109, -3.0309998673703076)
+    /**
+     * Coordenadas del lugar Itsas Museoa.
+     */
     private val ITSAS_MUSEOA: DoubleArray = doubleArrayOf(43.33077682113878, -3.030527877109482)
+    /**
+     * Coordenadas del lugar Santurtzi Parkea.
+     */
     private val SANTURTZIKO_PARKEA: DoubleArray = doubleArrayOf(43.32879964909476, -3.031697605351168)
+    /**
+     * Coordenadas del lugar Arraun Udal Pabiloia.
+     */
     private val ARRAUN_UDAL_PABILOIA: DoubleArray = doubleArrayOf(43.33072217111924, -3.03158330305195)
+    /**
+     * Coordenadas del lugar Udala.
+     */
     private val UDALA: DoubleArray = doubleArrayOf(43.32883180778487, -3.033054932499828)
 
+    /**
+     * Código de solicitud de permiso de ubicación.
+     */
     private val LOCATION_PERMISSION_REQUEST_CODE = 123;
+    /**
+     * Administrador de ubicación.
+     */
     private lateinit var locationManager: LocationManager
 
+    /**
+     * Latitud actual.
+     */
     private var latitud: Double = 0.0
+    /**
+     * Longitud actual.
+     */
     private var longitud: Double = 0.0
 
+    /**
+     * Botón para acceder al mapa.
+     */
     private lateinit var btMapa: Button
+    /**
+     * Botón para la prueba 1 - Barcos.
+     */
     private lateinit var btPrueba1Barcos: Button
+    /**
+     * Botón para la prueba 2 - Pescar.
+     */
     private lateinit var btPrueba2Pescar: Button
+    /**
+     * Botón para la prueba 3 - Sopa.
+     */
     private lateinit var btPrueba3Sopa: Button
-//    private lateinit var btPrueba4Rederas: Button
+    /**
+     * Botón para la prueba 5 - Cocinar.
+     */
     private lateinit var btPrueba5Cocinar: Button
+    /**
+     * Botón para la prueba 6 - Canción.
+     */
     private lateinit var btPrueba6Cancion: Button
-//    private lateinit var btPrueba7Trainera: Button
+    /**
+     * Botón para la prueba 8 - Alimentar.
+     */
     private lateinit var btPrueba8Alimentar: Button
-//    private lateinit var btPrueba9Puerto: Button
-//    private lateinit var btPrueba10Tangram: Button
+    /**
+     * Botón para salir.
+     */
     private lateinit var btSalir: Button
 
+    /**
+     * Diseño lineal para el lugar Serantes.
+     */
     private lateinit var llSerantes: LinearLayout
+    /**
+     * Diseño lineal para el lugar Sardinera.
+     */
     private lateinit var llSardinera: LinearLayout
+    /**
+     * Diseño lineal para el lugar Sare Josle.
+     */
     private lateinit var llSareJosle: LinearLayout
+    /**
+     * Diseño lineal para el lugar Itsas Museoa.
+     */
     private lateinit var llMuseo: LinearLayout
+    /**
+     * Diseño lineal para el lugar Santurtzi Parkea.
+     */
     private lateinit var llParque: LinearLayout
-//    private lateinit var llRemo: LinearLayout
+    /**
+     * Diseño lineal para el lugar Udala.
+     */
     private lateinit var llUdala: LinearLayout
 
+    /**
+     * Texto para mostrar la ubicación del lugar Serantes.
+     */
     private lateinit var tvNoraSerantes: TextView
+    /**
+     * Texto para mostrar la ubicación del lugar Sardinera.
+     */
     private lateinit var tvNoraSardinera: TextView
+    /**
+     * Texto para mostrar la ubicación del lugar Sare Josle.
+     */
     private lateinit var tvNoraSarejosle: TextView
+    /**
+     * Texto para mostrar la ubicación del lugar Itsas Museoa.
+     */
     private lateinit var tvNoraMuseo: TextView
+    /**
+     * Texto para mostrar la ubicación del lugar Santurtzi Parkea.
+     */
     private lateinit var tvNoraParque: TextView
+    /**
+     * Texto para mostrar la ubicación del lugar Udala.
+     */
     private lateinit var tvNoraUdala: TextView
 
     private lateinit var cvFinJuego: CardView
 
     private lateinit var mapPartida: Map<Lugar, Boolean>
+    
+    /**
+     * Método llamado cuando la actividad es creada.
+     */
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
@@ -99,6 +204,9 @@ class MainActivity : Lanzador() {
 
     }
 
+    /**
+     * Carga el mapa de la partida.
+     */
     private fun cargarMapa() {
         mapPartida = HashMap<Lugar, Boolean>(Lugar.values().size)
 
@@ -113,6 +221,10 @@ class MainActivity : Lanzador() {
         }
     }
 
+    /**
+     * Comprueba si se tienen los permisos necesarios.
+     * @return true si se tienen los permisos, false en caso contrario.
+     */
     private fun comprobarPermisos(): Boolean {
         return ContextCompat.checkSelfPermission(this, android.Manifest.permission.ACCESS_FINE_LOCATION) == PackageManager.PERMISSION_GRANTED &&
             ContextCompat.checkSelfPermission(this, android.Manifest.permission.ACCESS_COARSE_LOCATION) == PackageManager.PERMISSION_GRANTED &&
@@ -120,6 +232,9 @@ class MainActivity : Lanzador() {
     }
 
 
+    /**
+     * Inicializa los componentes de la actividad principal.
+     */
     private fun initComponentes() {
         btMapa = findViewById(R.id.bt_mapa)
         btPrueba1Barcos = findViewById(R.id.bt_prueba1_barcos)
@@ -154,6 +269,9 @@ class MainActivity : Lanzador() {
         ocultarNora()
     }
 
+    /**
+     * Inicializa los listeners de la actividad principal.
+     */
     private fun initOyentes() {
         btMapa.setOnClickListener { goToActividades(0) }
         btPrueba1Barcos.setOnClickListener { goToActividades(1) }
@@ -169,6 +287,11 @@ class MainActivity : Lanzador() {
         btSalir.setOnClickListener { goToActividades(11) }
     }
 
+    /**
+     * Navega a las actividades correspondientes según la opción seleccionada.
+     *
+     * @param opcion La opción seleccionada.
+     */
     private fun goToActividades(opcion: Int) {
 
         if (opcion == 11) {
@@ -238,6 +361,14 @@ class MainActivity : Lanzador() {
     }
 
 
+    /**
+     * Solicita permiso al usuario para acceder a recursos protegidos por el permiso especificado.
+     *
+     * @param permiso el permiso que se solicita
+     * @param justificacion la justificación para la solicitud del permiso
+     * @param requestCode el código de solicitud
+     * @param actividad la actividad actual
+     */
     private fun solicitarPermiso(
         permiso: String,
         justificacion: String,
@@ -268,6 +399,13 @@ class MainActivity : Lanzador() {
         }
     }
 
+    /**
+     * Comprueba si la ubicación se encuentra dentro de un radio específico.
+     *
+     * @param coordenadas las coordenadas de la ubicación
+     * @param radio el radio de la ubicación
+     * @return true si la ubicación se encuentra dentro del radio, de lo contrario false
+     */
     private fun comprobarLocalizacion(coordenadas: DoubleArray, radio: Int): Boolean {
         //Earth’s radius, sphere
         val RADIO_TIERRA =6378137.toDouble()
@@ -289,6 +427,9 @@ class MainActivity : Lanzador() {
                 (longitud in lonO..lon1))
     }
 
+    /**
+     * Objeto locationListener que escucha los cambios de ubicación.
+     */
     private val locationListener: LocationListener = object : LocationListener {
         override fun onLocationChanged(location: Location) {
             latitud = location.latitude
@@ -319,6 +460,9 @@ class MainActivity : Lanzador() {
         override fun onProviderDisabled(provider: String) {}
     }
 
+    /**
+     * Oculta los diseños lineales.
+     */
     private fun ocultarLinears() {
         llSerantes.visibility = LinearLayout.GONE
         llSardinera.visibility = LinearLayout.GONE
@@ -330,6 +474,10 @@ class MainActivity : Lanzador() {
             llUdala.visibility = LinearLayout.GONE
         }
     }
+    
+    /**
+     * Oculta la información de la ubicación.
+     */
     private fun ocultarNora() {
         if (mapPartida[Lugar.SERANTES] == true) {
             tvNoraSerantes.visibility = LinearLayout.GONE
@@ -363,6 +511,10 @@ class MainActivity : Lanzador() {
         }
     }
 
+    /**
+     * Comprueba si el juego está completado.
+     * @return true si todos los lugares están completados, false de lo contrario
+     */
     fun juegoCompletado(): Boolean {
         return mapPartida[Lugar.SERANTES] == true &&
                 mapPartida[Lugar.SARDINERA] == true &&
@@ -372,6 +524,10 @@ class MainActivity : Lanzador() {
                 mapPartida[Lugar.AYUNTAMIENTO] == true
     }
 
+    /**
+     * Verifica si el ayuntamiento es visible en el juego.
+     * @return true si todos los lugares excepto el ayuntamiento están completados, false de lo contrario
+     */
     fun ayuntamientoVisible(): Boolean {
         return mapPartida[Lugar.SERANTES] == true &&
                 mapPartida[Lugar.SARDINERA] == true &&
@@ -381,6 +537,9 @@ class MainActivity : Lanzador() {
     }
 
 
+    /**
+     * Gestiona la localización del usuario.
+     */
     fun gestionLocalizacion() {
         // Verifica si tienes permisos de ubicación
         if (ContextCompat.checkSelfPermission(
@@ -419,6 +578,9 @@ class MainActivity : Lanzador() {
         }
     }
 
+    /**
+     * Comprueba si los lugares han sido superados y muestra la información correspondiente.
+     */
     fun checkSuperados() {
         mapPartida.entries.forEach {e ->
             if (e.value) {
@@ -442,3 +604,4 @@ class MainActivity : Lanzador() {
     }
 
 }
+

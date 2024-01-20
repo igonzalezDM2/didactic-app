@@ -18,28 +18,55 @@ import com.example.didactic_app.dialogs.OnDialogoConfirmacionListener
 import com.example.didactic_app.model.Word
 import java.util.Random
 
+/**
+ * Clase SopaActivity que hereda de AppCompatActivity e implementa View.OnTouchListener y OnDialogoConfirmacionListener.
+ * Esta clase se encarga de manejar la lógica del juego de sopa de letras.
+ */
 class SopaActivity : AppCompatActivity(), View.OnTouchListener, OnDialogoConfirmacionListener {
 
+    /**
+     * Variables para almacenar las coordenadas iniciales y las diferencias entre las coordenadas iniciales y actuales.
+     */
     private var initX = -1f
     private var initY = -1f
     private var diffX = -1f
     private var diffY = -1f
     private var prevDiffX = -1f
     private var prevDiffY = -1f
+
+    /**
+     * Variable para almacenar el ancho de la celda.
+     */
     private var cellWidth = 0
 
+    /**
+     * Variables para referenciar el tablero del juego y el botón de avanzar.
+     */
     private lateinit var game_board: GridLayout
     private lateinit var btnAvanzar: ImageButton
 
+    /**
+     * Variable para contar las palabras acertadas.
+     */
     private var acertadas: Int = 0
 
+    /**
+     * Enumeración para definir la dirección del deslizamiento.
+     */
     enum class SwipeDirection {
         Undefined,
         Vertical,
         Horizontal }
 
+    /**
+     * Variable para almacenar la dirección del deslizamiento.
+     */
     private var direction = SwipeDirection.Undefined
 
+    /**
+     * Método que se ejecuta cuando se toca la pantalla.
+     * Maneja los eventos de tocar, mover y soltar.
+     */
     override fun onTouch(v: View, event: MotionEvent): Boolean {
         when (event.action) {
             MotionEvent.ACTION_DOWN -> {
@@ -149,7 +176,15 @@ class SopaActivity : AppCompatActivity(), View.OnTouchListener, OnDialogoConfirm
         return true
     }
 
+    /**
+     * Respuestas del juego de sopa de letras.
+     */
     private lateinit var answers: Array<Word>
+    
+    /**
+     * Método que se ejecuta al crear la actividad.
+     * @param savedInstanceState Datos proporcionados para reanudar la actividad.
+     */
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_sopa)
@@ -175,6 +210,9 @@ class SopaActivity : AppCompatActivity(), View.OnTouchListener, OnDialogoConfirm
         generateBoardHelper()
     }
 
+    /**
+     * Genera el tablero del juego.
+     */
     private fun generateBoardHelper(){
         // reset all flags to false
         letterFlag = Array(dim) {Array(dim) { false } }
@@ -253,6 +291,11 @@ class SopaActivity : AppCompatActivity(), View.OnTouchListener, OnDialogoConfirm
 
     }
 
+    /**
+     * Selecciona una letra en el tablero según su etiqueta.
+     *
+     * @param tag la etiqueta de la letra a seleccionar
+     */
     private fun selectLetter(tag: String){
         for (i in 0 until game_board.childCount){
             val row = game_board.getChildAt(i) as LinearLayout
@@ -265,6 +308,11 @@ class SopaActivity : AppCompatActivity(), View.OnTouchListener, OnDialogoConfirm
         }
     }
 
+    /**
+     * Deselecciona una letra en el tablero según su etiqueta.
+     *
+     * @param tag la etiqueta de la letra a deseleccionar
+     */
     private fun unselectLetter(tag: String){
         var tagInt = tag.toInt()
         for (i in 0 until game_board.childCount){
@@ -280,6 +328,13 @@ class SopaActivity : AppCompatActivity(), View.OnTouchListener, OnDialogoConfirm
         }
     }
 
+    /**
+     * Deselecciona las letras en el tablero según su posición de inicio y fin, y su orientación.
+     *
+     * @param start la posición de inicio de la selección
+     * @param end la posición de fin de la selección
+     * @param isHorizontal indica si la selección es horizontal (true) o vertical (false)
+     */
     private fun unselectLetters(start: Int, end: Int, isHorizontal: Boolean){
         var _start = start
         var _end = end
@@ -301,6 +356,12 @@ class SopaActivity : AppCompatActivity(), View.OnTouchListener, OnDialogoConfirm
         }
     }
 
+    /**
+     * Comprueba la respuesta dada por el usuario.
+     *
+     * @param start la posición de inicio de la selección
+     * @param end la posición de fin de la selección
+     */
     private fun checkAnswer(start: String, end: String){
         var isFound = false
         var foundWord = ""
@@ -343,6 +404,13 @@ class SopaActivity : AppCompatActivity(), View.OnTouchListener, OnDialogoConfirm
         direction = SwipeDirection.Undefined
     }
 
+    /**
+     * Marca las celdas de la sopa de letras que forman parte de la palabra encontrada.
+     *
+     * @param start la posición de inicio de la selección
+     * @param end la posición de fin de la selección
+     * @param isHorizontal indica si la palabra está en dirección horizontal
+     */
     private fun flagHelper(start: Int, end: Int, isHorizontal: Boolean){
         var _start = start
         var _end = end

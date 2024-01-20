@@ -8,6 +8,12 @@ import android.os.Bundle
 import android.widget.TextView
 import androidx.fragment.app.DialogFragment
 
+/**
+ * Clase para mostrar un diálogo al finalizar el juego.
+ *
+ * @param aciertos la cantidad de respuestas correctas
+ * @param total la cantidad total de respuestas
+ */
 class DialogoFinJuego(private val aciertos: Int, private val total: Int) : DialogFragment() {
     private var listener: OnDialogoConfirmacionListener? = null
     private val tvMensaje: TextView? = null
