@@ -114,6 +114,11 @@
     <string name="explicacion_azkena1">Alaaaaaa begira nire hegala berriz ere ondo dago!!! Eskerrik asko zuen lan gogorra eta laguntzagatik. Orain emango dizuedana argazki puzzlearen azken pieza da, goaz egitera!</string>
     <string name="explicacion_azkena_del_todo">Oso ondo lortu duzue!! Hori, gaur egungo Santurtziko portuko mapa da!! Eskerrik asko eskainitako laguntzagatik, orain nire etxera noa! Uztailera arte!!</string>
 
+    <string name="explicacion_principio_1">Kaixo! Nik dakizuen bezala Mentxu naiz, zuek bezala gure herri zoragarri honen biztanlea. Ni jaietan etortzen naiz eta hauek bukatzen direnean berriro ere nire etxera bueltatzen naiz energia berreskuratzeko.</string>
+    <string name="explicacion_principio_2">Urte honetan jaietatik bueltan nengoenean, nire hegala apurtuta zegoela konturatu nintzen. Hori dela eta, zuen laguntza eske etortzen naiz, lagundu diezadakezue nire hegala konpontzen?</string>
+    <string name="explicacion_principio_3">Horretarako sardinak jan behar ditut eta hori da zuen lana. Ni gure herriaren historiari buruz asko dakit eta hori azaltzen dizuedan bitartean zuek joku batzuk egin beharko dituzue. Jokuak betez gero, sardinak lortuko dituzue.</string>
+    <string name="explicacion_principio_4">Horiek niri emango dizkidazue eta hala nire hegala osasuntzu egongo da berriro. Gainera, sardina bat lortzen duzuen bitartean argazki baten pieza lortuko duzue ere eta amaieran, nire hegala ondo egongo denean, azkenengo pieza emango dizuet. Horrela, argazki misteriotsu bat ikusiko duzue! Hasteko prest?</string>
+
     <string name="sardina_y_puzzle">Oso ondo! Egindako lanaren ondorioz, sardina bat eta argazki baten zatia irabazi dituzue! Orain goaz hurrengo kokapenera!</string>
 
 </resources>

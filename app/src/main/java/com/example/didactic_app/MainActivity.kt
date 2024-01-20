@@ -201,6 +201,17 @@ class MainActivity : Lanzador() {
 
         gestionLocalizacion()
 
+        if (mapPartida.values.stream().allMatch{v -> v == false}) {
+            Utils.anadirSuperado(this, Lugar.INICIO)
+            lanzarJuego(arrayOf(
+                resources.getText(R.string.explicacion_principio_1).toString(),
+                resources.getText(R.string.explicacion_principio_2).toString(),
+                resources.getText(R.string.explicacion_principio_3).toString(),
+                resources.getText(R.string.explicacion_principio_4).toString(),
+            ), intArrayOf(),
+                R.raw.principio , Intent(this, MainActivity::class.java))
+        }
+
 
     }
 
