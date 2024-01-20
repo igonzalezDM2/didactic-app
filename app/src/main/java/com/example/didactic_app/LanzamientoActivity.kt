@@ -18,6 +18,9 @@ import com.example.didactic_app.dialogs.OnDialogoConfirmacionListener
 import kotlin.math.abs
 import kotlin.math.sin
 
+/**
+ * Clase que representa la actividad de lanzamiento con funcionalidades de juego.
+ */
 class LanzamientoActivity : Lanzador(), OnDialogoConfirmacionListener {
 
     private var contador = 0
@@ -42,11 +45,12 @@ class LanzamientoActivity : Lanzador(), OnDialogoConfirmacionListener {
     private  var xFinal = 0f
     private  var yFinal = 0f
 
-
     private var amplitud = 100f // Ajusta la amplitud según tus necesidades
     private var frecuencia = 2 * Math.PI / 5000 // Ajusta la frecuencia según tus necesidades
 
-
+    /**
+     * Método que se llama al crear la actividad.
+     */
     @SuppressLint("ClickableViewAccessibility")
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -122,6 +126,9 @@ class LanzamientoActivity : Lanzador(), OnDialogoConfirmacionListener {
 
 
 
+    /**
+     * Método que mueve la bola con una velocidad determinada.
+     */
     private fun moverBolaConVelocidad() {
         var parar = false
         val intervalo = 25
@@ -174,6 +181,9 @@ class LanzamientoActivity : Lanzador(), OnDialogoConfirmacionListener {
 
     }
 
+    /**
+     * Método que inicia la animación de la bola.
+     */
     private fun iniciarAnimacionMAS() {
 //        val periodo = 2000L // Ajusta el periodo según tus necesidades
         val startTime = System.currentTimeMillis()
@@ -205,6 +215,12 @@ class LanzamientoActivity : Lanzador(), OnDialogoConfirmacionListener {
         diana.post(runnable)
     }
 
+    /**
+     * Verifica si hay intersección entre la vista de referencia y la vista "sardina".
+     *
+     * @param referencia La vista de referencia con la que se verifica la intersección
+     * @return true si hay intersección, de lo contrario false
+     */
     private fun intersecta(referencia: View): Boolean {
         val firstPosition = IntArray(2)
         val secondPosition = IntArray(2)
@@ -227,6 +243,9 @@ class LanzamientoActivity : Lanzador(), OnDialogoConfirmacionListener {
         return rectFirstView.intersect(rectSecondView)
     }
 
+    /**
+     * Método que maneja la acción al hacer clic en el botón positivo.
+     */
     override fun onPossitiveButtonClick() {
         if (contador == 6) {
             lanzarJuego(arrayOf(
@@ -239,10 +258,16 @@ class LanzamientoActivity : Lanzador(), OnDialogoConfirmacionListener {
         }
     }
 
+    /**
+     * Método que maneja la acción al hacer clic en el botón negativo.
+     */
     override fun onNegativeButtonClick() {
         finish()
     }
 
+    /**
+     * Reinicia el juego.
+     */
     private fun resetearJuego() {
         contador = 0
         restantes = 6

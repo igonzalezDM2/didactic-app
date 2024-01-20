@@ -18,21 +18,64 @@ import com.example.didactic_app.enums.Lugar
 import com.example.didactic_app.utilis.Utils
 
 
+/**
+ * Clase que representa la actividad de cocinar.
+ */
 class CocinarActivity : Lanzador() {
 
+    /**
+     * Variable que representa el desplazamiento en el eje x.
+     */
     private var xDelta: Int = 0
+
+    /**
+     * Variable que representa el desplazamiento en el eje y.
+     */
     private var yDelta: Int = 0
+
+    /**
+     * Variable que indica si la sardina ha sido cocinada.
+     */
     private var cocinada: Boolean = false
+
+    /**
+     * Layout principal de la actividad.
+     */
     private lateinit var mainLayout: ViewGroup
+
+    /**
+     * ImageView que representa la sardina.
+     */
     private lateinit var sardina: ImageView
+
+    /**
+     * ImageView que representa la parrilla.
+     */
     private lateinit var parrilla: ImageView
+
+    /**
+     * Vista de referencia para la parrilla.
+     */
     private lateinit var vReferenciaParrilla: View
+
+    /**
+     * Vista de referencia para el plato.
+     */
     private lateinit var vReferenciaPlato: View
+
+    /**
+     * TextView que muestra el temporizador.
+     */
     private lateinit var tvTemporizador: TextView
+
+    /**
+     * TextView que muestra las instrucciones.
+     */
     private lateinit var tvInstrucciones: TextView
 
-
-
+    /**
+     * Método que se llama al crear la actividad.
+     */
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_cocinar)
@@ -58,7 +101,6 @@ class CocinarActivity : Lanzador() {
 //            animacionFlama()
         }
 
-
         sardina.setOnTouchListener { v, event ->
             val x = event.rawX.toInt()
             val y = event.rawY.toInt()
@@ -73,14 +115,11 @@ class CocinarActivity : Lanzador() {
                 }
 
                 MotionEvent.ACTION_UP -> {
-
-
                     if (!cocinada and estaSobreLaParrilla()) {
                         parrilla.setImageResource(R.drawable.parrilla)
                         tvTemporizador.visibility = View.VISIBLE
                         tvInstrucciones.setText("Itxaron, mesedez...")
                         temporizador.startTimer()
-
                     } else if (cocinada and estaSobreElPlato()) {
                         Utils.anadirSuperado(applicationContext, Lugar.MUSEO)
                         tvInstrucciones.setText("Bikain!")
@@ -91,25 +130,16 @@ class CocinarActivity : Lanzador() {
                         ), R.raw.sardina_y_puzzle_sarejosle, Intent(applicationContext, MainActivity::class.java)
                         )
                     }
-
                 }
 
                 MotionEvent.ACTION_MOVE -> {
                     val layoutParams = v.layoutParams as RelativeLayout.LayoutParams
-
-                    // Evitar que la ImageView se haga más pequeña al arrastrar hacia los bordes
                     if (x - xDelta >= 0 && x - xDelta + layoutParams.width <= mainLayout.width) {
                         sardina.x = x - xDelta.toFloat()
                     }
-
                     if (y - yDelta >= 0 && y - yDelta + layoutParams.height <= mainLayout.height) {
                         sardina.y = y - yDelta.toFloat()
                     }
-
-
-//                    layoutParams.rightMargin = 0
-//                    layoutParams.bottomMargin = 0
-
                     v.layoutParams = layoutParams
                 }
 
@@ -119,16 +149,25 @@ class CocinarActivity : Lanzador() {
             parrilla.invalidate()
             true
         }
-
     }
 
+    /**
+     * Método que verifica si la sardina está sobre la parrilla.
+     */
     fun estaSobreLaParrilla(): Boolean {
         return intersecta(vReferenciaParrilla)
     }
 
+    /**
+     * Método que verifica si la sardina está sobre el plato.
+     */
     fun estaSobreElPlato(): Boolean {
         return intersecta(vReferenciaPlato)
     }
+
+    /**
+     * Método que verifica si dos vistas se intersectan.
+     */
     fun intersecta(referencia: View): Boolean {
         val firstPosition = IntArray(2)
         val secondPosition = IntArray(2)
@@ -151,9 +190,10 @@ class CocinarActivity : Lanzador() {
         return rectFirstView.intersect(rectSecondView)
     }
 
+    /**
+     * Método que realiza la animación de la flama.
+     */
     fun animacionFlama(): Unit {
-
-
         val rotate = RotateAnimation(
             0f,
             360f,
@@ -168,8 +208,5 @@ class CocinarActivity : Lanzador() {
         val image = findViewById<View>(R.id.sardina1) as ImageView
 
         image.startAnimation(rotate)
-
     }
-
-
 }

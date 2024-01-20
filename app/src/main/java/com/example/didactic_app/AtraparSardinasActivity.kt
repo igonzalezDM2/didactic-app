@@ -23,6 +23,9 @@ import com.example.didactic_app.utilis.Utils
 import kotlin.math.log
 import kotlin.random.Random
 
+/**
+ * Clase que representa la actividad de atrapar sardinas.
+ */
 class AtraparSardinasActivity : Lanzador() {
     private lateinit var tvCantidadSardinas: TextView
     private lateinit var tvTiempo: TextView
@@ -32,6 +35,9 @@ class AtraparSardinasActivity : Lanzador() {
     private lateinit var temporizadorJuego: TemporizadorComponent
     private var cuentaAtrasInicio = 3
 
+    /**
+     * Método que se llama al crear la actividad.
+     */
     @SuppressLint("ClickableViewAccessibility")
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -82,6 +88,9 @@ class AtraparSardinasActivity : Lanzador() {
         temporizadorInicio.startTimer()
     }
 
+    /**
+     * Método para manejar la cuenta atrás del inicio del juego.
+     */
     private fun cuentaAtrasDelInicio(){
         if(cuentaAtrasInicio > 0) {
             tvTemporizadorInicio.text = cuentaAtrasInicio.toString()
@@ -94,6 +103,9 @@ class AtraparSardinasActivity : Lanzador() {
         cuentaAtrasInicio -= 1
     }
 
+    /**
+     * Método para manejar el evento de toque en una parte no transparente de la imagen.
+     */
     private fun clickSardina(){
         // Aquí puedes manejar el evento de toque en una parte no transparente de la imagen
         val cant = tvCantidadSardinas.text.toString().toInt()
