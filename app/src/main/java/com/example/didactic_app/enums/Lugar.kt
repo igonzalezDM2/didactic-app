@@ -1,6 +1,7 @@
 package com.example.didactic_app.enums
 
 enum class Lugar {
+    INICIO("inicio"),
     SERANTES("Serantes Mendia"),
     SARDINERA("La Sardinera eskultura"),
     SARE_JOSLE("Sare josleen lan lekua"),
