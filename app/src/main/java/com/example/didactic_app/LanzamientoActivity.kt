@@ -1,6 +1,7 @@
 package com.example.didactic_app
 
 import android.annotation.SuppressLint
+import android.content.Intent
 import android.content.res.Resources
 import android.graphics.Rect
 import androidx.appcompat.app.AppCompatActivity
@@ -17,7 +18,7 @@ import com.example.didactic_app.dialogs.OnDialogoConfirmacionListener
 import kotlin.math.abs
 import kotlin.math.sin
 
-class LanzamientoActivity : AppCompatActivity(), OnDialogoConfirmacionListener {
+class LanzamientoActivity : Lanzador(), OnDialogoConfirmacionListener {
 
     private var contador = 0
     private var restantes = 6
@@ -228,7 +229,11 @@ class LanzamientoActivity : AppCompatActivity(), OnDialogoConfirmacionListener {
 
     override fun onPossitiveButtonClick() {
         if (contador == 6) {
-            finish()
+            lanzarJuego(arrayOf(
+                resources.getText(R.string.explicacion_azkena1).toString(),
+            ), intArrayOf(
+                R.drawable.azkena
+            ), R.raw.azkena_1, Intent(this, Puzzle4x2Activity::class.java))
         } else {
             resetearJuego()
         }

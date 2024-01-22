@@ -1,5 +1,6 @@
 package com.example.didactic_app
 
+import android.content.Intent
 import android.media.MediaPlayer
 import android.os.Bundle
 import android.view.View
@@ -11,9 +12,11 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.FragmentManager
 import com.example.didactic_app.dialogs.DialogoFinJuego
 import com.example.didactic_app.dialogs.OnDialogoConfirmacionListener
+import com.example.didactic_app.enums.Lugar
 import com.example.didactic_app.model.RespuestasCancion
+import com.example.didactic_app.utilis.Utils
 
-class CancionActivity : AppCompatActivity(), OnDialogoConfirmacionListener {
+class CancionActivity : Lanzador(), OnDialogoConfirmacionListener {
 
     private val RESPUESTAS: Array<RespuestasCancion> = arrayOf(
         RespuestasCancion(R.string.bilbainada1, R.string.bilbainada_resp1_1, R.string.bilbainada_resp1_2, R.string.bilbainada_resp1_3, R.string.bilbainada_resp1_2),
@@ -166,6 +169,9 @@ class CancionActivity : AppCompatActivity(), OnDialogoConfirmacionListener {
         }
 
         var fragmentManager: FragmentManager = supportFragmentManager
+        if (aciertos == 7) {
+            Utils.anadirSuperado(this, Lugar.PARQUE)
+        }
         var dialogo = DialogoFinJuego(aciertos, 7)
         dialogo.show(fragmentManager, "GAME OVER")
 
@@ -223,7 +229,12 @@ class CancionActivity : AppCompatActivity(), OnDialogoConfirmacionListener {
     override fun onPossitiveButtonClick() {
         pararReproduccion()
         if (aciertos == 7) {
-            finish()
+            lanzarJuego(arrayOf(
+                resources.getText(R.string.sardina_y_puzzle).toString(),
+            ), intArrayOf(
+                R.drawable.sardinaypuzzle
+            ), R.raw.sardina_y_puzzle_sarejosle, Intent(applicationContext, MainActivity::class.java)
+            )
         } else {
             resetearJuego()
         }

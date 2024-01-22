@@ -34,6 +34,23 @@ abstract class Lanzador: AppCompatActivity() {
         }
     }
 
+    fun lanzarJuegoYT(explicacion: Array<String>?, fondo: String?, audio: Int?, intencion: Intent) {
+        this.intencion = intencion
+        if (!explicacion.isNullOrEmpty()) {
+            val intentExplicacion: Intent = Intent(this, ExplicacionActivityYT::class.java)
+            if (audio != null) {
+                intentExplicacion.putExtra(AUDIO_PARAM, audio)
+            }
+            if (fondo != null) {
+                intentExplicacion.putExtra(FONDO_PARAM, fondo)
+            }
+            intentExplicacion.putExtra(TEXTO_PARAM, explicacion)
+            startForResult.launch(intentExplicacion)
+        } else {
+            startActivity(intencion)
+        }
+    }
+
     val startForResult = registerForActivityResult(ActivityResultContracts.StartActivityForResult()) {
             result: ActivityResult ->
         if (result.resultCode == Activity.RESULT_OK) {
