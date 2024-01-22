@@ -481,9 +481,7 @@ class MainActivity : Lanzador() {
         llMuseo.visibility = LinearLayout.GONE
         llParque.visibility = LinearLayout.GONE
 //        llRemo.visibility = LinearLayout.GONE
-        if (!ayuntamientoVisible()) {
-            llUdala.visibility = LinearLayout.GONE
-        }
+        llUdala.visibility = LinearLayout.GONE
     }
     
     /**
