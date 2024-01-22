@@ -152,5 +152,4 @@ class Puzzle3x2Activity : Lanzador() {
             return true
         }
     }
-
 }
