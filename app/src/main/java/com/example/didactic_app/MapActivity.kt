@@ -23,21 +23,51 @@ import org.osmdroid.views.overlay.mylocation.GpsMyLocationProvider
 import org.osmdroid.views.overlay.mylocation.MyLocationNewOverlay
 
 
+/**
+ * Clase MapActivity que implementa MapListener y GpsStatus.Listener.
+ */
 class MapActivity : AppCompatActivity(), MapListener, GpsStatus.Listener {
 
 
+    /**
+     * Coordenadas del Serantes Mendia.
+     */
     private val COORDENADAS_SERANTES: DoubleArray = doubleArrayOf(43.3359377879001, -3.0619840315480364)
+    /**
+     * Coordenadas de La Sardinera.
+     */
     private val COORDENADAS_SARDINERA: DoubleArray = doubleArrayOf(43.33437796738136, -3.039328003051773)
+    /**
+     * Coordenadas del lugar de Sare Josleen.
+     */
     private val SARE_JOSLEEN_LEKUA: DoubleArray = doubleArrayOf(43.33005582802109, -3.0309998673703076)
+    /**
+     * Coordenadas del Museo de Santurtzi.
+     */
     private val ITSAS_MUSEOA: DoubleArray = doubleArrayOf(43.33077682113878, -3.030527877109482)
+    /**
+     * Coordenadas del Parque de Santurtzi.
+     */
     private val SANTURTZIKO_PARKEA: DoubleArray = doubleArrayOf(43.32879964909476, -3.031697605351168)
 //    private val ARRAUN_UDAL_PABILOIA: DoubleArray = doubleArrayOf(43.33072217111924, -3.03158330305195)
+    /**
+     * Coordenadas del Ayuntamiento de Santurtzi.
+     */
     private val UDALA: DoubleArray = doubleArrayOf(43.32883180778487, -3.033054932499828)
 
-
+    /**
+     * Mapa de la vista.
+     */
     lateinit var mMap: MapView
+    /**
+     * Controlador del mapa.
+     */
     lateinit var controller: IMapController;
+    /**
+     * Capa de ubicación actual.
+     */
     lateinit var mMyLocationOverlay: MyLocationNewOverlay;
+    
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 //        val binding = ActivityMapBinding.inflate(layoutInflater)
@@ -142,21 +172,37 @@ class MapActivity : AppCompatActivity(), MapListener, GpsStatus.Listener {
     }
 
 
+    /**
+     * Clase interna CustomInfoWindow que extiende de InfoWindow.
+     * Esta clase personaliza la apariencia de la burbuja de información.
+     */
     private inner class CustomInfoWindow(
         layoutResId: Int,
         mapView: MapView,
         private val overlayItem: OverlayItem
     ) : InfoWindow(layoutResId, mapView) {
 
+        /**
+         * Método que se ejecuta al abrir la burbuja de información.
+         * Permite personalizar la apariencia de la burbuja si es necesario.
+         */
         override fun onOpen(item: Any?) {
             // Aquí puedes personalizar la apariencia de la burbuja de información si es necesario
         }
 
+        /**
+         * Método que se ejecuta al cerrar la burbuja de información.
+         * Permite realizar acciones al cerrar la burbuja si es necesario.
+         */
         override fun onClose() {
             // Aquí puedes realizar acciones al cerrar la burbuja de información si es necesario
         }
     }
 
+    /**
+     * Método que muestra la burbuja de información.
+     * @param overlayItem El marcador para el cual se mostrará la burbuja de información.
+     */
     private fun showInfoWindow(overlayItem: OverlayItem?) {
         if (overlayItem != null) {
             val marker = Marker(mMap)

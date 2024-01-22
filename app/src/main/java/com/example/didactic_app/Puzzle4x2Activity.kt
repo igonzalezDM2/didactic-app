@@ -1,6 +1,7 @@
 package com.example.didactic_app
 
 import android.content.ClipData
+import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.DragEvent
@@ -9,8 +10,10 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.ImageView
 import android.widget.TextView
+import com.example.didactic_app.enums.Lugar
+import com.example.didactic_app.utilis.Utils
 
-class Puzzle4x2Activity : AppCompatActivity() {
+class Puzzle4x2Activity : Lanzador() {
     private lateinit var puzzleZone: ViewGroup
     private lateinit var marcoZone: ViewGroup
 
@@ -153,6 +156,13 @@ class Puzzle4x2Activity : AppCompatActivity() {
                     }
                     if (bien1 && bien2 && bien3 && bien4 && bien5 && bien6 && bien7 && bien8){
                         tvRespuesta.setText("Zorionak puzzlea egin duzu!")
+                        Utils.anadirSuperado(applicationContext, Lugar.AYUNTAMIENTO)
+                        lanzarJuego(arrayOf(
+                            resources.getText(R.string.explicacion_azkena_del_todo).toString(),
+                        ), intArrayOf(
+                        ), R.raw.amaiera_del_todo, Intent(applicationContext, MainActivity::class.java)
+                        )
+
                     }
                 }
             }

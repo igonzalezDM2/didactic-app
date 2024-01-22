@@ -28,6 +28,11 @@
             android:noHistory="true"
             android:exported="false" />
         <activity
+            android:name=".ExplicacionActivityYT"
+            android:screenOrientation="portrait"
+            android:noHistory="true"
+            android:exported="false" />
+        <activity
             android:name=".PuertoActivity"
             android:screenOrientation="portrait"
             android:exported="false" />

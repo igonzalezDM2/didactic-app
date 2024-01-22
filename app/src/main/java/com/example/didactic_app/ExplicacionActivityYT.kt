@@ -3,43 +3,37 @@ package com.example.didactic_app
 import android.content.Intent
 import android.media.MediaPlayer
 import android.os.Bundle
-import android.os.Handler
-import android.os.Handler.Callback
-import android.os.Looper
-import android.os.Message
 import android.view.View
-import android.widget.ArrayAdapter
+import android.webkit.WebChromeClient
+import android.webkit.WebView
 import android.widget.ImageButton
-import android.widget.ImageView
 import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.isVisible
-import java.lang.Thread.sleep
 import java.util.Timer
-import java.util.TimerTask
 import kotlin.concurrent.timerTask
 
+
 /**
- * Clase ExplicacionActivity que extiende de AppCompatActivity.
+ * Clase ExplicacionActivityYT que extiende de AppCompatActivity.
  */
-class ExplicacionActivity : AppCompatActivity() {
-
+class ExplicacionActivityYT : AppCompatActivity() {
 
 
     /**
-     * Imagen de fondo de la explicación.
+     * WebView que muestra el fondo de la explicación.
      */
-    lateinit var ivFondo: ImageView
+    lateinit var ivFondo: WebView
     /**
-     * Texto de la explicación.
+     * TextView que muestra la explicación.
      */
     lateinit var tvExplicacion: TextView
     /**
-     * Botón para reproducir audio.
+     * ImageButton para reproducir audio.
      */
     lateinit var btnAudio: ImageButton
     /**
-     * Botón para avanzar en la explicación.
+     * ImageButton para avanzar en la explicación.
      */
     lateinit var btnAvanzar: ImageButton
 
@@ -57,9 +51,9 @@ class ExplicacionActivity : AppCompatActivity() {
      */
     private var texto: Array<String>? = null
     /**
-     * Array de IDs de recursos de imagen de fondo.
+     * URL del fondo de la explicación.
      */
-    private var fondo: IntArray? = null
+    private var fondo: String? = null
 
     /**
      * Índice actual.
@@ -73,37 +67,36 @@ class ExplicacionActivity : AppCompatActivity() {
 
     /**
      * Método llamado cuando la actividad es creada.
+     *
+     * @param savedInstanceState El estado previamente guardado de la actividad
      */
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_explicacion)
+        setContentView(R.layout.activity_explicacion_yt)
 
         ivFondo = findViewById(R.id.ivFondo)
         tvExplicacion = findViewById(R.id.tvExplicacion)
         btnAudio = findViewById(R.id.btnAudio)
         btnAvanzar = findViewById(R.id.btnAvanzar)
 
+        val webSettings = ivFondo.settings
+        webSettings.javaScriptEnabled = true
+
+        ivFondo.webChromeClient = WebChromeClient() // Necesario para la reproducción de videos
+
+
+        // URL del video de YouTube (reemplázalo con el enlace del video que desees mostrar)
+
+
+
         var variables = intent.extras
         if (variables != null) {
-            fondo = variables.getIntArray("fondo")
+            fondo = variables.getString("fondo")
             if (fondo != null) {
-
-                if (fondo!!.size > 0) {
-
-                    var ind:Int = 0
-                    Timer().scheduleAtFixedRate(timerTask {
-                        runOnUiThread() {
-                            setRecursoImagen(fondo!![ind])
-                            ind++
-                            if (ind == fondo!!.size) {
-                                ind = 0
-                            }
-                        }
-                    }, 0, 5000)
-
-                } else if (fondo != null && fondo!!.isNotEmpty()){
-                    setRecursoImagen(fondo!![0])
-                }
+                // Configura el WebView para cargar el video
+                val html =
+                    "<iframe width=\"100%\" height=\"100%\" src=\"$fondo\" frameborder=\"0\" allowfullscreen></iframe>"
+                ivFondo.loadData(html, "text/html", "utf-8")
             }
             val recursoAudio: Int = variables.getInt("audio")
             if (recursoAudio > 0) {
@@ -167,7 +160,7 @@ class ExplicacionActivity : AppCompatActivity() {
     }
 
     /**
-     * Reproduce forzosamente el audio correspondiente al recurso proporcionado y ejecuta la acción al terminar la reproducción.
+     * Reproduce el audio forzadamente con el recurso proporcionado y ejecuta la acción al terminar la reproducción.
      *
      * @param recurso El recurso de audio a reproducir
      * @param alTerminar La acción a ejecutar al terminar la reproducción
@@ -196,15 +189,6 @@ class ExplicacionActivity : AppCompatActivity() {
             mp!!.release()
             mp = null
         }
-    }
-
-    /**
-     * Establece la imagen correspondiente al recurso proporcionado.
-     *
-     * @param imagen El recurso de imagen a establecer
-     */
-    fun setRecursoImagen(imagen: Int) {
-        ivFondo.setImageResource(imagen)
     }
 
     /**

@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/white"
+    android:background="@drawable/puerto_santurce_ai"
     android:padding="16dp"
     tools:context=".MainActivity">
     <ImageView
@@ -22,7 +22,7 @@
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginVertical="16dp"
-        app:cardBackgroundColor="@color/gray"
+        app:cardBackgroundColor="@color/blue"
         app:cardCornerRadius="16dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -39,13 +39,16 @@
             <Button
                 android:id="@+id/bt_mapa"
                 style="@style/botones_menu"
+                android:background="@color/green"
                 android:textStyle="bold|italic"
+                android:layout_marginBottom="15sp"
                 android:text="@string/mapa" />
 
             <LinearLayout
                 android:id="@+id/llSerantes"
                 android:layout_width="match_parent"
                 android:orientation="vertical"
+                android:visibility="gone"
                 android:layout_height="wrap_content">
 
                 <TextView
@@ -80,6 +83,7 @@
             android:id="@+id/llSardinera"
             android:layout_width="match_parent"
             android:orientation="vertical"
+            android:visibility="gone"
             android:layout_height="wrap_content">
 
             <TextView
@@ -115,6 +119,7 @@
             android:id="@+id/llSareJosleak"
             android:layout_width="match_parent"
             android:orientation="vertical"
+            android:visibility="gone"
             android:layout_height="wrap_content">
 
             <TextView
@@ -154,6 +159,7 @@
             android:id="@+id/llItsasMuseoa"
             android:layout_width="match_parent"
             android:orientation="vertical"
+            android:visibility="gone"
             android:layout_height="wrap_content">
 
             <TextView
@@ -188,6 +194,7 @@
             android:id="@+id/llParque"
             android:layout_width="match_parent"
             android:orientation="vertical"
+            android:visibility="gone"
             android:layout_height="wrap_content">
 
             <TextView
@@ -263,7 +270,7 @@
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="ARRAUN KLUBA"
+                android:text="UDALETXEA"
                 android:textColor="@color/white"
                 android:textAlignment="center"
                 android:textSize="20sp"
@@ -286,31 +293,136 @@
                 style="@style/botones_menu"
                 android:text="@string/prueba8_alimentar" />
 
-            <Button
-                android:id="@+id/bt_prueba9_puerto"
-                style="@style/botones_menu"
-                android:text="@string/prueba9_puerto" />
+<!--            <Button-->
+<!--                android:id="@+id/bt_prueba9_puerto"-->
+<!--                style="@style/botones_menu"-->
+<!--                android:text="@string/prueba9_puerto" />-->
 
-            <Button
-                android:id="@+id/bt_prueba10_tangram"
-                style="@style/botones_menu"
-                android:text="Tangram" />
+<!--            <Button-->
+<!--                android:id="@+id/bt_prueba10_tangram"-->
+<!--                style="@style/botones_menu"-->
+<!--                android:text="Tangram" />-->
         </LinearLayout>
 
         </LinearLayout>
 
     </androidx.cardview.widget.CardView>
 
+    <androidx.cardview.widget.CardView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="50sp"
+        app:cardCornerRadius="16sp"
+        android:id="@+id/cvFinJuego"
+        android:visibility="gone"
+        app:layout_constraintTop_toBottomOf="@id/cv_menu">
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textAlignment="center"
+            android:textSize="25sp"
+            android:textColor="@color/blue"
+            android:textStyle="bold"
+            android:text="ZORIONAK, JOKOA AMAITU DUZU!"/>
+    </androidx.cardview.widget.CardView>
+
+    <androidx.cardview.widget.CardView
+        android:layout_width="220sp"
+        android:layout_height="wrap_content"
+        android:minWidth="100sp"
+        app:cardBackgroundColor="@color/blue"
+        app:cardCornerRadius="10sp"
+        android:id="@+id/cvNora"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintBottom_toTopOf="@+id/bt_salir"
+        android:layout_marginBottom="15sp"
+        >
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical">
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:textAlignment="center"
+                android:textStyle="bold"
+                android:textColor="@color/white"
+                android:text="NORA JOAN:"
+                />
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:background="@color/white" />
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:paddingLeft="15sp"
+                android:textColor="@color/white"
+                android:text="SERANTES MENDIA"
+                android:id="@+id/tvNoraSerantes"/>
+                />
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:paddingLeft="15sp"
+                android:textColor="@color/white"
+                android:text="LA SARDINERA ESKULTURA"
+                android:id="@+id/tvNoraSardinera"
+                />
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:paddingLeft="15sp"
+                android:textColor="@color/white"
+                android:text="SARE JOSLEEN LEKUA"
+                android:id="@+id/tvNoraSarejosle"
+                />
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:paddingLeft="15sp"
+                android:textColor="@color/white"
+                android:text="ITSAS MUSEOA"
+                android:id="@+id/tvNoraMuseo"
+                />
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:paddingLeft="15sp"
+                android:textColor="@color/white"
+                android:text="SANTURTZIKO PARKEA"
+                android:id="@+id/tvNoraParque"
+                />
+
+            <TextView
+                android:visibility="gone"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:paddingLeft="15sp"
+                android:textColor="@color/white"
+                android:text="UDALETXEA"
+                android:id="@+id/tvNoraUdala"
+                />
+        </LinearLayout>
+
+    </androidx.cardview.widget.CardView>
+
+
     <Button
         android:id="@+id/bt_salir"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:backgroundTint="@color/gray"
+        android:backgroundTint="@color/blue"
         android:text="@string/salir"
         android:textAllCaps="true"
-        android:textColor="@color/red"
+        android:textColor="@color/white"
+        android:textSize="20sp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

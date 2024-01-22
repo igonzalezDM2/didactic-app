@@ -17,10 +17,15 @@ import androidx.constraintlayout.widget.ConstraintLayout
 import androidx.fragment.app.FragmentManager
 import com.example.didactic_app.dialogs.DialogoFinJuego
 import com.example.didactic_app.dialogs.OnDialogoConfirmacionListener
+import com.example.didactic_app.enums.Lugar
 import com.example.didactic_app.model.Pez
+import com.example.didactic_app.utilis.Utils
 import kotlin.math.log
 import kotlin.random.Random
 
+/**
+ * Clase que representa la actividad de atrapar sardinas.
+ */
 class AtraparSardinasActivity : Lanzador() {
     private lateinit var tvCantidadSardinas: TextView
     private lateinit var tvTiempo: TextView
@@ -30,6 +35,9 @@ class AtraparSardinasActivity : Lanzador() {
     private lateinit var temporizadorJuego: TemporizadorComponent
     private var cuentaAtrasInicio = 3
 
+    /**
+     * Método que se llama al crear la actividad.
+     */
     @SuppressLint("ClickableViewAccessibility")
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -67,6 +75,7 @@ class AtraparSardinasActivity : Lanzador() {
         }
 
         temporizadorJuego.onFinish = {
+            Utils.anadirSuperado(this, Lugar.SARDINERA)
             lanzarJuego(arrayOf(
                 resources.getText(R.string.sardina_y_puzzle).toString(),
             ), intArrayOf(
@@ -79,6 +88,9 @@ class AtraparSardinasActivity : Lanzador() {
         temporizadorInicio.startTimer()
     }
 
+    /**
+     * Método para manejar la cuenta atrás del inicio del juego.
+     */
     private fun cuentaAtrasDelInicio(){
         if(cuentaAtrasInicio > 0) {
             tvTemporizadorInicio.text = cuentaAtrasInicio.toString()
@@ -91,6 +103,9 @@ class AtraparSardinasActivity : Lanzador() {
         cuentaAtrasInicio -= 1
     }
 
+    /**
+     * Método para manejar el evento de toque en una parte no transparente de la imagen.
+     */
     private fun clickSardina(){
         // Aquí puedes manejar el evento de toque en una parte no transparente de la imagen
         val cant = tvCantidadSardinas.text.toString().toInt()
