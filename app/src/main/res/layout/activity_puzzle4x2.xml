@@ -3,7 +3,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@drawable/fondo_puzzle"
+    android:background="@drawable/fondo_puzzle4x2"
     tools:context=".Puzzle4x2Activity">
 
     <LinearLayout

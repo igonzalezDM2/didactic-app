@@ -3,7 +3,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/blue"
+    android:background="@drawable/fondo_puzzle3x2"
     tools:context=".Puzzle3x2Activity">
 
     <LinearLayout
@@ -15,7 +15,7 @@
             android:id="@+id/marcoZone"
             android:layout_width="match_parent"
             android:layout_height="0dp"
-            android:layout_weight="1"
+            android:layout_weight="1.3"
             android:gravity="center"
             android:orientation="vertical">
 
@@ -91,6 +91,7 @@
             android:layout_height="0dp"
             android:layout_weight="1"
             android:gravity="center"
+            android:background="@color/tranparent_black"
             android:orientation="vertical">
 
             <TextView
