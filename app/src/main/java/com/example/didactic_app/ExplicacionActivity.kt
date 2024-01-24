@@ -219,5 +219,9 @@ class ExplicacionActivity : AppCompatActivity() {
         this.audio = audio
     }
 
+    override fun onBackPressed() {
+        super.onBackPressed()
+        pararReproduccion()
+    }
 
 }
