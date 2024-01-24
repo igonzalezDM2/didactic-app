@@ -459,7 +459,7 @@ class MainActivity : Lanzador() {
                 llParque.visibility = LinearLayout.VISIBLE
             } /*else if (comprobarLocalizacion(ARRAUN_UDAL_PABILOIA, 55)) {
                 llRemo.visibility = LinearLayout.VISIBLE
-            }*/ else if (comprobarLocalizacion(UDALA, 40)) {
+            }*/ else if (ayuntamientoVisible() && comprobarLocalizacion(UDALA, 40)) {
                 llUdala.visibility = LinearLayout.VISIBLE
             }
             checkSuperados()
