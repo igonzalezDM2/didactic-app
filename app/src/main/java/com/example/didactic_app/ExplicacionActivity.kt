@@ -19,25 +19,61 @@ import java.util.Timer
 import java.util.TimerTask
 import kotlin.concurrent.timerTask
 
+/**
+ * Clase ExplicacionActivity que extiende de AppCompatActivity.
+ */
 class ExplicacionActivity : AppCompatActivity() {
 
 
 
+    /**
+     * Imagen de fondo de la explicación.
+     */
     lateinit var ivFondo: ImageView
+    /**
+     * Texto de la explicación.
+     */
     lateinit var tvExplicacion: TextView
+    /**
+     * Botón para reproducir audio.
+     */
     lateinit var btnAudio: ImageButton
+    /**
+     * Botón para avanzar en la explicación.
+     */
     lateinit var btnAvanzar: ImageButton
 
+    /**
+     * Reproductor de audio.
+     */
     private var mp: MediaPlayer? = null
 
+    /**
+     * ID del recurso de audio.
+     */
     private var audio: Int? = null
+    /**
+     * Array de texto de la explicación.
+     */
     private var texto: Array<String>? = null
+    /**
+     * Array de IDs de recursos de imagen de fondo.
+     */
     private var fondo: IntArray? = null
 
+    /**
+     * Índice actual.
+     */
     private var index = 0
+    /**
+     * Retraso para la transición de imágenes.
+     */
     private val DELAY = 50
 
 
+    /**
+     * Método llamado cuando la actividad es creada.
+     */
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_explicacion)
@@ -101,10 +137,21 @@ class ExplicacionActivity : AppCompatActivity() {
 
     }
 
+    /**
+     * Reproduce el audio correspondiente al recurso proporcionado.
+     *
+     * @param recurso El recurso de audio a reproducir
+     */
     fun reproducirAudio(recurso: Int?) {
         reproducirAudio(recurso) {}
 
     }
+    /**
+     * Reproduce el audio correspondiente al recurso proporcionado y ejecuta la acción al terminar la reproducción.
+     *
+     * @param recurso El recurso de audio a reproducir
+     * @param alTerminar La acción a ejecutar al terminar la reproducción
+     */
     fun reproducirAudio(recurso: Int?, alTerminar: () -> Unit): Unit {
         try {
             if (mp != null) { //Si estaba en reproducción, se para; y si estaba parado, se reproduce desde el principio.
@@ -122,6 +169,12 @@ class ExplicacionActivity : AppCompatActivity() {
         }
     }
 
+    /**
+     * Reproduce forzosamente el audio correspondiente al recurso proporcionado y ejecuta la acción al terminar la reproducción.
+     *
+     * @param recurso El recurso de audio a reproducir
+     * @param alTerminar La acción a ejecutar al terminar la reproducción
+     */
     fun forzarReproduccionDeAudio(recurso: Int, alTerminar: () -> Unit): Unit {
         try {
             if (mp != null) {
@@ -137,6 +190,9 @@ class ExplicacionActivity : AppCompatActivity() {
         }
     }
 
+    /**
+     * Detiene la reproducción de audio si se está reproduciendo.
+     */
     private fun pararReproduccion() {
         if (mp != null) {
             mp!!.stop()
@@ -145,10 +201,20 @@ class ExplicacionActivity : AppCompatActivity() {
         }
     }
 
+    /**
+     * Establece la imagen correspondiente al recurso proporcionado.
+     *
+     * @param imagen El recurso de imagen a establecer
+     */
     fun setRecursoImagen(imagen: Int) {
         ivFondo.setImageResource(imagen)
     }
 
+    /**
+     * Establece el recurso de audio a reproducir.
+     *
+     * @param audio El recurso de audio a establecer
+     */
     fun setRecursoAudio(audio: Int) {
         this.audio = audio
     }

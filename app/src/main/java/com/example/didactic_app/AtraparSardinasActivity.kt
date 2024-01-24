@@ -1,24 +1,32 @@
 package com.example.didactic_app
 
+import android.animation.AnimatorSet
+import android.animation.ValueAnimator
 import android.annotation.SuppressLint
+import android.content.Intent
 import android.os.Bundle
-
+import android.util.Log
 import android.view.View
-
+import android.view.animation.AccelerateDecelerateInterpolator
+import android.view.animation.AnimationUtils
+import android.widget.ImageView
+import android.widget.LinearLayout
 import android.widget.TextView
-
 import androidx.appcompat.app.AppCompatActivity
-
 import androidx.constraintlayout.widget.ConstraintLayout
-
+import androidx.fragment.app.FragmentManager
+import com.example.didactic_app.dialogs.DialogoFinJuego
+import com.example.didactic_app.dialogs.OnDialogoConfirmacionListener
+import com.example.didactic_app.enums.Lugar
 import com.example.didactic_app.model.Pez
-
+import com.example.didactic_app.utilis.Utils
+import kotlin.math.log
 import kotlin.random.Random
 
 /**
- * Actividad que representa el juego para Atrapar Sardinas
+ * Clase que representa la actividad de atrapar sardinas.
  */
-class AtraparSardinasActivity : AppCompatActivity() {
+class AtraparSardinasActivity : Lanzador() {
     private lateinit var tvCantidadSardinas: TextView
     private lateinit var tvTiempo: TextView
     private lateinit var tvTemporizadorInicio: TextView
@@ -27,32 +35,37 @@ class AtraparSardinasActivity : AppCompatActivity() {
     private lateinit var temporizadorJuego: TemporizadorComponent
     private var cuentaAtrasInicio = 3
 
+    /**
+     * Método que se llama al crear la actividad.
+     */
     @SuppressLint("ClickableViewAccessibility")
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_atrapar_sardinas)
 
-        //Conseguiendo a los elementos de la actividad
         tvTiempo = findViewById(R.id.tvTiempo)
         tvCantidadSardinas = findViewById(R.id.tvCantidadSardinas)
         tvTemporizadorInicio = findViewById(R.id.tvTemporizadorInicio)
-        lyPrincipal = findViewById(R.id.lyPrincipal)
 
-        //Inicializar cantidad de peces a 0
+        tvTiempo.text = getString(R.string.tiempo)
         tvCantidadSardinas.text = 0.toString()
 
-        //Crear los temporizadores
-        temporizadorInicio = TemporizadorComponent(tvTemporizadorInicio, 5000)
+        lyPrincipal = findViewById(R.id.lyPrincipal)
+
+        temporizadorInicio = TemporizadorComponent(tvTemporizadorInicio,
+            5000)
+
         temporizadorJuego = TemporizadorComponent(tvTiempo,30999)
 
-        // Funcionalidad del juego en cada segundo
         temporizadorJuego.onTick =  {
             try {
                 val derecha = Random.nextBoolean()
                 val pez = Pez(this, lyPrincipal, derecha)
+                val direction = 1750
                 val duracionMovimiento = (2500L..5000L).random()
                 val duracionFinal = (250L..500L).random()
                 pez.startAnimation(
+                    direction,
                     duracionMovimiento,
                     duracionFinal,
                     lyPrincipal
@@ -60,16 +73,23 @@ class AtraparSardinasActivity : AppCompatActivity() {
                 lyPrincipal.addView(pez.imagen)
             } catch (_: Exception) { }
         }
-        // Funcionalidad de cada segundo del primer temporizador
-        temporizadorInicio.onTick = { cuentaAtrasDelInicio() }
-        // Al terminar el temporizador del juego
-        temporizadorJuego.onFinish = { finish() }
-        //Poner en marcha el temporizador
+
+        temporizadorJuego.onFinish = {
+            Utils.anadirSuperado(this, Lugar.SARDINERA)
+            lanzarJuego(arrayOf(
+                resources.getText(R.string.sardina_y_puzzle).toString(),
+            ), intArrayOf(
+                R.drawable.sardinaypuzzle
+            ), R.raw.sardina_y_puzzle_sarejosle, Intent(applicationContext, MainActivity::class.java)
+            )
+        }
+
+        temporizadorInicio.onTick = { cuentaAtrasDelInicio()}
         temporizadorInicio.startTimer()
     }
 
     /**
-     * Cuenta atras para iniciar el juego
+     * Método para manejar la cuenta atrás del inicio del juego.
      */
     private fun cuentaAtrasDelInicio(){
         if(cuentaAtrasInicio > 0) {
@@ -84,9 +104,10 @@ class AtraparSardinasActivity : AppCompatActivity() {
     }
 
     /**
-     * Evento de darle click a la sardina
+     * Método para manejar el evento de toque en una parte no transparente de la imagen.
      */
     private fun clickSardina(){
+        // Aquí puedes manejar el evento de toque en una parte no transparente de la imagen
         val cant = tvCantidadSardinas.text.toString().toInt()
         tvCantidadSardinas.text = cant.plus(1).toString()
     }
