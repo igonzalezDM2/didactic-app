@@ -7,8 +7,6 @@ import android.view.View
 import android.widget.Button
 import android.widget.ImageButton
 import android.widget.TextView
-import android.widget.Toast
-import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.FragmentManager
 import com.example.didactic_app.dialogs.DialogoFinJuego
 import com.example.didactic_app.dialogs.OnDialogoConfirmacionListener
@@ -341,6 +339,11 @@ class CancionActivity : Lanzador(), OnDialogoConfirmacionListener {
 
         mostrarLetra(LETRAS[contador])
         preprararRespuestas()
+    }
+
+    override fun onBackPressed() {
+        super.onBackPressed()
+        pararReproduccion()
     }
 
 }
