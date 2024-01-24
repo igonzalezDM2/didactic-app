@@ -9,8 +9,10 @@
     <color name="red">#ce3030</color>
     <color name="red_white">#f67e7e</color>
     <color name="green">#30ce4e</color>
+    <color name="tranparent_green">#F330CE4E</color>
     <color name="green_white">#85f698</color>
     <color name="blue">#416EFA</color>
+    <color name="tranparent_blue">#80416EFA</color>
     <color name="yellow">#FAC028</color>
     <color name="violet">#EE82EE</color>
     <color name="transparent">#00000000</color>

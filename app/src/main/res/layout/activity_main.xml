@@ -22,7 +22,7 @@
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginVertical="16dp"
-        app:cardBackgroundColor="@color/gray"
+        app:cardBackgroundColor="@color/tranparent_blue"
         app:cardCornerRadius="16dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -34,12 +34,14 @@
             android:gravity="center"
             android:orientation="vertical"
             android:paddingHorizontal="64dp"
-            android:paddingVertical="8dp">
+            android:paddingVertical="8dp"
+            android:layout_marginBottom="15dp">
 
             <Button
                 android:id="@+id/bt_mapa"
                 style="@style/botones_menu"
                 android:textStyle="bold|italic"
+                android:layout_marginVertical="15sp"
                 android:text="@string/mapa" />
 
             <LinearLayout
@@ -216,7 +218,7 @@
                 style="@style/botones_menu"
                 android:text="@string/prueba6_cancion" />
 
-        </LinearLayout>>
+        </LinearLayout>
 
 <!--        <LinearLayout-->
 <!--            android:id="@+id/llRemo"-->

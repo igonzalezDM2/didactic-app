@@ -6,6 +6,7 @@
     android:layout_height="match_parent"
     android:orientation="vertical"
     android:id="@+id/main"
+    android:background="@drawable/cocinar_fondo"
     tools:context=".CocinarActivity">
     <TextView
         android:layout_width="wrap_content"
