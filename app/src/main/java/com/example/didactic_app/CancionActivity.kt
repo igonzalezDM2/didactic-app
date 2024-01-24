@@ -161,7 +161,9 @@ class CancionActivity : Lanzador(), OnDialogoConfirmacionListener {
         try {
             if (mp != null) { //Si estaba en reproducción, se para; y si estaba parado, se reproduce desde el principio.
                 pararReproduccion()
+                btnPlay.setImageResource(R.drawable.audio_muted)
             } else {
+                btnPlay.setImageResource(R.drawable.audio_vector)
                 mp = MediaPlayer.create(this, recurso)
                 mp!!.setOnCompletionListener { alTerminar() }
                 mp!!.start()
@@ -181,7 +183,9 @@ class CancionActivity : Lanzador(), OnDialogoConfirmacionListener {
         try {
             if (mp != null) {
                 pararReproduccion()
+
             }
+            btnPlay.setImageResource(R.drawable.audio_vector)
             mp = MediaPlayer.create(this, recurso)
             mp!!.setOnCompletionListener { alTerminar() }
             mp!!.start()

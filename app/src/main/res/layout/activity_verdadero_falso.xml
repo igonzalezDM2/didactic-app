@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/blue"
+    android:background="@color/tranparent_blue"
     tools:context=".VerdaderoFalsoActivity">
 
     <LinearLayout
@@ -74,8 +74,8 @@
             <Button
                 android:id="@+id/btnSanturtzi"
                 style="@style/CustomButtonStyle"
-                android:layout_width="150dp"
-                android:layout_height="150dp"
+                android:layout_width="148dp"
+                android:layout_height="152dp"
                 android:layout_marginEnd="15dp"
                 android:background="@drawable/button_green"
                 android:text="@string/button_santurtzi" />

@@ -144,6 +144,7 @@ class ExplicacionActivity : AppCompatActivity() {
      */
     fun reproducirAudio(recurso: Int?) {
         reproducirAudio(recurso) {}
+
     }
     /**
      * Reproduce el audio correspondiente al recurso proporcionado y ejecuta la acción al terminar la reproducción.
@@ -155,7 +156,9 @@ class ExplicacionActivity : AppCompatActivity() {
         try {
             if (mp != null) { //Si estaba en reproducción, se para; y si estaba parado, se reproduce desde el principio.
                 pararReproduccion()
+                btnAudio.setImageResource(R.drawable.audio_muted)
             } else if (recurso != null) {
+                btnAudio.setImageResource(R.drawable.audio_vector)
                 mp = MediaPlayer.create(this, recurso)
                 mp!!.setOnCompletionListener { alTerminar() }
                 mp!!.start()
