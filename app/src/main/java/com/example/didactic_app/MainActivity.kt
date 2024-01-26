@@ -447,21 +447,21 @@ class MainActivity : Lanzador() {
             longitud = location.longitude
             ocultarLinears()
             ocultarNora()
-            if (comprobarLocalizacion(COORDENADAS_SERANTES, 750)) {
+//            if (comprobarLocalizacion(COORDENADAS_SERANTES, 750)) {
                 llSerantes.visibility = LinearLayout.VISIBLE
-            } else if (comprobarLocalizacion(COORDENADAS_SARDINERA, 75)) {
+//            } else if (comprobarLocalizacion(COORDENADAS_SARDINERA, 75)) {
                 llSardinera.visibility = LinearLayout.VISIBLE
-            } else if (comprobarLocalizacion(SARE_JOSLEEN_LEKUA, 15)) {
+//            } else if (comprobarLocalizacion(SARE_JOSLEEN_LEKUA, 15)) {
                 llSareJosle.visibility = LinearLayout.VISIBLE
-            } else if (comprobarLocalizacion(ITSAS_MUSEOA, 15)) {
+//            } else if (comprobarLocalizacion(ITSAS_MUSEOA, 15)) {
                 llMuseo.visibility = LinearLayout.VISIBLE
-            } else if (comprobarLocalizacion(SANTURTZIKO_PARKEA, 50)) {
+//            } else if (comprobarLocalizacion(SANTURTZIKO_PARKEA, 50)) {
                 llParque.visibility = LinearLayout.VISIBLE
-            } /*else if (comprobarLocalizacion(ARRAUN_UDAL_PABILOIA, 55)) {
-                llRemo.visibility = LinearLayout.VISIBLE
-            }*/ else if (ayuntamientoVisible() && comprobarLocalizacion(UDALA, 40)) {
+           // } else if (comprobarLocalizacion(ARRAUN_UDAL_PABILOIA, 55)) {
+//                llRemo.visibility = LinearLayout.VISIBLE
+//            }*/ else if (ayuntamientoVisible() && comprobarLocalizacion(UDALA, 40)) {
                 llUdala.visibility = LinearLayout.VISIBLE
-            }
+//            }
             checkSuperados()
 
         }
