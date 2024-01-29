@@ -1,7 +1,7 @@
 <resources>
     <string name="app_name">didactic-app</string>
     <string name="titulo">Sare josleak</string>
-    <string name="amaiera">PUZZLEA</string>
+    <string name="amaiera">OSATU PUZZLEA!</string>
     <!--Actividad menú -->
     <string name="descripcion_logo">Logotipo de la aplicacion</string>
     <string name="mapa">Mapa begiratu</string>
