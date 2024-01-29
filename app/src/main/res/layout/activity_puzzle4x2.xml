@@ -3,6 +3,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:background="@drawable/fondo_puzzle4x2"
     tools:context=".Puzzle4x2Activity">
 
@@ -16,20 +17,28 @@
             android:layout_width="match_parent"
             android:layout_height="0dp"
             android:layout_weight="1.3"
-            android:gravity="center"
             android:orientation="vertical">
 
-            <TextView
-                android:layout_width="wrap_content"
+            <androidx.cardview.widget.CardView
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="@string/amaiera"
-                android:textSize="36sp"
-                android:layout_marginBottom="25dp"
-                android:textColor="@android:color/black" />
+                app:cardCornerRadius="20sp"
+                android:layout_gravity="center"
+                android:layout_margin="10sp">
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:text="@string/amaiera"
+                    android:textAlignment="center"
+                    android:textSize="25sp"
+                    android:padding="10sp"
+                    android:textColor="@android:color/black" />
+            </androidx.cardview.widget.CardView>
 
             <RelativeLayout
                 android:layout_width="match_parent"
                 android:layout_height="220dp"
+                android:layout_marginTop="75dp"
                 android:gravity="center_horizontal">
 
                 <ImageView

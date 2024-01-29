@@ -89,14 +89,14 @@ class CocinarActivity : Lanzador() {
         tvTemporizador = findViewById(R.id.tvTemporizador)
         tvInstrucciones = findViewById(R.id.tvInstrucciones)
 
-        tvTemporizador.visibility = View.INVISIBLE
+        tvTemporizador.visibility = View.GONE
         var temporizador = TemporizadorComponent(tvTemporizador, 10000)
 
         temporizador.onFinish = {
             sardina.setImageResource(R.drawable.sardina_cocinada)
             parrilla.setImageResource(R.drawable.parrilla_vacia)
             cocinada = true
-            tvTemporizador.visibility = View.INVISIBLE
+            tvTemporizador.visibility = View.GONE
             tvInstrucciones.setText("Orain platerrara!")
 //            animacionFlama()
         }
