@@ -12,6 +12,7 @@ import android.location.LocationListener
 import android.location.LocationManager
 import android.os.Bundle
 import android.widget.Button
+import android.widget.ImageButton
 import android.widget.LinearLayout
 import android.widget.TextView
 import android.widget.Toast
@@ -176,7 +177,12 @@ class MainActivity : Lanzador() {
 
     private lateinit var cvFinJuego: CardView
 
+    private lateinit var btnDebug: ImageButton
+
+    private var debug: Boolean = false
+
     private lateinit var mapPartida: Map<Lugar, Boolean>
+
     
     /**
      * Método llamado cuando la actividad es creada.
@@ -188,6 +194,17 @@ class MainActivity : Lanzador() {
         initComponentes()
         initOyentes()
         checkSuperados()
+
+        btnDebug.setOnClickListener{l ->
+            debug = !debug
+            if (debug) {
+                findViewById<CardView>(R.id.cvNora).visibility = CardView.GONE
+                cambioVisibilidadDemo()
+            } else {
+                findViewById<CardView>(R.id.cvNora).visibility = CardView.VISIBLE
+                cambioVisibilidad()
+            }
+        }
 
 //        if (!comprobarPermisos()) {
 //            solicitarPermiso(android.Manifest.permission.ACCESS_FINE_LOCATION, "Localización", 0, this)
@@ -275,6 +292,8 @@ class MainActivity : Lanzador() {
         tvNoraParque = findViewById(R.id.tvNoraParque)
         tvNoraUdala = findViewById(R.id.tvNoraUdala)
         cvFinJuego = findViewById(R.id.cvFinJuego)
+
+        btnDebug = findViewById(R.id.bt_debug)
 
         ocultarLinears()
         ocultarNora()
@@ -447,21 +466,11 @@ class MainActivity : Lanzador() {
             longitud = location.longitude
             ocultarLinears()
             ocultarNora()
-//            if (comprobarLocalizacion(COORDENADAS_SERANTES, 750)) {
-                llSerantes.visibility = LinearLayout.VISIBLE
-//            } else if (comprobarLocalizacion(COORDENADAS_SARDINERA, 75)) {
-                llSardinera.visibility = LinearLayout.VISIBLE
-//            } else if (comprobarLocalizacion(SARE_JOSLEEN_LEKUA, 15)) {
-                llSareJosle.visibility = LinearLayout.VISIBLE
-//            } else if (comprobarLocalizacion(ITSAS_MUSEOA, 15)) {
-                llMuseo.visibility = LinearLayout.VISIBLE
-//            } else if (comprobarLocalizacion(SANTURTZIKO_PARKEA, 50)) {
-                llParque.visibility = LinearLayout.VISIBLE
-           // } else if (comprobarLocalizacion(ARRAUN_UDAL_PABILOIA, 55)) {
-//                llRemo.visibility = LinearLayout.VISIBLE
-//            }*/ else if (ayuntamientoVisible() && comprobarLocalizacion(UDALA, 40)) {
-                llUdala.visibility = LinearLayout.VISIBLE
-//            }
+            if (debug) {
+                cambioVisibilidadDemo()
+            } else {
+                cambioVisibilidad()
+            }
             checkSuperados()
 
         }
@@ -469,6 +478,47 @@ class MainActivity : Lanzador() {
         override fun onStatusChanged(provider: String, status: Int, extras: Bundle) {}
         override fun onProviderEnabled(provider: String) {}
         override fun onProviderDisabled(provider: String) {}
+    }
+
+    private fun cambioVisibilidadDemo() {
+        cvFinJuego.visibility = CardView.GONE
+
+        //            if (comprobarLocalizacion(COORDENADAS_SERANTES, 750)) {
+        llSerantes.visibility = LinearLayout.VISIBLE
+//            } else if (comprobarLocalizacion(COORDENADAS_SARDINERA, 75)) {
+        llSardinera.visibility = LinearLayout.VISIBLE
+//            } else if (comprobarLocalizacion(SARE_JOSLEEN_LEKUA, 15)) {
+        llSareJosle.visibility = LinearLayout.VISIBLE
+//            } else if (comprobarLocalizacion(ITSAS_MUSEOA, 15)) {
+        llMuseo.visibility = LinearLayout.VISIBLE
+//            } else if (comprobarLocalizacion(SANTURTZIKO_PARKEA, 50)) {
+        llParque.visibility = LinearLayout.VISIBLE
+        // } else if (comprobarLocalizacion(ARRAUN_UDAL_PABILOIA, 55)) {
+//                llRemo.visibility = LinearLayout.VISIBLE
+//            }*/ else if (ayuntamientoVisible() && comprobarLocalizacion(UDALA, 40)) {
+        llUdala.visibility = LinearLayout.VISIBLE
+//            }
+    }
+
+    private fun cambioVisibilidad() {
+        if (!debug && juegoCompletado()) {
+            cvFinJuego.visibility = CardView.VISIBLE
+        }
+        if (comprobarLocalizacion(COORDENADAS_SERANTES, 750)) {
+            llSerantes.visibility = LinearLayout.VISIBLE
+        } else if (comprobarLocalizacion(COORDENADAS_SARDINERA, 75)) {
+            llSardinera.visibility = LinearLayout.VISIBLE
+        } else if (comprobarLocalizacion(SARE_JOSLEEN_LEKUA, 15)) {
+            llSareJosle.visibility = LinearLayout.VISIBLE
+        } else if (comprobarLocalizacion(ITSAS_MUSEOA, 15)) {
+            llMuseo.visibility = LinearLayout.VISIBLE
+        } else if (comprobarLocalizacion(SANTURTZIKO_PARKEA, 50)) {
+            llParque.visibility = LinearLayout.VISIBLE
+        } /*else if (comprobarLocalizacion(ARRAUN_UDAL_PABILOIA, 55)) {
+                llRemo.visibility = LinearLayout.VISIBLE
+            }*/ else if (ayuntamientoVisible() && comprobarLocalizacion(UDALA, 40)) {
+            llUdala.visibility = LinearLayout.VISIBLE
+        }
     }
 
     /**
@@ -608,7 +658,11 @@ class MainActivity : Lanzador() {
         }
         if (juegoCompletado()) {
             findViewById<CardView>(R.id.cvNora).visibility = CardView.GONE
-            cvFinJuego.visibility = CardView.VISIBLE
+            if (!debug) {
+                cvFinJuego.visibility = CardView.VISIBLE
+            } else {
+                cvFinJuego.visibility = CardView.GONE
+            }
         }
     }
 

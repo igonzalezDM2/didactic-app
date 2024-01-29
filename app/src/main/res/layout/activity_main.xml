@@ -335,9 +335,8 @@
         app:cardBackgroundColor="@color/blue"
         app:cardCornerRadius="10sp"
         android:id="@+id/cvNora"
-        android:alpha="0.7"
         app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintBottom_toTopOf="@+id/bt_salir"
+        app:layout_constraintBottom_toTopOf="@+id/llSalir"
         android:layout_marginBottom="15sp"
         >
 
@@ -413,19 +412,36 @@
 
     </androidx.cardview.widget.CardView>
 
-
+<GridLayout
+    app:layout_constraintBottom_toBottomOf="parent"
+    app:layout_constraintEnd_toEndOf="parent"
+    app:layout_constraintHorizontal_bias="0.0"
+    android:id="@+id/llSalir"
+    app:layout_constraintStart_toStartOf="parent"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content">
     <Button
         android:id="@+id/bt_salir"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
+        android:layout_columnWeight="0.9"
+        android:layout_height="50dp"
         android:backgroundTint="@color/blue"
         android:text="@string/salir"
         android:textAllCaps="true"
         android:textColor="@color/white"
+        android:textSize="20sp" />
+
+    <ImageButton
+        android:id="@+id/bt_debug"
+        android:layout_columnWeight="0.1"
+        android:layout_height="50dp"
+        android:backgroundTint="@color/blue"
+        android:src="@drawable/debug"
+        android:textAllCaps="true"
+        android:textColor="@color/white"
         android:textSize="20sp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toStartOf="parent" />
+        app:tint="@color/white" />
+</GridLayout>
+
+
 
 </androidx.constraintlayout.widget.ConstraintLayout>
